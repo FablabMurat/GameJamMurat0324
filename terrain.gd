@@ -3,6 +3,8 @@ extends Node3D
 const NBSAPINS = 100
 const SapinScene = preload("res://sapin.tscn")
 
+var camrot = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	createsapins()
@@ -24,6 +26,12 @@ func createsapin(x,z):
 	obs.position.z = z
 	add_child(obs)
 
+func _unhandled_input(event):
+	if event is InputEventMouseMotion:
+		if event.button_mask & (MOUSE_BUTTON_MASK_MIDDLE + MOUSE_BUTTON_MASK_RIGHT):
+			camrot += event.relative.x * 0.005
+			get_node("Center").set_rotation(Vector3(0, camrot, 0))
+			print("Camera3D Rotation: ", camrot)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
