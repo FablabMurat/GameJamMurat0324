@@ -44,7 +44,7 @@ func _physics_process(delta):
 	direction.x = Input.get_action_strength(\"move_right\") - Input.get_action_strength(\"move_left\")
 	direction.z = Input.get_action_strength(\"move_forward\") - Input.get_action_strength(\"move_backwards\")
 	
-	velocity = direction.normalized() * PLAYER_SPEED
+	velocity = direction.normalized().rotated(Vector3.UP,$PlayerCenter.rotation.y) * PLAYER_SPEED
 	set_velocity(velocity * delta)
 	move_and_slide()
 	
@@ -72,20 +72,23 @@ func _unhandled_input(event):
 func animate():
 	if(velocity != Vector3.ZERO):
 		$PlayerCenter/PlayerSprite3D.play()
+		var realdirection = velocity.rotated(Vector3.UP,-$PlayerCenter.rotation.y)
+		if(realdirection.x > 0.4):
+			$PlayerCenter/PlayerSprite3D.animation = \"side\"
+			$PlayerCenter/PlayerSprite3D.flip_h = false
+		elif(realdirection.x < -0.4):
+			$PlayerCenter/PlayerSprite3D.animation = \"side\"
+			$PlayerCenter/PlayerSprite3D.flip_h = true
+		elif(realdirection.z < -0.4):
+			$PlayerCenter/PlayerSprite3D.animation = \"front\"
+		elif(realdirection.z > 0.4):
+			$PlayerCenter/PlayerSprite3D.animation = \"back\"
+		else:
+			print(\"animate impossible %d/%d\" % [realdirection.x,realdirection.z])
 	else:
 		$PlayerCenter/PlayerSprite3D.stop()
-		#$PlayerCenter/PlayerSprite3D.frame = 0
 	
-	if(velocity.x > 0):
-		$PlayerCenter/PlayerSprite3D.animation = \"side\"
-		$PlayerCenter/PlayerSprite3D.flip_h = false
-	elif(velocity.x < 0):
-		$PlayerCenter/PlayerSprite3D.animation = \"side\"
-		$PlayerCenter/PlayerSprite3D.flip_h = true
-	elif(velocity.z < 0):
-		$PlayerCenter/PlayerSprite3D.animation = \"front\"
-	elif(velocity.z > 0):
-		$PlayerCenter/PlayerSprite3D.animation = \"back\"
+
 		
 		
 "
