@@ -20,3 +20,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 0.89061, 0.454768, 0, -0.454768, 0.89061, 0, 3.19616, 0)
 
 [node name="Marker3D" type="Marker3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 0.86845, 0.495777, 0, -0.495777, 0.86845, 0, 2.75121, 4.61947)
