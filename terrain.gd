@@ -3,9 +3,9 @@ extends Node3D
 const NBSAPINS = 100
 const NBBUCHES = 40
 const NBROCHERS = 80
-const SapinScene = preload("res://sapin.tscn")
-const BucheScene = preload("res://buche.tscn")
-const RocherScene = preload("res://buche.tscn")
+const SapinScene = preload("res://paper_sapin.tscn")
+const BucheScene = preload("res://paper_buche.tscn")
+const RocherScene = preload("res://paper_rocher.tscn")
 
 var camrot = 0.0
 
@@ -56,15 +56,15 @@ func createrochers():
 	for i in range(NBROCHERS):
 		x = randf()*198.0-99.0
 		z = randf()*198.0-99.0
-		createbuche(x,z)
+		createrocher(x,z)
 		
 func createrocher(x,z):
 	if abs(x) < 3 and abs(z) < 3:
 		return
-	var buche = RocherScene.instantiate()
-	buche.position.x = x
-	buche.position.z = z
-	add_child(buche)
+	var rocher = RocherScene.instantiate()
+	rocher.position.x = x
+	rocher.position.z = z
+	add_child(rocher)
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:

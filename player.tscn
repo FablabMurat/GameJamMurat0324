@@ -180,8 +180,7 @@ sprite_frames = SubResource("SpriteFrames_hlw7m")
 animation = &"back"
 
 [node name="Camera3D" type="Camera3D" parent="PlayerCenter"]
-transform = Transform3D(0.499997, -0.000421828, 0.00164857, -0.000923824, 0.33951, 0.367059, 0.00142908, 0.36706, -0.339507, 0, 4.4165, -4.23686)
-fov = 69.3405
+transform = Transform3D(0.499997, -0.000421824, 0.00164857, -0.000923824, 0.33951, 0.367059, 0.00142908, 0.36706, -0.339507, 0, 4.4165, -4.23686)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_rycr6")
