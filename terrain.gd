@@ -1,7 +1,7 @@
 extends Node3D
 
 const NBSAPINS = 100
-const NBBUCHES = 40
+const NBBUCHES = 50
 const NBROCHERS = 80
 const NBNEIGE = 20000
 const SapinScene = preload("res://paper_sapin.tscn")
@@ -79,5 +79,6 @@ func update_overlay(type, nb):
 	
 
 func increaseFire(nb):
-	update_overlay("buche",-nb)
+	print("test increasefire %d" % nb)
+	update_overlay("buche",0)
 	$Area3D/CollisionShape3D/Feu.fireGestion(10*nb)

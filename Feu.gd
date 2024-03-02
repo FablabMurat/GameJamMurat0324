@@ -24,6 +24,7 @@ func _process(delta):
 
 func fireGestion(amount):
 	$Timer.start(timeLeft + amount)
+	print("fire ammount: %d" % timeLeft)
 
 func getwindDirection():
 	var windRotation = $WindDirection.rotation

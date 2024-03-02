@@ -65,7 +65,7 @@ func _physics_process(delta):
 		
 		if body.is_in_group(\"feu\"):
 			print(\"mettre buche\")
-			increaseFire.emit(\"buche\",nbbuche)
+			increaseFire.emit(nbbuche)
 			nbbuche = 0
 			
 
