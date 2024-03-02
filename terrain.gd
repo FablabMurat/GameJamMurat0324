@@ -21,8 +21,8 @@ func _ready():
 	pass # Replace with function body.
 
 func createsapins():
-	var x: int
-	var z: int
+	var x: float
+	var z: float
 	for i in range(NBSAPINS):
 		x = randf()*198.0-99.0
 		z = randf()*198.0-99.0
@@ -38,8 +38,8 @@ func createsapin(x,z):
 
 
 func createbuches():
-	var x: int
-	var z: int
+	var x: float
+	var z: float
 	for i in range(NBBUCHES):
 		x = randf()*198.0-99.0
 		z = randf()*198.0-99.0
@@ -51,12 +51,12 @@ func createbuche(x,z):
 	var buche = BucheScene.instantiate()
 	buche.position.x = x
 	buche.position.z = z
+	#buche.buchecollectedbyplayer.connect(collectbuche.bind())
 	add_child(buche)
 
-
 func createrochers():
-	var x: int
-	var z: int
+	var x: float
+	var z: float
 	for i in range(NBROCHERS):
 		x = randf()*198.0-99.0
 		z = randf()*198.0-99.0
