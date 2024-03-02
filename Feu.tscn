@@ -25,11 +25,14 @@ color_ramp = SubResource("GradientTexture1D_rokhq")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ei0bw"]
 vertex_color_use_as_albedo = true
+billboard_mode = 1
+billboard_keep_scale = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3qfkx"]
 lightmap_size_hint = Vector2i(12, 12)
 material = SubResource("StandardMaterial3D_ei0bw")
-orientation = 0
+flip_faces = true
+orientation = 2
 
 [node name="Feu" type="Node3D"]
 script = ExtResource("1_lc4fw")
@@ -44,9 +47,6 @@ amount = 763
 lifetime = 12.29
 process_material = SubResource("ParticleProcessMaterial_3rfnk")
 draw_pass_1 = SubResource("PlaneMesh_3qfkx")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.594584, 0, 0.804033, 0, 1, 0, -0.804033, 0, 0.594584, 7.83014, 1.25226, 4.40651)
 
 [node name="WindDirection" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)

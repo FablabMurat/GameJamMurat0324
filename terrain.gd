@@ -3,9 +3,17 @@ extends Node3D
 const NBSAPINS = 100
 const NBBUCHES = 40
 const NBROCHERS = 80
+const NBNEIGE = 20000
 const SapinScene = preload("res://paper_sapin.tscn")
 const BucheScene = preload("res://paper_buche.tscn")
 const RocherScene = preload("res://paper_rocher.tscn")
+
+const Neige0_Scene = preload("res://neige_00.tscn")
+const Neige1_Scene = preload("res://neige_01.tscn")
+const Neige2_Scene = preload("res://neige_02.tscn")
+const Neige3_Scene = preload("res://neige_03.tscn")
+
+const NeigeScenes = [Neige0_Scene, Neige1_Scene, Neige2_Scene, Neige3_Scene]
 
 var inventory = {
 	"buche": 0,
@@ -19,6 +27,8 @@ func _ready():
 	createobjs(SapinScene,NBSAPINS)
 	createobjs(BucheScene,NBBUCHES)
 	createobjs(RocherScene,NBROCHERS)
+	
+	createobjlist(NeigeScenes,NBNEIGE)
 	pass # Replace with function body.
 	$Player.collected.connect(update_overlay.bind())
 	update_overlay("buche", 0)
@@ -38,6 +48,18 @@ func createobj(scene,x,z):
 	obs.position.x = x
 	obs.position.z = z
 	add_child(obs)
+	
+func createobjlist(scenelist, nbmax):
+	
+	var x: float
+	var z: float
+	for i in range(nbmax):
+		var sceneindex = randi_range(0, scenelist.size()-1)
+		x = randf()*198.0-99.0
+		z = randf()*198.0-99.0
+		if abs(x) < 3 and abs(z) < 3:
+			return
+		createobj(scenelist[sceneindex],x,z)
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
