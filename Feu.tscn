@@ -1,19 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfejuj5j6sweu"]
+[gd_scene load_steps=7 format=3 uid="uid://cfejuj5j6sweu"]
 
 [ext_resource type="Script" path="res://Feu.gd" id="1_lc4fw"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t1rvc"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_t0fm4"]
-sky_material = SubResource("ProceduralSkyMaterial_t1rvc")
-
-[sub_resource type="Environment" id="Environment_77c6m"]
-background_mode = 2
-sky = SubResource("Sky_t0fm4")
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_47lb2"]
 colors = PackedColorArray(0.831373, 0.0470588, 0.113725, 1, 0.89, 0.86686, 0.1958, 1)
@@ -47,11 +34,9 @@ orientation = 0
 [node name="Feu" type="Node3D"]
 script = ExtResource("1_lc4fw")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_77c6m")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+visible = false
 shadow_enabled = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
