@@ -20,8 +20,8 @@ func createsapins():
 	var x: int
 	var z: int
 	for i in range(NBSAPINS):
-		x = randf()*198-99
-		z = randf()*198-99
+		x = randf()*198.0-99.0
+		z = randf()*198.0-99.0
 		createsapin(x,z)
 		
 func createsapin(x,z):
@@ -37,8 +37,8 @@ func createbuches():
 	var x: int
 	var z: int
 	for i in range(NBBUCHES):
-		x = randf()*198-99
-		z = randf()*198-99
+		x = randf()*198.0-99.0
+		z = randf()*198.0-99.0
 		createbuche(x,z)
 		
 func createbuche(x,z):
@@ -54,8 +54,8 @@ func createrochers():
 	var x: int
 	var z: int
 	for i in range(NBROCHERS):
-		x = randf()*198-99
-		z = randf()*198-99
+		x = randf()*198.0-99.0
+		z = randf()*198.0-99.0
 		createbuche(x,z)
 		
 func createrocher(x,z):
