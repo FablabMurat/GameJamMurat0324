@@ -27,6 +27,9 @@ sky_material = SubResource("PanoramaSkyMaterial_27j57")
 [sub_resource type="Environment" id="Environment_vjdyr"]
 background_mode = 2
 sky = SubResource("Sky_6i610")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1027
+volumetric_fog_emission = Color(0.411765, 0.411765, 0.411765, 1)
 
 [node name="Terrain" type="Node3D"]
 script = ExtResource("1_fnysc")
@@ -50,7 +53,6 @@ shadow_enabled = true
 [node name="Camera3D" type="Camera3D" parent="Center"]
 transform = Transform3D(1, 0, 0, 0, 0.86845, 0.495777, 0, -0.495777, 0.86845, 0, 3.27571, 5.4391)
 visible = false
-current = true
 
 [node name="Player" parent="." instance=ExtResource("2_478pm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.739262, -7)

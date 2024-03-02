@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6favr4pvgywf"]
+
+[ext_resource type="Texture2D" uid="uid://dkrvekmortsfo" path="res://Ressources/Environnement/snow_03.png" id="1_4d3b2"]
+
+[node name="Neige_03" type="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+billboard = 1
+texture = ExtResource("1_4d3b2")

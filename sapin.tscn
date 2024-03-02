@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4fu1li4nd7gs"]
+[gd_scene load_steps=7 format=3 uid="uid://d4fu1li4nd7gs"]
+
+[ext_resource type="Script" path="res://sapin.gd" id="1_nu3mm"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5pk8l"]
 
@@ -16,6 +18,7 @@ radius = 2.0
 height = 5.0
 
 [node name="Sapin" type="StaticBody3D"]
+script = ExtResource("1_nu3mm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998881, 0)

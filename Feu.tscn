@@ -1,8 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfejuj5j6sweu"]
+[gd_scene load_steps=7 format=3 uid="uid://cfejuj5j6sweu"]
 
 [ext_resource type="Script" path="res://Feu.gd" id="1_lc4fw"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xruqc"]
 
 [sub_resource type="Gradient" id="Gradient_47lb2"]
 colors = PackedColorArray(0.831373, 0.0470588, 0.113725, 1, 0.89, 0.86686, 0.1958, 1)
@@ -25,20 +23,18 @@ scale_min = 0.0
 scale_max = 0.1
 color_ramp = SubResource("GradientTexture1D_rokhq")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eo8qh"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ei0bw"]
 vertex_color_use_as_albedo = true
 billboard_mode = 1
 billboard_keep_scale = true
 
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_8fhji"]
-material = SubResource("StandardMaterial3D_eo8qh")
+[sub_resource type="PlaneMesh" id="PlaneMesh_3qfkx"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_ei0bw")
+flip_faces = true
+orientation = 2
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_fb8fm"]
-height = 3.754
-radius = 4.887
-
-[node name="Feu" type="StaticBody3D" groups=["feu"]]
-physics_material_override = SubResource("PhysicsMaterial_xruqc")
+[node name="Feu" type="Node3D"]
 script = ExtResource("1_lc4fw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -47,15 +43,10 @@ visible = false
 shadow_enabled = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999937, -0.0112222, 0, 0.0112222, 0.999937, 0, 0, 0)
 amount = 763
 lifetime = 12.29
-trail_lifetime = 0.51
 process_material = SubResource("ParticleProcessMaterial_3rfnk")
-draw_pass_1 = SubResource("RibbonTrailMesh_8fhji")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.594584, 0, 0.804033, 0, 1, 0, -0.804033, 0, 0.594584, 7.83014, 1.25226, 4.40651)
+draw_pass_1 = SubResource("PlaneMesh_3qfkx")
 
 [node name="WindDirection" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -64,6 +55,12 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 wait_time = 40.0
 autostart = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73, 0)
-shape = SubResource("CylinderShape3D_fb8fm")
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0638808, 0)
+light_color = Color(0.811765, 0.290196, 0.0352941, 1)
+light_energy = 16.0
+light_volumetric_fog_energy = 1.646
+omni_range = 22.685
+omni_attenuation = 0.901252
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

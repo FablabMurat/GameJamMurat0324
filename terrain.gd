@@ -3,9 +3,17 @@ extends Node3D
 const NBSAPINS = 100
 const NBBUCHES = 40
 const NBROCHERS = 80
+const NBNEIGE = 20000
 const SapinScene = preload("res://paper_sapin.tscn")
 const BucheScene = preload("res://paper_buche.tscn")
 const RocherScene = preload("res://paper_rocher.tscn")
+
+const Neige0_Scene = preload("res://neige_00.tscn")
+const Neige1_Scene = preload("res://neige_01.tscn")
+const Neige2_Scene = preload("res://neige_02.tscn")
+const Neige3_Scene = preload("res://neige_03.tscn")
+
+const NeigeScenes = [Neige0_Scene, Neige1_Scene, Neige2_Scene, Neige3_Scene]
 
 var inventory = {
 	"buche": 0,
@@ -16,62 +24,42 @@ var camrot = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	createsapins()
-	createbuches()
-	createrochers()
+	createobjs(SapinScene,NBSAPINS)
+	createobjs(BucheScene,NBBUCHES)
+	createobjs(RocherScene,NBROCHERS)
+	
+	createobjlist(NeigeScenes,NBNEIGE)
 	pass # Replace with function body.
 	$Player.collected.connect(update_overlay.bind())
 	$Player.increaseFire.connect(increaseFire.bind())
 
-func createsapins():
+func createobjs(scene, nbmax):
 	var x: float
 	var z: float
-	for i in range(NBSAPINS):
+	for i in range(nbmax):
 		x = randf()*198.0-99.0
 		z = randf()*198.0-99.0
-		createsapin(x,z)
-		
-func createsapin(x,z):
-	if abs(x) < 3 and abs(z) < 3:
-		return
-	var obs = SapinScene.instantiate()
+		if abs(x) < 8 and abs(z) < 8:
+			return
+		createobj(scene,x,z)
+
+func createobj(scene,x,z):
+	var obs = scene.instantiate()
 	obs.position.x = x
 	obs.position.z = z
 	add_child(obs)
-
-
-func createbuches():
+	
+func createobjlist(scenelist, nbmax):
+	
 	var x: float
 	var z: float
-	for i in range(NBBUCHES):
+	for i in range(nbmax):
+		var sceneindex = randi_range(0, scenelist.size()-1)
 		x = randf()*198.0-99.0
 		z = randf()*198.0-99.0
-		createbuche(x,z)
-		
-func createbuche(x,z):
-	if abs(x) < 3 and abs(z) < 3:
-		return
-	var buche = BucheScene.instantiate()
-	buche.position.x = x
-	buche.position.z = z
-	#buche.buchecollectedbyplayer.connect(collectbuche.bind())
-	add_child(buche)
-
-func createrochers():
-	var x: float
-	var z: float
-	for i in range(NBROCHERS):
-		x = randf()*198.0-99.0
-		z = randf()*198.0-99.0
-		createrocher(x,z)
-		
-func createrocher(x,z):
-	if abs(x) < 3 and abs(z) < 3:
-		return
-	var rocher = RocherScene.instantiate()
-	rocher.position.x = x
-	rocher.position.z = z
-	add_child(rocher)
+		if abs(x) < 3 and abs(z) < 3:
+			return
+		createobj(scenelist[sceneindex],x,z)
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -91,3 +79,4 @@ func update_overlay(type, nb):
 func increaseFire(nb):
 	update_overlay("buche",-nb)
 	$Area3D/CollisionShape3D/Feu.fireGestion(10*nb)
+	$Overlay.displays[type].text = "%d / %d" % [inventory[type], $Player.NBMAX[type]]
