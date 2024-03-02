@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctbvs07s78ect"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rj1v0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_addom"]
+size = Vector2(200, 200)
+
+[node name="Terrain" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_rj1v0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+mesh = SubResource("PlaneMesh_addom")
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.89061, 0.454768, 0, -0.454768, 0.89061, 0, 3.19616, 0)
+
+[node name="Marker3D" type="Marker3D" parent="."]
