@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dui40bsirnsln"]
+
+[ext_resource type="Texture2D" uid="uid://c7exkwijlhx16" path="res://Ressources/Environnement/Buches_1.png" id="1_bdje0"]
+
+[node name="Overlay" type="Node2D"]
+
+[node name="buches" type="Sprite2D" parent="."]
+position = Vector2(1081, 40)
+scale = Vector2(0.144, 0.144)
+texture = ExtResource("1_bdje0")
+
+[node name="buchesCountDisplay" type="Label" parent="."]
+offset_left = 984.0
+offset_top = 40.0
+offset_right = 1024.0
+offset_bottom = 63.0

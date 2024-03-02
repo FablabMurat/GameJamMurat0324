@@ -7,6 +7,10 @@ const SapinScene = preload("res://paper_sapin.tscn")
 const BucheScene = preload("res://paper_buche.tscn")
 const RocherScene = preload("res://paper_rocher.tscn")
 
+var inventory = {
+	"buches": 0,
+}
+
 var camrot = 0.0
 
 # Called when the node enters the scene tree for the first time.
@@ -76,3 +80,6 @@ func _unhandled_input(event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func update_overlay():
+	$Overlay/buchesCountDisplay.text = String(inventory["buches"])
