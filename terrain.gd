@@ -75,8 +75,9 @@ func _process(delta):
 func update_overlay(type, nb):
 	inventory[type] += nb
 	$Overlay/buchesCountDisplay.text = "%d" % inventory[type]
+	$Overlay.displays[type].text = "%d / %d" % [inventory[type], $Player.NBMAX[type]]
+	
 
 func increaseFire(nb):
 	update_overlay("buche",-nb)
 	$Area3D/CollisionShape3D/Feu.fireGestion(10*nb)
-	$Overlay.displays[type].text = "%d / %d" % [inventory[type], $Player.NBMAX[type]]
