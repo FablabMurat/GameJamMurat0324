@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cj3j6rw2qxu5u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hxl1t"]
+size = Vector3(2.08796, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5kls"]
+albedo_color = Color(0.239216, 0.14902, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_68iyf"]
+material = SubResource("StandardMaterial3D_p5kls")
+top_radius = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_253uo"]
+albedo_color = Color(0.67451, 0.301961, 0.160784, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3qsoy"]
+material = SubResource("StandardMaterial3D_253uo")
+top_radius = 0.4
+
+[node name="Buche" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.602524, 0)
+shape = SubResource("BoxShape3D_hxl1t")
+
+[node name="Buche1" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+transform = Transform3D(0.050436, -0.998727, 0, 0.998727, 0.050436, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_68iyf")
+
+[node name="Buche2" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 0.946969, -0.321324, 0, 0.321324, 0.946969, 0, 0, -0.910457)
+mesh = SubResource("CylinderMesh_3qsoy")
