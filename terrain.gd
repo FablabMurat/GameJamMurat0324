@@ -8,7 +8,8 @@ const BucheScene = preload("res://paper_buche.tscn")
 const RocherScene = preload("res://paper_rocher.tscn")
 
 var inventory = {
-	"buches": 0,
+	"buche": 0,
+	"hache": 0
 }
 
 var camrot = 0.0
@@ -19,6 +20,7 @@ func _ready():
 	createbuches()
 	createrochers()
 	pass # Replace with function body.
+	$Player.collected.connect(update_overlay.bind())
 
 func createsapins():
 	var x: float
@@ -81,5 +83,6 @@ func _unhandled_input(event):
 func _process(delta):
 	pass
 
-func update_overlay():
-	$Overlay/buchesCountDisplay.text = String(inventory["buches"])
+func update_overlay(type, nb):
+	inventory[type] += nb
+	$Overlay/buchesCountDisplay.text = "%d" % inventory[type]

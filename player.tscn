@@ -57,7 +57,7 @@ func _physics_process(delta):
 			body.queue_free()
 			# mettre à jour l'UI
 			#collected.emit(\"buche\",1)
-			collected.emit()
+			collected.emit(\"buche\",1)
 
 func _process(delta):
 	animate()
