@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctbvs07s78ect"]
+[gd_scene load_steps=4 format=3 uid="uid://ctbvs07s78ect"]
+
+[ext_resource type="Script" path="res://terrain.gd" id="1_fnysc"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rj1v0"]
 
@@ -6,6 +8,7 @@
 size = Vector2(200, 200)
 
 [node name="Terrain" type="Node3D"]
+script = ExtResource("1_fnysc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
