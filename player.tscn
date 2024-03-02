@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://nabnyuuxgolm"]
+
+[ext_resource type="Texture2D" uid="uid://b4f73qxpfu7ab" path="res://icon.svg" id="1_bsue3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hlw7m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bsue3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="PlayerSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.4608, 0, 0, 0, 0.4608, 0, 0, 0, 0.4608, 0, 0, 0)
+billboard = 1
+sprite_frames = SubResource("SpriteFrames_hlw7m")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46612, 2.30446)
+fov = 69.3405
