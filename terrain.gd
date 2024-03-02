@@ -28,7 +28,7 @@ func createobjs(scene, nbmax):
 	for i in range(nbmax):
 		x = randf()*198.0-99.0
 		z = randf()*198.0-99.0
-		if abs(x) < 3 and abs(z) < 3:
+		if abs(x) < 8 and abs(z) < 8:
 			return
 		createobj(scene,x,z)
 
