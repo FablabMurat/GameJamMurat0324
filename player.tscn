@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://nabnyuuxgolm"]
+[gd_scene load_steps=28 format=3 uid="uid://nabnyuuxgolm"]
 
 [ext_resource type="Texture2D" uid="uid://d4nodvq41hpb2" path="res://Ressources/Joueur/garcon-derriere0001.png" id="1_dfh5f"]
 [ext_resource type="Texture2D" uid="uid://dam3kaiqeie48" path="res://Ressources/Joueur/garcon-derriere0002.png" id="2_l6r4v"]
@@ -26,30 +26,27 @@
 [ext_resource type="Texture2D" uid="uid://5ymk7x4tpm81" path="res://Ressources/Joueur/garcon-droite0008.png" id="24_xfn8y"]
 
 [sub_resource type="GDScript" id="GDScript_wemyt"]
-script/source = "extends Node3D
+script/source = "extends CharacterBody3D
 
-const PLAYER_SPEED = 10
+const PLAYER_SPEED = 500
 var camrot = 0.0
+
+var direction = Vector3.ZERO
 
 
 func _ready():
 	$PlayerCenter/Camera3D.set_current(true)
 
 func _physics_process(delta):
-	if Input.is_action_pressed(\"move_right\"):
-		$PlayerCenter.position += delta * Vector3.RIGHT * PLAYER_SPEED
-		$PlayerCenter/PlayerSprite3D.animation = \"side\"
-		$PlayerCenter/PlayerSprite3D.flip_h = false
-	if Input.is_action_pressed(\"move_left\"):
-		$PlayerCenter.position += delta * Vector3.LEFT * PLAYER_SPEED
-		$PlayerCenter/PlayerSprite3D.animation = \"side\"
-		$PlayerCenter/PlayerSprite3D.flip_h = true
-	if Input.is_action_pressed(\"move_forward\"):
-		$PlayerCenter.position += delta * -Vector3.FORWARD * PLAYER_SPEED
-		$PlayerCenter/PlayerSprite3D.animation = \"back\"
-	if Input.is_action_pressed(\"move_backwards\"):
-		$PlayerCenter.position += delta * -Vector3.BACK * PLAYER_SPEED
-		$PlayerCenter/PlayerSprite3D.animation = \"front\"
+	direction.x = Input.get_action_strength(\"move_right\") - Input.get_action_strength(\"move_left\")
+	direction.z = Input.get_action_strength(\"move_forward\") - Input.get_action_strength(\"move_backwards\")
+	
+	velocity = direction.normalized() * PLAYER_SPEED
+	set_velocity(velocity * delta)
+	move_and_slide()
+
+func _process(delta):
+	animate()
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -57,6 +54,26 @@ func _unhandled_input(event):
 			camrot += event.relative.x * 0.005
 			$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
 			print(\"Camera3D Rotation: \", camrot)
+
+func animate():
+	if(velocity != Vector3.ZERO):
+		$PlayerCenter/PlayerSprite3D.play()
+	else:
+		$PlayerCenter/PlayerSprite3D.stop()
+		#$PlayerCenter/PlayerSprite3D.frame = 0
+	
+	if(velocity.x > 0):
+		$PlayerCenter/PlayerSprite3D.animation = \"side\"
+		$PlayerCenter/PlayerSprite3D.flip_h = false
+	elif(velocity.x < 0):
+		$PlayerCenter/PlayerSprite3D.animation = \"side\"
+		$PlayerCenter/PlayerSprite3D.flip_h = true
+	elif(velocity.z < 0):
+		$PlayerCenter/PlayerSprite3D.animation = \"front\"
+	elif(velocity.z > 0):
+		$PlayerCenter/PlayerSprite3D.animation = \"back\"
+		
+		
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hlw7m"]
@@ -149,18 +166,22 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Player" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rycr6"]
+
+[node name="Player" type="CharacterBody3D"]
 script = SubResource("GDScript_wemyt")
 
 [node name="PlayerCenter" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.1, 0)
 
 [node name="PlayerSprite3D" type="AnimatedSprite3D" parent="PlayerCenter"]
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_hlw7m")
 animation = &"back"
-frame_progress = 0.13128
 
 [node name="Camera3D" type="Camera3D" parent="PlayerCenter"]
-transform = Transform3D(0.999994, -0.000843654, 0.00329714, -0.000880937, 0.871608, 0.490203, 0.00328738, 0.490203, -0.871602, 0, 4.9165, -5.8173)
+transform = Transform3D(0.499997, -0.000421828, 0.00164857, -0.000923824, 0.33951, 0.367059, 0.00142908, 0.36706, -0.339507, 0, 4.4165, -4.23686)
 fov = 69.3405
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_rycr6")
