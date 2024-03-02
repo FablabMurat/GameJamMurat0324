@@ -54,10 +54,9 @@ func _physics_process(delta):
 	for index in get_slide_collision_count():
 		var collision = get_slide_collision(index)
 		var body = collision.get_collider()
-		if body.is_in_group(\"buche\")  and  not body.supprimee and nbbuche < NBMAX.buche:
+		if body.is_in_group(\"buche\")  and  nbbuche < NBMAX:
 			print(\"collect buche\")
 			nbbuche += 1
-			body.supprimee = true
 			body.queue_free()
 			# mettre à jour l'UI
 			#collected.emit(\"buche\",1)
@@ -203,6 +202,8 @@ script = SubResource("GDScript_wemyt")
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.1, 0)
 
 [node name="PlayerSprite3D" type="AnimatedSprite3D" parent="PlayerCenter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0613341, 0)
+offset = Vector2(0, 40)
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_hlw7m")
 animation = &"back"
@@ -212,4 +213,5 @@ transform = Transform3D(0.499997, -0.000421824, 0.00164857, -0.000923824, 0.3395
 current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96303, 0)
 shape = SubResource("CapsuleShape3D_rycr6")

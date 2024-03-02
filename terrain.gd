@@ -3,17 +3,36 @@ extends Node3D
 const NBSAPINS = 100
 const NBBUCHES = 50
 const NBROCHERS = 80
-const NBNEIGE = 20000
-const SapinScene = preload("res://paper_sapin.tscn")
+
+
+# SCENES SAPINS
+const NBSAPINS = 100
+const Sapin0_Scene = preload("res://paper_sapin_00.tscn")
+const Sapin1_Scene = preload("res://paper_sapin_01.tscn")
+const Sapin2_Scene = preload("res://paper_sapin_02.tscn")
+const SapinScenes = [Sapin0_Scene, Sapin1_Scene, Sapin2_Scene]
+
 const BucheScene = preload("res://paper_buche.tscn")
 const RocherScene = preload("res://paper_rocher.tscn")
 
+# SCENES NEIGE
+const NBNEIGE = 20000
 const Neige0_Scene = preload("res://neige_00.tscn")
 const Neige1_Scene = preload("res://neige_01.tscn")
 const Neige2_Scene = preload("res://neige_02.tscn")
 const Neige3_Scene = preload("res://neige_03.tscn")
-
 const NeigeScenes = [Neige0_Scene, Neige1_Scene, Neige2_Scene, Neige3_Scene]
+
+# SCENES HERBES
+const NBHERBES = 1000
+const Herbe0_Scene = preload("res://herbe_00.tscn")
+const Herbe1_Scene = preload("res://herbe_01.tscn")
+const Herbe2_Scene = preload("res://herbe_02.tscn")
+const Herbe3_Scene = preload("res://herbe_03.tscn")
+const Herbe4_Scene = preload("res://herbe_04.tscn")
+const HerbeScenes = [Herbe0_Scene, Herbe1_Scene, Herbe2_Scene, Herbe3_Scene, Herbe4_Scene]
+
+
 
 var inventory = {
 	"buche": 0,
@@ -24,11 +43,13 @@ var camrot = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	createobjs(SapinScene,NBSAPINS)
+	#createobjs(SapinScene,NBSAPINS)
 	createobjs(BucheScene,NBBUCHES)
 	createobjs(RocherScene,NBROCHERS)
 	
 	createobjlist(NeigeScenes,NBNEIGE)
+	createobjlist(SapinScenes,NBSAPINS)
+	createobjlist(HerbeScenes,NBHERBES)
 	pass # Replace with function body.
 	$Player.collected.connect(update_overlay.bind())
 	$Player.increaseFire.connect(increaseFire.bind())
