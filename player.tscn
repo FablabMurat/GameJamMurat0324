@@ -36,7 +36,7 @@ const NBMAXBUCHE = 3
 var nbbuche = 0
 
 signal collected
-
+signal increaseFire
 func _ready():
 	$PlayerCenter/Camera3D.set_current(true)
 
@@ -58,6 +58,12 @@ func _physics_process(delta):
 			# mettre à jour l'UI
 			#collected.emit(\"buche\",1)
 			collected.emit(\"buche\",1)
+		
+		if body.is_in_group(\"feu\"):
+			print(\"mettre buche\")
+			increaseFire.emit(\"buche\",nbbuche)
+			nbbuche = 0
+			
 
 func _process(delta):
 	animate()

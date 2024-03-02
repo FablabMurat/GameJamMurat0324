@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctbvs07s78ect"]
+[gd_scene load_steps=13 format=3 uid="uid://ctbvs07s78ect"]
 
 [ext_resource type="Script" path="res://terrain.gd" id="1_fnysc"]
 [ext_resource type="PackedScene" uid="uid://nabnyuuxgolm" path="res://player.tscn" id="2_478pm"]
@@ -14,6 +14,9 @@ metallic = 0.38
 [sub_resource type="PlaneMesh" id="PlaneMesh_addom"]
 material = SubResource("StandardMaterial3D_dum3m")
 size = Vector2(200, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ll3by"]
+size = Vector3(13.075, 3.385, 11.835)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_27j57"]
 panorama = ExtResource("4_gjlm8")
@@ -52,8 +55,13 @@ current = true
 [node name="Player" parent="." instance=ExtResource("2_478pm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.739262, -7)
 
-[node name="Feu" parent="." instance=ExtResource("3_kpjjy")]
+[node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_ll3by")
+
+[node name="Feu" parent="Area3D/CollisionShape3D" instance=ExtResource("3_kpjjy")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vjdyr")

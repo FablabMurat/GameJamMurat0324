@@ -21,6 +21,7 @@ func _ready():
 	createrochers()
 	pass # Replace with function body.
 	$Player.collected.connect(update_overlay.bind())
+	$Player.increaseFire.connect(increaseFire.bind())
 
 func createsapins():
 	var x: float
@@ -86,3 +87,7 @@ func _process(delta):
 func update_overlay(type, nb):
 	inventory[type] += nb
 	$Overlay/buchesCountDisplay.text = "%d" % inventory[type]
+
+func increaseFire(nb):
+	update_overlay("buche",-nb)
+	$Area3D/CollisionShape3D/Feu.fireGestion(10*nb)
