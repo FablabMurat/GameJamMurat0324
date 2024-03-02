@@ -21,6 +21,7 @@ func _ready():
 	createobjs(RocherScene,NBROCHERS)
 	pass # Replace with function body.
 	$Player.collected.connect(update_overlay.bind())
+	$Overlay/buchesCountDisplay.text = "%d / %d" % [0, $Player.NBMAXBUCHE]
 
 func createobjs(scene, nbmax):
 	var x: float
@@ -51,4 +52,4 @@ func _process(delta):
 
 func update_overlay(type, nb):
 	inventory[type] += nb
-	$Overlay/buchesCountDisplay.text = "%d" % inventory[type]
+	$Overlay/buchesCountDisplay.text = "%d / %d" % [inventory[type], $Player.NBMAXBUCHE]
