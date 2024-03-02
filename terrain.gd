@@ -16,61 +16,27 @@ var camrot = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	createsapins()
-	createbuches()
-	createrochers()
+	createobjs(SapinScene,NBSAPINS)
+	createobjs(BucheScene,NBBUCHES)
+	createobjs(RocherScene,NBROCHERS)
 	pass # Replace with function body.
 	$Player.collected.connect(update_overlay.bind())
 
-func createsapins():
+func createobjs(scene, nbmax):
 	var x: float
 	var z: float
-	for i in range(NBSAPINS):
+	for i in range(nbmax):
 		x = randf()*198.0-99.0
 		z = randf()*198.0-99.0
-		createsapin(x,z)
-		
-func createsapin(x,z):
-	if abs(x) < 3 and abs(z) < 3:
-		return
-	var obs = SapinScene.instantiate()
+		if abs(x) < 8 and abs(z) < 8:
+			return
+		createobj(scene,x,z)
+
+func createobj(scene,x,z):
+	var obs = scene.instantiate()
 	obs.position.x = x
 	obs.position.z = z
 	add_child(obs)
-
-
-func createbuches():
-	var x: float
-	var z: float
-	for i in range(NBBUCHES):
-		x = randf()*198.0-99.0
-		z = randf()*198.0-99.0
-		createbuche(x,z)
-		
-func createbuche(x,z):
-	if abs(x) < 3 and abs(z) < 3:
-		return
-	var buche = BucheScene.instantiate()
-	buche.position.x = x
-	buche.position.z = z
-	#buche.buchecollectedbyplayer.connect(collectbuche.bind())
-	add_child(buche)
-
-func createrochers():
-	var x: float
-	var z: float
-	for i in range(NBROCHERS):
-		x = randf()*198.0-99.0
-		z = randf()*198.0-99.0
-		createrocher(x,z)
-		
-func createrocher(x,z):
-	if abs(x) < 3 and abs(z) < 3:
-		return
-	var rocher = RocherScene.instantiate()
-	rocher.position.x = x
-	rocher.position.z = z
-	add_child(rocher)
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
