@@ -13,6 +13,7 @@ var camrot = 0.0
 func _ready():
 	createsapins()
 	createbuches()
+	createrochers()
 	pass # Replace with function body.
 
 func createsapins():
