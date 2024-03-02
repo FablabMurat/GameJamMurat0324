@@ -60,6 +60,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 wait_time = 40.0
 autostart = true
 
+<<<<<<< HEAD
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0638808, 0)
 light_color = Color(0.811765, 0.290196, 0.0352941, 1)
@@ -70,3 +71,6 @@ omni_attenuation = 0.901252
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_b0wfp")
+=======
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+>>>>>>> 18adcc8 (creation scenes arbres et plantes + spawn + repositionnement de leurs sprite3D)

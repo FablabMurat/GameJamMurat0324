@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0o8oyg64bgh0"]
+
+[ext_resource type="Texture2D" uid="uid://d15jbs5tj4q56" path="res://Ressources/Environnement/Plantes_5.png" id="1_5lxrs"]
+
+[node name="Herbe_04" type="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+offset = Vector2(0, 560)
+billboard = 1
+texture = ExtResource("1_5lxrs")
