@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3ucasm5d6s1b"]
+[gd_scene load_steps=3 format=3 uid="uid://d1im1tx88yfat"]
 
 [ext_resource type="Texture2D" uid="uid://kat1qqo5020f" path="res://Ressources/Environnement/Arbre_1.png" id="1_ral6s"]
 
@@ -9,7 +9,7 @@ radius = 0.892192
 [node name="Paper-sapin" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17191, 0)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 1.17191, -1.40385)
 shape = SubResource("CylinderShape3D_y1ftp")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

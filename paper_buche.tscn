@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://benwfqc6owub0"]
+[gd_scene load_steps=3 format=3 uid="uid://cbolbkslxpkar"]
 
 [ext_resource type="Texture2D" uid="uid://c7exkwijlhx16" path="res://Ressources/Environnement/Buches_1.png" id="1_iol5v"]
 
@@ -8,6 +8,7 @@ radius = 1.04017
 [node name="Paper_buche" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 shape = SubResource("CylinderShape3D_ph3dj")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

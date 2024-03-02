@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://ygosqj6anl5x"]
+[gd_scene load_steps=3 format=3 uid="uid://cn0m32xlt1ycc"]
 
 [ext_resource type="Texture2D" uid="uid://br7kh7mujo1jc" path="res://Ressources/Environnement/Rochers_3.png" id="1_xgygh"]
 
@@ -8,6 +8,7 @@ radius = 0.739625
 [node name="Paper_rocher" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.00147057, 0.695816, -0.00343037)
 shape = SubResource("CylinderShape3D_oxm1d")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
