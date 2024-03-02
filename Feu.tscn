@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfejuj5j6sweu"]
+
+[ext_resource type="Script" path="res://Fire.gd" id="1_qykli"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t1rvc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_t0fm4"]
+sky_material = SubResource("ProceduralSkyMaterial_t1rvc")
+
+[sub_resource type="Environment" id="Environment_77c6m"]
+background_mode = 2
+sky = SubResource("Sky_t0fm4")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_47lb2"]
+colors = PackedColorArray(0.831373, 0.0470588, 0.113725, 1, 0.89, 0.86686, 0.1958, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rokhq"]
+gradient = SubResource("Gradient_47lb2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3rfnk"]
+lifetime_randomness = 0.55
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 5.53, 0)
+spread = 3.75
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 0.4
+scale_min = 0.0
+scale_max = 0.1
+color_ramp = SubResource("GradientTexture1D_rokhq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ei0bw"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3qfkx"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_ei0bw")
+orientation = 0
+
+[node name="Feu" type="Node3D"]
+script = ExtResource("1_qykli")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_77c6m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 763
+lifetime = 3.81
+process_material = SubResource("ParticleProcessMaterial_3rfnk")
+draw_passes = 2
+draw_pass_1 = SubResource("PlaneMesh_3qfkx")
+draw_pass_2 = null
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.594584, 0, 0.804033, 0, 1, 0, -0.804033, 0, 0.594584, 7.83014, 1.25226, 4.40651)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 40.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
