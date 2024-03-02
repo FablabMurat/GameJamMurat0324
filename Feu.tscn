@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfejuj5j6sweu"]
+[gd_scene load_steps=7 format=3 uid="uid://cfejuj5j6sweu"]
 
 [ext_resource type="Script" path="res://Feu.gd" id="1_lc4fw"]
 
@@ -34,12 +34,7 @@ material = SubResource("StandardMaterial3D_ei0bw")
 flip_faces = true
 orientation = 2
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_b0wfp"]
-height = 3.754
-radius = 1.377
-
-[node name="Feu" type="StaticBody3D"]
-collision_layer = 7
+[node name="Feu" type="Node3D"]
 script = ExtResource("1_lc4fw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -60,6 +55,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 wait_time = 40.0
 autostart = true
 
+<<<<<<< HEAD
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0638808, 0)
 light_color = Color(0.811765, 0.290196, 0.0352941, 1)
@@ -70,3 +66,6 @@ omni_attenuation = 0.901252
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_b0wfp")
+=======
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+>>>>>>> 7c57247 (resolution de pb)
