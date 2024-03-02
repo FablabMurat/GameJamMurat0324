@@ -1,4 +1,3 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctbvs07s78ect"]
 [gd_scene load_steps=12 format=3 uid="uid://ctbvs07s78ect"]
 
 [ext_resource type="Script" path="res://terrain.gd" id="1_fnysc"]
@@ -6,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cfejuj5j6sweu" path="res://Feu.tscn" id="3_kpjjy"]
 [ext_resource type="Texture2D" uid="uid://bluc6i7gh0a71" path="res://Ressources/snowy_field_2k.hdr" id="4_gjlm8"]
 [ext_resource type="PackedScene" uid="uid://dui40bsirnsln" path="res://overlay.tscn" id="5_g13eu"]
-[ext_resource type="PackedScene" path="res://Feu.tscn" id="3_kpjjy"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rj1v0"]
 
@@ -54,7 +52,6 @@ transform = Transform3D(1, 0, 0, 0, 0.86845, 0.495777, 0, -0.495777, 0.86845, 0,
 visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_478pm")]
-[node name="Player" parent="." instance=ExtResource("2_478pm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.739262, -7)
 
 [node name="Feu" parent="." instance=ExtResource("3_kpjjy")]
@@ -64,7 +61,3 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 environment = SubResource("Environment_vjdyr")
 
 [node name="Overlay" parent="." instance=ExtResource("5_g13eu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.412602, 0)
-
-[node name="Feu" parent="." instance=ExtResource("3_kpjjy")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
