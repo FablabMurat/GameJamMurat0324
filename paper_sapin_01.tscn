@@ -1,14 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cymx562uuf6hi"]
+[gd_scene load_steps=5 format=3 uid="uid://cymx562uuf6hi"]
 
+[ext_resource type="Script" path="res://sapin.gd" id="1_fg4be"]
 [ext_resource type="Texture2D" uid="uid://dq7mq2c3p42sf" path="res://Ressources/Environnement/Arbre_3.png" id="1_m5les"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_y1ftp"]
 height = 3.2244
 radius = 1.5
 
-[node name="Paper_sapin_01" type="StaticBody3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a1w15"]
+radius = 2.19155
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["arbre"]]
+[node name="Paper_sapin_01" type="StaticBody3D" groups=["arbre"]]
+collision_layer = 7
+script = ExtResource("1_fg4be")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 1.172, 0)
 shape = SubResource("CylinderShape3D_y1ftp")
 
@@ -17,3 +23,11 @@ transform = Transform3D(0.515, 0, 0, 0, 0.515, 0, 0, 0, 0.515, 0, -0.15, 0)
 offset = Vector2(0, 560)
 billboard = 1
 texture = ExtResource("1_m5les")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 7
+collision_mask = 8
+
+[node name="ZoneDeCoupe" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.986986, 0)
+shape = SubResource("CylinderShape3D_a1w15")

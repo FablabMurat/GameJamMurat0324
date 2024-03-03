@@ -67,10 +67,11 @@ func _physics_process(delta):
 			increaseFire.emit(nbbuche)
 			nbbuche = 0
 		
-		print (\"collision with\")
-		print (body)
 		if body.is_in_group(\"arbre\"):
-			print(\"près d'un arbre\")
+			pass
+			#print(\"zone de coupe\")
+			
+
 
 func _process(delta):
 	#var tmprot = Input.get_action_strength(\"look_right\") - Input.get_action_strength(\"look_left\")
@@ -205,6 +206,7 @@ animations = [{
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rycr6"]
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 9
 collision_mask = 6
 script = SubResource("GDScript_wemyt")
 
