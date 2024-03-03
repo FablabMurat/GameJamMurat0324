@@ -29,7 +29,7 @@
 [sub_resource type="GDScript" id="GDScript_wemyt"]
 script/source = "extends CharacterBody3D
 
-var PLAYER_SPEED = 500
+@export var PLAYER_SPEED = 500
 var camrot = 0.0
 
 var direction = Vector3.ZERO
