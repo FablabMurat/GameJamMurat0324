@@ -63,7 +63,4 @@ light_volumetric_fog_energy = 1.646
 omni_range = 22.685
 omni_attenuation = 0.901252
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_b0wfp")
-=======
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

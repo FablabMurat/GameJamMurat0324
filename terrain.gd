@@ -6,7 +6,6 @@ const NBROCHERS = 80
 
 
 # SCENES SAPINS
-const NBSAPINS = 100
 const Sapin0_Scene = preload("res://paper_sapin_00.tscn")
 const Sapin1_Scene = preload("res://paper_sapin_01.tscn")
 const Sapin2_Scene = preload("res://paper_sapin_02.tscn")
@@ -39,8 +38,6 @@ var inventory = {
 	"hache": 0
 }
 
-var camrot = 0.0
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#createobjs(SapinScene,NBSAPINS)
@@ -50,9 +47,15 @@ func _ready():
 	createobjlist(NeigeScenes,NBNEIGE)
 	createobjlist(SapinScenes,NBSAPINS)
 	createobjlist(HerbeScenes,NBHERBES)
-	pass # Replace with function body.
+
 	$Player.collected.connect(update_overlay.bind())
 	$Player.increaseFire.connect(increaseFire.bind())
+	
+	init_overlays()
+	
+func init_overlays():
+	for item in inventory:
+		update_overlay(item, 0)
 
 func createobjs(scene, nbmax):
 	var x: float
@@ -82,20 +85,14 @@ func createobjlist(scenelist, nbmax):
 			return
 		createobj(scenelist[sceneindex],x,z)
 
-func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		if event.button_mask & (MOUSE_BUTTON_MASK_MIDDLE + MOUSE_BUTTON_MASK_RIGHT):
-			camrot += event.relative.x * 0.005
-			get_node("Center").set_rotation(Vector3(0, camrot, 0))
-			#print("Camera3D Rotation: ", camrot)
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(Input.is_action_pressed("debug")):
+		$Overlay.gameover()
 	pass
 
 func update_overlay(type, nb):
 	inventory[type] += nb
-	$Overlay/buchesCountDisplay.text = "%d" % inventory[type]
 	$Overlay.displays[type].text = "%d / %d" % [inventory[type], $Player.NBMAX[type]]
 	
 
