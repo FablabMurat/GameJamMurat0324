@@ -2,14 +2,20 @@ extends Node2D
 
 var displays = {}
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
+	$PauseMenu/PauseButton.pressed.connect(toggle_pause)
 	init_displays()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Input.is_action_just_pressed("pause_toggle"):
+		toggle_pause()
+
+func toggle_pause():
+	get_tree().paused = not get_tree().paused
+	$PauseMenu.visible = get_tree().paused
+
 
 func init_displays():
 	displays["buche"] = $buchesCountDisplay
