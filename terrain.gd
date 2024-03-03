@@ -103,7 +103,7 @@ func update_overlay(type, nb):
 func increaseFire(nb):
 	print("test increasefire %d" % nb)
 	if inventory["buche"] != 0:
-		$Area3D/CollisionShape3D/Feu/GPUParticles3D2.emitting = true
+		$Feu/GPUParticles3D2.emitting = true
 	update_overlay("buche",-1)
-	$Area3D/CollisionShape3D/Feu.fireGestion(10*nb)
+	$Feu.fireGestion(10*nb)
 	
