@@ -48,6 +48,7 @@ var inventory = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AudioStreamPlayer.play()
+	$WindStreamPlayer.play()
 	#createobjs(SapinScene,NBSAPINS)
 	createobjs(BucheScene,NBBUCHES)
 	#createobjs(RocherScene,NBROCHERS)

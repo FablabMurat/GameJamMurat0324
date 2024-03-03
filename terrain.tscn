@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ctbvs07s78ect"]
+[gd_scene load_steps=14 format=3 uid="uid://ctbvs07s78ect"]
 
 [ext_resource type="Script" path="res://terrain.gd" id="1_fnysc"]
 [ext_resource type="PackedScene" uid="uid://nabnyuuxgolm" path="res://player.tscn" id="2_478pm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bluc6i7gh0a71" path="res://Ressources/snowy_field_2k.hdr" id="4_gjlm8"]
 [ext_resource type="PackedScene" uid="uid://dui40bsirnsln" path="res://overlay.tscn" id="5_g13eu"]
 [ext_resource type="AudioStream" uid="uid://c564s4phg3f8b" path="res://Ressources/Sons/musique.ogg" id="6_k8ww3"]
+[ext_resource type="AudioStream" uid="uid://bt8ftcnujuycb" path="res://Ressources/Sons/vent.ogg" id="7_ikx27"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rj1v0"]
 
@@ -65,3 +66,8 @@ environment = SubResource("Environment_vjdyr")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_k8ww3")
+
+[node name="WindStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_ikx27")
+volume_db = 5.0
