@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://buvki7kby2tr"]
+[gd_scene load_steps=7 format=3 uid="uid://buvki7kby2tr"]
+
+[ext_resource type="Script" path="res://neige_particules.gd" id="1_3g7vj"]
 
 [sub_resource type="Curve" id="Curve_vdmvj"]
 min_value = -360.0
@@ -12,7 +14,7 @@ curve = SubResource("Curve_vdmvj")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u8k2m"]
 lifetime_randomness = 1.0
 emission_shape = 3
-emission_box_extents = Vector3(5, 0.5, 5)
+emission_box_extents = Vector3(20, 0.1, 20)
 direction = Vector3(0, -1, 0)
 spread = 60.0
 gravity = Vector3(0, -4, 0)
@@ -21,7 +23,7 @@ initial_velocity_max = 1.0
 angular_velocity_curve = SubResource("CurveTexture_ehajb")
 linear_accel_min = -0.2
 linear_accel_max = 0.2
-radial_accel_max = 0.1
+radial_accel_max = 1.0
 tangential_accel_max = 0.5
 turbulence_noise_speed = Vector3(0, -20, 0)
 turbulence_initial_displacement_min = -100.0
@@ -39,12 +41,13 @@ radius = 0.05
 height = 0.1
 
 [node name="Neige" type="Node3D"]
+script = ExtResource("1_3g7vj")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.09395, 0)
-amount = 5000
+amount = 10000
 lifetime = 15.0
-speed_scale = 0.3
+speed_scale = 0.5
 randomness = 1.0
 interpolate = false
 trail_lifetime = 0.01
