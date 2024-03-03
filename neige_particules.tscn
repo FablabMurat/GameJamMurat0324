@@ -1,6 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://buvki7kby2tr"]
-
-[ext_resource type="Script" path="res://neige_particules.gd" id="1_3g7vj"]
+[gd_scene load_steps=6 format=3 uid="uid://buvki7kby2tr"]
 
 [sub_resource type="Curve" id="Curve_vdmvj"]
 min_value = -360.0
@@ -41,7 +39,6 @@ radius = 0.05
 height = 0.1
 
 [node name="Neige" type="Node3D"]
-script = ExtResource("1_3g7vj")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.09395, 0)
