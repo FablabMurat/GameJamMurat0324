@@ -25,7 +25,9 @@ func _process(delta):
 func fireGestion(amount):
 	$Timer.start(timeLeft + amount)
 	print("fire ammount: %d" % timeLeft)
+	$GPUParticles3D2.emitting = true
 
 func getwindDirection():
 	var windRotation = $WindDirection.rotation
-	return Vector3(sin(windRotation[1]),0,cos(windRotation[1]))
+	var windForce = 0.2
+	return Vector3(sin(windRotation[1])*windForce,0,cos(windRotation[1])*windForce)

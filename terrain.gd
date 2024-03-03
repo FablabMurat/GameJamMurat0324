@@ -92,10 +92,16 @@ func _process(delta):
 
 func update_overlay(type, nb):
 	inventory[type] += nb
+	if inventory[type] < 0:
+		inventory[type] = 0
+	elif inventory[type] > 3:
+		inventory[type] = 3
+	
+		
 	$Overlay.displays[type].text = "%d / %d" % [inventory[type], $Player.NBMAX[type]]
 	
 
 func increaseFire(nb):
 	print("test increasefire %d" % nb)
-	update_overlay("buche",0)
+	update_overlay("buche",-1)
 	$Area3D/CollisionShape3D/Feu.fireGestion(10*nb)

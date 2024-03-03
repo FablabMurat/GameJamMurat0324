@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfejuj5j6sweu"]
+[gd_scene load_steps=9 format=3 uid="uid://cfejuj5j6sweu"]
 
 [ext_resource type="Script" path="res://Feu.gd" id="1_lc4fw"]
 
 [sub_resource type="Gradient" id="Gradient_47lb2"]
-colors = PackedColorArray(0.831373, 0.0470588, 0.113725, 1, 0.89, 0.86686, 0.1958, 1)
+colors = PackedColorArray(0.831373, 0.419608, 0.113725, 1, 0.89, 0.86686, 0.1958, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_rokhq"]
 gradient = SubResource("Gradient_47lb2")
@@ -15,7 +15,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 1.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 0.0
-direction = Vector3(0, 14.305, 0)
+direction = Vector3(0, 45.145, 0)
 spread = 3.75
 gravity = Vector3(0, 0, 0)
 initial_velocity_max = 0.4
@@ -32,6 +32,23 @@ billboard_keep_scale = true
 lightmap_size_hint = Vector2i(12, 12)
 material = SubResource("StandardMaterial3D_ei0bw")
 flip_faces = true
+orientation = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ih53h"]
+lifetime_randomness = 0.06
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 45.145, 0)
+spread = 3.75
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 4.35
+initial_velocity_max = 4.4
+scale_min = 0.0
+scale_max = 0.1
+color_ramp = SubResource("GradientTexture1D_rokhq")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fcadd"]
 height = 5.509
@@ -50,6 +67,14 @@ shadow_enabled = true
 amount = 763
 lifetime = 12.29
 process_material = SubResource("ParticleProcessMaterial_3rfnk")
+draw_pass_1 = SubResource("PlaneMesh_3qfkx")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 763
+lifetime = 0.92
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_ih53h")
 draw_pass_1 = SubResource("PlaneMesh_3qfkx")
 
 [node name="WindDirection" type="DirectionalLight3D" parent="."]
