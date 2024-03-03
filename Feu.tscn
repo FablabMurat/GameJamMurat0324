@@ -1,8 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://cfejuj5j6sweu"]
+[gd_scene load_steps=32 format=3 uid="uid://cfejuj5j6sweu"]
 
 [ext_resource type="Script" path="res://Feu.gd" id="1_lc4fw"]
 [ext_resource type="Texture2D" uid="uid://c47o0krddkdnl" path="res://Ressources/Environnement/Feu/FEU1.png" id="2_36bgo"]
-[ext_resource type="PackedScene" uid="uid://bmsr2fyq0yg3n" path="res://FeuDeCamp.tscn" id="2_xme64"]
+[ext_resource type="PackedScene" path="res://FeuDeCamp.tscn" id="2_xme64"]
 [ext_resource type="Texture2D" uid="uid://dahntmnud0eiy" path="res://Ressources/Environnement/Feu/FEU2.png" id="3_d3qvp"]
 [ext_resource type="Texture2D" uid="uid://dcs04sikcga1p" path="res://Ressources/Environnement/Feu/FEU11.png" id="4_tdpxj"]
 [ext_resource type="Texture2D" uid="uid://c6a5115h00brd" path="res://Ressources/Environnement/Feu/FEU3.png" id="5_om535"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dpno1tma57oi2" path="res://Ressources/Environnement/Feu/FEU8.png" id="10_iulyj"]
 [ext_resource type="Texture2D" uid="uid://hf4bpmqnn1ue" path="res://Ressources/Environnement/Feu/FEU9.png" id="11_65shh"]
 [ext_resource type="Texture2D" uid="uid://cmo4lgyx8rms6" path="res://Ressources/Environnement/Feu/FEU10.png" id="12_c7bt0"]
+[ext_resource type="AudioStream" uid="uid://c5ebt5xgmi0n7" path="res://Ressources/Sons/fire.ogg" id="14_b1clx"]
 
 [sub_resource type="Gradient" id="Gradient_47lb2"]
 colors = PackedColorArray(1, 0, 0.0156863, 1, 0.89, 0.86686, 0.1958, 1)
@@ -224,5 +225,10 @@ shape = SubResource("CylinderShape3D_fcadd")
 
 [node name="Buche" parent="." instance=ExtResource("2_xme64")]
 transform = Transform3D(0.755, 0, 0, 0, 0.755, 0, 0, 0, 0.755, 0, 0, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("14_b1clx")
+volume_db = 3.0
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
