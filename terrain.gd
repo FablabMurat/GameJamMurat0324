@@ -97,11 +97,13 @@ func update_overlay(type, nb):
 	elif inventory[type] > 3:
 		inventory[type] = 3
 	
-		
 	$Overlay.displays[type].text = "%d / %d" % [inventory[type], $Player.NBMAX[type]]
 	
-
+	
 func increaseFire(nb):
 	print("test increasefire %d" % nb)
+	if inventory["buche"] != 0:
+		$Area3D/CollisionShape3D/Feu/GPUParticles3D2.emitting = true
 	update_overlay("buche",-1)
 	$Area3D/CollisionShape3D/Feu.fireGestion(10*nb)
+	
