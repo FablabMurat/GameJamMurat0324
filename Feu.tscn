@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfejuj5j6sweu"]
+[gd_scene load_steps=11 format=3 uid="uid://cfejuj5j6sweu"]
 
 [ext_resource type="Script" path="res://Feu.gd" id="1_lc4fw"]
+[ext_resource type="PackedScene" uid="uid://bmsr2fyq0yg3n" path="res://FeuDeCamp.tscn" id="2_xme64"]
 
 [sub_resource type="Gradient" id="Gradient_47lb2"]
 colors = PackedColorArray(0.831373, 0.419608, 0.113725, 1, 0.89, 0.86686, 0.1958, 1)
@@ -23,7 +24,10 @@ scale_min = 0.0
 scale_max = 0.1
 color_ramp = SubResource("GradientTexture1D_rokhq")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kd3xc"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ei0bw"]
+next_pass = SubResource("CanvasItemMaterial_kd3xc")
 vertex_color_use_as_albedo = true
 billboard_mode = 1
 billboard_keep_scale = true
@@ -94,3 +98,6 @@ omni_attenuation = 0.901252
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_fcadd")
+
+[node name="Buche" parent="." instance=ExtResource("2_xme64")]
+transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, 0, 0, 0)
