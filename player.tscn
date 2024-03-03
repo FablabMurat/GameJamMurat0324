@@ -75,11 +75,13 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		if event.button_mask & (MOUSE_BUTTON_MASK_MIDDLE + MOUSE_BUTTON_MASK_RIGHT):
 			camrot += event.relative.x * 0.005
+			$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
 	if Input.is_action_pressed(\"look_right\"):
 		camrot += 0.01
+		$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
 	if Input.is_action_pressed(\"look_left\"):
 		camrot -= 0.01
-	$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
+		$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
 	print(\"Camera3D Rotation: \", camrot)
 
 func animate():
