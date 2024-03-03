@@ -111,8 +111,8 @@ func update_overlay(type, nb):
 	inventory[type] += nb
 	if inventory[type] < 0:
 		inventory[type] = 0
-	elif inventory[type] > 3:
-		inventory[type] = 3
+	elif inventory[type] > $Player.NBMAX[type]:
+		inventory[type] = $Player.NBMAX[type]
 	
 	$Overlay.displays[type].text = "%d / %d" % [inventory[type], $Player.NBMAX[type]]
 	
