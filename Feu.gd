@@ -7,7 +7,7 @@ var windDirection
 var rotation_speed = 1
 
 signal firedeath
-
+signal getWindDirection
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -25,17 +25,20 @@ func _process(delta):
 	$WindDirection.rotate_y(0.002)
 	
 	$GPUParticles3D.process_material.gravity = getwindDirection()
+	getWindDirection.emit(getwindDirection())
 
 func fireGestion(amount):
 	$Timer.start(timeLeft + amount)
+	#$GPUParticles3D.process_material.emission_ring_radius = timeLeft/10
 	print("fire ammount: %d" % timeLeft)
 	
 
 func getwindDirection():
 	var windRotation = $WindDirection.rotation
-	var windForce = 0.2
+	var windForce = 0.1
 	return Vector3(sin(windRotation[1])*windForce,0,cos(windRotation[1])*windForce)
-
+	
+	
 
 func _on_timer_timeout():
 	firedeath.emit()

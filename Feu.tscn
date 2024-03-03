@@ -1,8 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://cfejuj5j6sweu"]
+[gd_scene load_steps=33 format=3 uid="uid://cfejuj5j6sweu"]
 
 [ext_resource type="Script" path="res://Feu.gd" id="1_lc4fw"]
 [ext_resource type="Texture2D" uid="uid://c47o0krddkdnl" path="res://Ressources/Environnement/Feu/FEU1.png" id="2_36bgo"]
-[ext_resource type="PackedScene" path="res://FeuDeCamp.tscn" id="2_xme64"]
+[ext_resource type="PackedScene" uid="uid://bmsr2fyq0yg3n" path="res://FeuDeCamp.tscn" id="2_xme64"]
 [ext_resource type="Texture2D" uid="uid://dahntmnud0eiy" path="res://Ressources/Environnement/Feu/FEU2.png" id="3_d3qvp"]
 [ext_resource type="Texture2D" uid="uid://dcs04sikcga1p" path="res://Ressources/Environnement/Feu/FEU11.png" id="4_tdpxj"]
 [ext_resource type="Texture2D" uid="uid://c6a5115h00brd" path="res://Ressources/Environnement/Feu/FEU3.png" id="5_om535"]
@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://GPUParticles3D.gd" id="13_u4rho"]
 
 [sub_resource type="Gradient" id="Gradient_47lb2"]
-colors = PackedColorArray(0.831373, 0.419608, 0.113725, 1, 0.89, 0.86686, 0.1958, 1)
+colors = PackedColorArray(1, 0, 0.0156863, 1, 0.89, 0.86686, 0.1958, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_rokhq"]
 gradient = SubResource("Gradient_47lb2")
@@ -33,7 +33,7 @@ lifetime_randomness = 0.55
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.2
-emission_ring_radius = 0.485
+emission_ring_radius = 0.415
 emission_ring_inner_radius = 0.0
 direction = Vector3(0, 45.145, 0)
 spread = 3.75
@@ -44,44 +44,13 @@ scale_max = 0.2
 scale_curve = SubResource("CurveTexture_0ndnt")
 color_ramp = SubResource("GradientTexture1D_rokhq")
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_e3f27"]
-frames = 11
-speed_scale = 9.2
-frame_0/texture = ExtResource("2_36bgo")
-frame_1/texture = ExtResource("3_d3qvp")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("5_om535")
-frame_2/duration = 1.0
-frame_3/texture = ExtResource("6_wemsa")
-frame_3/duration = 1.0
-frame_4/texture = ExtResource("7_njet0")
-frame_4/duration = 1.0
-frame_5/texture = ExtResource("8_u3ddg")
-frame_5/duration = 1.0
-frame_6/texture = ExtResource("9_u0x2d")
-frame_6/duration = 1.0
-frame_7/texture = ExtResource("10_iulyj")
-frame_7/duration = 1.0
-frame_8/texture = ExtResource("11_65shh")
-frame_8/duration = 1.0
-frame_9/texture = ExtResource("12_c7bt0")
-frame_9/duration = 1.0
-frame_10/texture = ExtResource("4_tdpxj")
-frame_10/duration = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ocx0"]
-blend_mode = 1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuqf7"]
 vertex_color_use_as_albedo = true
-albedo_texture = SubResource("AnimatedTexture_e3f27")
-metallic_specular = 0.0
 billboard_mode = 1
 billboard_keep_scale = true
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_3qfkx"]
-lightmap_size_hint = Vector2i(12, 12)
-material = SubResource("StandardMaterial3D_2ocx0")
-size = Vector2(2.885, 5.12)
-orientation = 2
+[sub_resource type="PlaneMesh" id="PlaneMesh_efh1w"]
+material = SubResource("StandardMaterial3D_nuqf7")
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_a1yxh"]
 frames = 11
@@ -109,6 +78,7 @@ frame_10/texture = ExtResource("4_tdpxj")
 frame_10/duration = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amjel"]
+transparency = 1
 blend_mode = 1
 vertex_color_use_as_albedo = true
 albedo_texture = SubResource("AnimatedTexture_a1yxh")
@@ -148,6 +118,7 @@ frame_10/texture = ExtResource("4_tdpxj")
 frame_10/duration = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7c36w"]
+transparency = 1
 blend_mode = 1
 vertex_color_use_as_albedo = true
 albedo_texture = SubResource("AnimatedTexture_lo20i")
@@ -177,6 +148,48 @@ scale_min = 0.0
 scale_max = 0.1
 color_ramp = SubResource("GradientTexture1D_rokhq")
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_e3f27"]
+frames = 11
+speed_scale = 9.2
+frame_0/texture = ExtResource("2_36bgo")
+frame_1/texture = ExtResource("3_d3qvp")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_om535")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("6_wemsa")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("7_njet0")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("8_u3ddg")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("9_u0x2d")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("10_iulyj")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("11_65shh")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("12_c7bt0")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("4_tdpxj")
+frame_10/duration = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ocx0"]
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 2
+no_depth_test = true
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("AnimatedTexture_e3f27")
+metallic_specular = 0.0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3qfkx"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_2ocx0")
+size = Vector2(2.885, 5.12)
+orientation = 2
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fcadd"]
 height = 5.509
 radius = 1.771
@@ -192,23 +205,27 @@ shadow_enabled = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 0)
-amount = 100
+amount = 925
 lifetime = 12.29
 process_material = SubResource("ParticleProcessMaterial_3rfnk")
-draw_pass_1 = SubResource("PlaneMesh_3qfkx")
+draw_pass_1 = SubResource("PlaneMesh_efh1w")
 script = ExtResource("13_u4rho")
 
 [node name="GPUParticles3D3" type="GPUParticles3D" parent="."]
+visible = false
 amount = 100
 lifetime = 12.29
 process_material = SubResource("ParticleProcessMaterial_3rfnk")
 draw_pass_1 = SubResource("PlaneMesh_a7o72")
+script = ExtResource("13_u4rho")
 
 [node name="GPUParticles3D4" type="GPUParticles3D" parent="."]
+visible = false
 amount = 100
 lifetime = 12.29
 process_material = SubResource("ParticleProcessMaterial_3rfnk")
 draw_pass_1 = SubResource("PlaneMesh_lxgj1")
+script = ExtResource("13_u4rho")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
 emitting = false
@@ -239,9 +256,6 @@ shape = SubResource("CylinderShape3D_fcadd")
 [node name="Buche" parent="." instance=ExtResource("2_xme64")]
 transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, 0, 0, 0)
 
-[connection signal="ready" from="." to="." method="_on_ready"]
-[connection signal="ready" from="." to="GPUParticles3D" method="_on_feu_ready"]
-[connection signal="ready" from="GPUParticles3D" to="." method="_on_gpu_particles_3d_ready"]
 [connection signal="ready" from="GPUParticles3D" to="GPUParticles3D" method="_on_ready"]
 [connection signal="ready" from="GPUParticles3D3" to="GPUParticles3D3" method="_on_ready"]
 [connection signal="ready" from="GPUParticles3D4" to="GPUParticles3D4" method="_on_ready"]
