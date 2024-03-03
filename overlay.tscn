@@ -51,3 +51,11 @@ offset_right = 653.0
 offset_bottom = 330.0
 theme_override_font_sizes/font_size = 30
 text = "Reprendre"
+
+[node name="QuitButton" type="Button" parent="PauseMenu"]
+offset_left = 524.0
+offset_top = 358.0
+offset_right = 685.0
+offset_bottom = 411.0
+theme_override_font_sizes/font_size = 30
+text = "Quitter"
