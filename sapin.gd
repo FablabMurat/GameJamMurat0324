@@ -17,8 +17,8 @@ func _ready():
 	pass # Replace with function body.
 
 func cutwood():
- 	if not $TheStreamPlayer.is_playing():   # pour éviter l'accumulation des sons
-		$TheStreamPlayer.play()
+	#if not $TheStreamPlayer.is_playing():   # pour éviter l'accumulation des sons
+	$TheStreamPlayer.play()
 		
 	nbcoupsrecus += 1
 	if nbcoupsrecus >= COUPSAVANTCUT:
