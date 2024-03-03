@@ -1,6 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmsr2fyq0yg3n"]
-
-[ext_resource type="Script" path="res://buche.gd" id="1_vkkht"]
+[gd_scene load_steps=6 format=3 uid="uid://bmsr2fyq0yg3n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hxl1t"]
 size = Vector3(2.19698, 2, 2.06554)
@@ -21,7 +19,6 @@ top_radius = 0.4
 
 [node name="FeuDeCamp" type="StaticBody3D" groups=["buche"]]
 collision_layer = 7
-script = ExtResource("1_vkkht")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.602524, 0)
