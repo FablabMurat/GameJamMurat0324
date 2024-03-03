@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfejuj5j6sweu"]
+[gd_scene load_steps=8 format=3 uid="uid://cfejuj5j6sweu"]
 
 [ext_resource type="Script" path="res://Feu.gd" id="1_lc4fw"]
 
@@ -32,9 +32,13 @@ billboard_keep_scale = true
 lightmap_size_hint = Vector2i(12, 12)
 material = SubResource("StandardMaterial3D_ei0bw")
 flip_faces = true
-orientation = 2
 
-[node name="Feu" type="Node3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fcadd"]
+height = 5.509
+radius = 1.771
+
+[node name="Feu" type="StaticBody3D"]
+collision_layer = 7
 script = ExtResource("1_lc4fw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -63,4 +67,5 @@ light_volumetric_fog_energy = 1.646
 omni_range = 22.685
 omni_attenuation = 0.901252
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_fcadd")
