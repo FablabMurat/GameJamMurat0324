@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Feu.gd" id="1_lc4fw"]
 [ext_resource type="Texture2D" uid="uid://c47o0krddkdnl" path="res://Ressources/Environnement/Feu/FEU1.png" id="2_36bgo"]
-[ext_resource type="PackedScene" path="res://FeuDeCamp.tscn" id="2_xme64"]
+[ext_resource type="PackedScene" uid="uid://bmsr2fyq0yg3n" path="res://FeuDeCamp.tscn" id="2_xme64"]
 [ext_resource type="Texture2D" uid="uid://dahntmnud0eiy" path="res://Ressources/Environnement/Feu/FEU2.png" id="3_d3qvp"]
 [ext_resource type="Texture2D" uid="uid://dcs04sikcga1p" path="res://Ressources/Environnement/Feu/FEU11.png" id="4_tdpxj"]
 [ext_resource type="Texture2D" uid="uid://c6a5115h00brd" path="res://Ressources/Environnement/Feu/FEU3.png" id="5_om535"]
@@ -228,7 +228,8 @@ transform = Transform3D(0.755, 0, 0, 0, 0.755, 0, 0, 0, 0.755, 0, 0, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("14_b1clx")
-volume_db = 3.0
+volume_db = 10.0
 autoplay = true
+max_distance = 30.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
