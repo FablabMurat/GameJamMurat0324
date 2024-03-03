@@ -4,10 +4,13 @@ var displays = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	displays["buche"] = $buchesCountDisplay
-	pass
+	init_displays()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func init_displays():
+	displays["buche"] = $buchesCountDisplay
+	displays["hache"] = $hacheCountDisplay

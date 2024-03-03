@@ -5,7 +5,7 @@ const NBBUCHES = 50
 const NBROCHERS = 80
 
 
-# SCENES SAPINSq
+# SCENES SAPINS
 const Sapin0_Scene = preload("res://paper_sapin_00.tscn")
 const Sapin1_Scene = preload("res://paper_sapin_01.tscn")
 const Sapin2_Scene = preload("res://paper_sapin_02.tscn")
@@ -49,9 +49,15 @@ func _ready():
 	createobjlist(NeigeScenes,NBNEIGE)
 	createobjlist(SapinScenes,NBSAPINS)
 	createobjlist(HerbeScenes,NBHERBES)
-	pass # Replace with function body.
+
 	$Player.collected.connect(update_overlay.bind())
 	$Player.increaseFire.connect(increaseFire.bind())
+	
+	init_overlays()
+	
+func init_overlays():
+	for item in inventory:
+		update_overlay(item, 0)
 
 func createobjs(scene, nbmax):
 	var x: float
@@ -94,7 +100,6 @@ func _process(delta):
 
 func update_overlay(type, nb):
 	inventory[type] += nb
-	$Overlay/buchesCountDisplay.text = "%d" % inventory[type]
 	$Overlay.displays[type].text = "%d / %d" % [inventory[type], $Player.NBMAX[type]]
 	
 
