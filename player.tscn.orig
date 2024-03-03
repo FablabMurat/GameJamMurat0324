@@ -1,0 +1,258 @@
+[gd_scene load_steps=30 format=3 uid="uid://nabnyuuxgolm"]
+
+[ext_resource type="Texture2D" uid="uid://d4nodvq41hpb2" path="res://Ressources/Joueur/garcon-derriere0001.png" id="1_dfh5f"]
+[ext_resource type="Texture2D" uid="uid://dam3kaiqeie48" path="res://Ressources/Joueur/garcon-derriere0002.png" id="2_l6r4v"]
+[ext_resource type="Texture2D" uid="uid://b8ggfp7kuo6jb" path="res://Ressources/Joueur/garcon-derriere0003.png" id="3_dqb3o"]
+[ext_resource type="Texture2D" uid="uid://b3oa43kf2tmko" path="res://Ressources/Joueur/garcon-derriere0004.png" id="4_s36os"]
+[ext_resource type="Texture2D" uid="uid://mtfiqs8hnta8" path="res://Ressources/Joueur/garcon-derriere0005.png" id="5_ur1pn"]
+[ext_resource type="Texture2D" uid="uid://uhr847oy7wjm" path="res://Ressources/Joueur/garcon-derriere0006.png" id="6_p8ue8"]
+[ext_resource type="Texture2D" uid="uid://bvs1is5ruab5k" path="res://Ressources/Joueur/garcon-derriere0007.png" id="7_5aow7"]
+[ext_resource type="Texture2D" uid="uid://daldkrcsmoqas" path="res://Ressources/Joueur/garcon-derriere0008.png" id="8_k0hrm"]
+[ext_resource type="Texture2D" uid="uid://d2t0y5rai6r07" path="res://Ressources/Joueur/garcon-devant0001.png" id="9_qsd3a"]
+[ext_resource type="Texture2D" uid="uid://d3atnqqxxo2iy" path="res://Ressources/Joueur/garcon-devant0002.png" id="10_hxdbx"]
+[ext_resource type="Texture2D" uid="uid://dgvrrto0holeh" path="res://Ressources/Joueur/garcon-devant0003.png" id="11_neyl7"]
+[ext_resource type="Texture2D" uid="uid://cv5x3tk0m1ok3" path="res://Ressources/Joueur/garcon-devant0004.png" id="12_w4qri"]
+[ext_resource type="Texture2D" uid="uid://cs0563fxn7cx7" path="res://Ressources/Joueur/garcon-devant0005.png" id="13_2pxb3"]
+[ext_resource type="Texture2D" uid="uid://b3fp1d27iptmp" path="res://Ressources/Joueur/garcon-devant0006.png" id="14_hr7bq"]
+[ext_resource type="Texture2D" uid="uid://bmyqk6fvuxc1y" path="res://Ressources/Joueur/garcon-devant0007.png" id="15_ju0fr"]
+[ext_resource type="Texture2D" uid="uid://b3824k28sc6um" path="res://Ressources/Joueur/garcon-devant0008.png" id="16_rj1xf"]
+[ext_resource type="Texture2D" uid="uid://ddx6hbs0u0tpq" path="res://Ressources/Joueur/garcon-droite0001.png" id="17_7vgos"]
+[ext_resource type="Texture2D" uid="uid://be84uxatp0vng" path="res://Ressources/Joueur/garcon-droite0002.png" id="18_1236m"]
+[ext_resource type="Texture2D" uid="uid://ckajnafol0ln1" path="res://Ressources/Joueur/garcon-droite0003.png" id="19_dc031"]
+[ext_resource type="Texture2D" uid="uid://cc10pspwvmuoo" path="res://Ressources/Joueur/garcon-droite0004.png" id="20_vf006"]
+[ext_resource type="Texture2D" uid="uid://bjryusyfdwlnd" path="res://Ressources/Joueur/garcon-droite0005.png" id="21_urhfe"]
+[ext_resource type="Texture2D" uid="uid://duqiu5tcuseat" path="res://Ressources/Joueur/garcon-droite0006.png" id="22_c47i5"]
+[ext_resource type="Texture2D" uid="uid://dfssh3uaphxio" path="res://Ressources/Joueur/garcon-droite0007.png" id="23_bdbna"]
+[ext_resource type="Texture2D" uid="uid://5ymk7x4tpm81" path="res://Ressources/Joueur/garcon-droite0008.png" id="24_xfn8y"]
+<<<<<<< HEAD
+[ext_resource type="PackedScene" path="res://neige_particules.tscn" id="25_r15d7"]
+=======
+[ext_resource type="PackedScene" uid="uid://buvki7kby2tr" path="res://neige_particules .tscn" id="25_r15d7"]
+[ext_resource type="AudioStream" uid="uid://kb2028i2o2np" path="res://Ressources/Sons/marche.ogg" id="26_k31hh"]
+>>>>>>> 9880db6 (ajout de bruits de pas sur le joueur)
+
+[sub_resource type="GDScript" id="GDScript_wemyt"]
+script/source = "extends CharacterBody3D
+
+@export var PLAYER_SPEED = 500
+var camrot = 0.0
+
+var direction = Vector3.ZERO
+const NBMAX = {
+	\"buche\": 3,
+	\"hache\": 1
+}
+var nbbuche = 0
+var nbhache = 0
+
+signal collected
+signal increaseFire
+signal stepSpawn
+
+func _ready():
+	$PlayerCenter/Camera3D.set_current(true)
+
+func _physics_process(delta):
+	direction.x = Input.get_action_strength(\"move_right\") - Input.get_action_strength(\"move_left\")
+	direction.z = Input.get_action_strength(\"move_forward\") - Input.get_action_strength(\"move_backwards\")
+	
+	velocity = direction.normalized().rotated(Vector3.UP,$PlayerCenter.rotation.y) * PLAYER_SPEED
+	set_velocity(velocity * delta)
+	move_and_slide()
+	
+	for index in get_slide_collision_count():
+		var collision = get_slide_collision(index)
+		var body = collision.get_collider()
+		if body.is_in_group(\"buche\")  and  nbbuche < NBMAX[\"buche\"]:
+			print(\"collect buche\")
+			nbbuche += 1
+			body.queue_free()
+			# mettre à jour l'UI
+			#collected.emit(\"buche\",1)
+			collected.emit(\"buche\",1)
+		
+		if body.is_in_group(\"hache\"):
+			nbhache += 1
+			body.queue_free()
+			collected.emit(\"hache\",1)
+			#print(\"zone de coupe\")
+		
+		if body.is_in_group(\"feu\"):
+			print(\"mettre buche\")
+			increaseFire.emit(nbbuche)
+			nbbuche = 0
+		
+		if body.is_in_group(\"arbre\"):
+			pass
+			#print(\"zone de coupe\")
+			
+
+
+func _process(delta):
+	#var tmprot = Input.get_action_strength(\"look_right\") - Input.get_action_strength(\"look_left\")
+	#if abs(tmprot) > 0.1:
+	#	camrot += tmprot * 0.05
+	#	$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
+	#	print(\"Camera3D Rotation: \", camrot)
+	$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
+	
+	animate()
+
+func _unhandled_input(event):
+	if event is InputEventMouseMotion:
+		if event.button_mask & (MOUSE_BUTTON_MASK_MIDDLE + MOUSE_BUTTON_MASK_RIGHT):
+			camrot += event.relative.x * 0.005
+			print(\"Camera3D Rotation: \", camrot)
+
+func animate():
+	if(velocity != Vector3.ZERO):
+		$PlayerCenter/PlayerSprite3D.play()
+		var realdirection = velocity.rotated(Vector3.UP,-$PlayerCenter.rotation.y)
+		if(realdirection.x > 0.4):
+			$PlayerCenter/PlayerSprite3D.animation = \"side\"
+			$PlayerCenter/PlayerSprite3D.flip_h = false
+		elif(realdirection.x < -0.4):
+			$PlayerCenter/PlayerSprite3D.animation = \"side\"
+			$PlayerCenter/PlayerSprite3D.flip_h = true
+		elif(realdirection.z < -0.4):
+			$PlayerCenter/PlayerSprite3D.animation = \"front\"
+		elif(realdirection.z > 0.4):
+			$PlayerCenter/PlayerSprite3D.animation = \"back\"
+		else:
+			print(\"animate impossible %d/%d\" % [realdirection.x,realdirection.z])
+	else:
+		$PlayerCenter/PlayerSprite3D.stop()
+func has_hache():
+	return nbhache > 0
+
+func _on_step_timer_timeout():
+	if(velocity != Vector3.ZERO):
+		stepSpawn.emit()
+		if not $Pas.is_playing():
+			$Pas.play()
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hlw7m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dfh5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_l6r4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dqb3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s36os")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ur1pn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_p8ue8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5aow7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_k0hrm")
+}],
+"loop": true,
+"name": &"back",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_qsd3a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hxdbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_neyl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_w4qri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_2pxb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_hr7bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ju0fr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_rj1xf")
+}],
+"loop": true,
+"name": &"front",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_7vgos")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_1236m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_dc031")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_vf006")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_urhfe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_c47i5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_bdbna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_xfn8y")
+}],
+"loop": true,
+"name": &"side",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rycr6"]
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 9
+collision_mask = 6
+script = SubResource("GDScript_wemyt")
+
+[node name="PlayerCenter" type="Marker3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.1, 0)
+
+[node name="PlayerSprite3D" type="AnimatedSprite3D" parent="PlayerCenter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0613341, 0)
+offset = Vector2(0, 40)
+billboard = 1
+sprite_frames = SubResource("SpriteFrames_hlw7m")
+animation = &"back"
+
+[node name="Camera3D" type="Camera3D" parent="PlayerCenter"]
+transform = Transform3D(0.499997, -0.000421824, 0.00164857, -0.000923824, 0.33951, 0.367059, 0.00142908, 0.36706, -0.339507, 0, 4.4165, -4.23686)
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96303, 0)
+shape = SubResource("CapsuleShape3D_rycr6")
+
+[node name="StepTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Neige" parent="." instance=ExtResource("25_r15d7")]
+
+[node name="Pas" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_k31hh")
+
+[connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]

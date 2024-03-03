@@ -30,7 +30,7 @@ func _process(delta):
 func fireGestion(amount):
 	$Timer.start(timeLeft + amount)
 	if $GPUParticles3D.process_material.emission_ring_radius <100:
-		$GPUParticles3D.process_material.emission_ring_radius = timeLeft*0.04
+		$GPUParticles3D.process_material.emission_ring_radius = timeLeft*0.004
 	else:
 		$GPUParticles3D.process_material.emission_ring_radius = 0.4
 	print("fire ammount: %d" % timeLeft)

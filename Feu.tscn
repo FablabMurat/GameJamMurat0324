@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cfejuj5j6sweu"]
+[gd_scene load_steps=32 format=3 uid="uid://cfejuj5j6sweu"]
 
 [ext_resource type="Script" path="res://Feu.gd" id="1_lc4fw"]
 [ext_resource type="Texture2D" uid="uid://c47o0krddkdnl" path="res://Ressources/Environnement/Feu/FEU1.png" id="2_36bgo"]
@@ -150,45 +150,13 @@ scale_min = 0.0
 scale_max = 0.1
 color_ramp = SubResource("GradientTexture1D_rokhq")
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_e3f27"]
-frames = 11
-speed_scale = 9.2
-frame_0/texture = ExtResource("2_36bgo")
-frame_1/texture = ExtResource("3_d3qvp")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("5_om535")
-frame_2/duration = 1.0
-frame_3/texture = ExtResource("6_wemsa")
-frame_3/duration = 1.0
-frame_4/texture = ExtResource("7_njet0")
-frame_4/duration = 1.0
-frame_5/texture = ExtResource("8_u3ddg")
-frame_5/duration = 1.0
-frame_6/texture = ExtResource("9_u0x2d")
-frame_6/duration = 1.0
-frame_7/texture = ExtResource("10_iulyj")
-frame_7/duration = 1.0
-frame_8/texture = ExtResource("11_65shh")
-frame_8/duration = 1.0
-frame_9/texture = ExtResource("12_c7bt0")
-frame_9/duration = 1.0
-frame_10/texture = ExtResource("4_tdpxj")
-frame_10/duration = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ocx0"]
-transparency = 1
-blend_mode = 1
-depth_draw_mode = 2
-no_depth_test = true
-vertex_color_use_as_albedo = true
-albedo_texture = SubResource("AnimatedTexture_e3f27")
-metallic_specular = 0.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6phl"]
 billboard_mode = 1
 billboard_keep_scale = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3qfkx"]
 lightmap_size_hint = Vector2i(12, 12)
-material = SubResource("StandardMaterial3D_2ocx0")
+material = SubResource("StandardMaterial3D_t6phl")
 size = Vector2(2.885, 5.12)
 orientation = 2
 

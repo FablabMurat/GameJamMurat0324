@@ -37,6 +37,7 @@ func toggle_pause():
 	$PauseMenu/PauseButton.visible = get_tree().paused
 
 func gameover():
+	$GameOverStreamPlayer.play()
 	get_tree().paused = true
 	$PauseMenu.visible = true
 	$PauseMenu/RestartButton.visible = true
