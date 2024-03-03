@@ -101,3 +101,5 @@ shape = SubResource("CylinderShape3D_fcadd")
 
 [node name="Buche" parent="." instance=ExtResource("2_xme64")]
 transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, 0, 0, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

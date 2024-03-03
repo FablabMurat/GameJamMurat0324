@@ -50,6 +50,8 @@ func _ready():
 	$Player.collected.connect(update_overlay.bind())
 	$Player.increaseFire.connect(increaseFire.bind())
 	
+	$Area3D/CollisionShape3D/Feu.firedeath.connect($Overlay.gameover)
+	
 	init_overlays()
 	
 func init_overlays():

@@ -6,6 +6,8 @@ var windDirection
 
 var rotation_speed = 1
 
+signal firedeath
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -31,3 +33,7 @@ func getwindDirection():
 	var windRotation = $WindDirection.rotation
 	var windForce = 0.2
 	return Vector3(sin(windRotation[1])*windForce,0,cos(windRotation[1])*windForce)
+
+
+func _on_timer_timeout():
+	firedeath.emit()
