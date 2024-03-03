@@ -66,7 +66,11 @@ func _physics_process(delta):
 			print(\"mettre buche\")
 			increaseFire.emit(nbbuche)
 			nbbuche = 0
-			
+		
+		print (\"collision with\")
+		print (body)
+		if body.is_in_group(\"arbre\"):
+			print(\"près d'un arbre\")
 
 func _process(delta):
 	#var tmprot = Input.get_action_strength(\"look_right\") - Input.get_action_strength(\"look_left\")
