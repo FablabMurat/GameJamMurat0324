@@ -27,7 +27,6 @@ sky_material = SubResource("PanoramaSkyMaterial_27j57")
 [sub_resource type="Environment" id="Environment_vjdyr"]
 background_mode = 2
 sky = SubResource("Sky_6i610")
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.1027
 volumetric_fog_emission = Color(0.168627, 0.431373, 0.509804, 1)
 
@@ -55,7 +54,7 @@ transform = Transform3D(1, 0, 0, 0, 0.86845, 0.495777, 0, -0.495777, 0.86845, 0,
 visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_478pm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.739262, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0254318, -7)
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

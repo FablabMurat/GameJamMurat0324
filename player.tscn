@@ -76,6 +76,10 @@ func _process(delta):
 	#	print(\"Camera3D Rotation: \", camrot)
 	$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
 	
+	if(Input.is_action_pressed(\"debug\")):
+		$PlayerCenter.set_rotation(Vector3(-0.6, camrot, 0))
+		
+	
 	animate()
 
 func _unhandled_input(event):
