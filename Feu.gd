@@ -15,25 +15,26 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	timeLeft = $Timer.time_left
-	$GPUParticles3D.lifetime = timeLeft/4
+	$Feu1.lifetime = timeLeft/4
 	if Input.is_action_just_pressed("addLog"):
 		fireGestion(2.0)
 		#print($Timer.time_left)
-		print($GPUParticles3D.draw_pass_1.material.albedo_texture.pause)
+		print($Feu1.draw_pass_1.material.albedo_texture.pause)
 		
 		
 	$WindDirection.rotate_y(0.002)
 	
-	$GPUParticles3D.process_material.gravity = getwindDirection()
+	$Feu1.process_material.gravity = getwindDirection()
 	getWindDirection.emit(getwindDirection())
 
 func fireGestion(amount):
 	$Timer.start(timeLeft + amount)
-	if $GPUParticles3D.process_material.emission_ring_radius <100:
-		$GPUParticles3D.process_material.emission_ring_radius = timeLeft*0.004
+	if $Feu1.process_material.emission_ring_radius <100:
+		$Feu1.process_material.emission_ring_radius = timeLeft*0.004
 	else:
-		$GPUParticles3D.process_material.emission_ring_radius = 0.4
+		$Feu1.process_material.emission_ring_radius = 0.4
 	print("fire ammount: %d" % timeLeft)
+	print("fire added: %d" % amount)
 	
 
 func getwindDirection():

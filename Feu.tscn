@@ -150,12 +150,14 @@ scale_max = 0.1
 color_ramp = SubResource("GradientTexture1D_rokhq")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6phl"]
+vertex_color_use_as_albedo = true
 billboard_mode = 1
 billboard_keep_scale = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3qfkx"]
 lightmap_size_hint = Vector2i(12, 12)
 material = SubResource("StandardMaterial3D_t6phl")
+flip_faces = true
 size = Vector2(2.885, 5.12)
 orientation = 2
 
