@@ -112,7 +112,8 @@ func animate():
 
 
 func _on_step_timer_timeout():
-	stepSpawn.emit()
+	if(velocity != Vector3.ZERO):
+		stepSpawn.emit()
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hlw7m"]
@@ -231,7 +232,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96303, 0)
 shape = SubResource("CapsuleShape3D_rycr6")
 
 [node name="StepTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.6
 autostart = true
 
 [connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]
