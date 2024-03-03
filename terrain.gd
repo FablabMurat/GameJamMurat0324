@@ -14,6 +14,8 @@ const SapinScenes = [Sapin0_Scene, Sapin1_Scene, Sapin2_Scene]
 const BucheScene = preload("res://paper_buche.tscn")
 const RocherScene = preload("res://paper_rocher.tscn")
 
+const HacheScene = preload("res://hache.tscn")
+
 # SCENES NEIGE
 const NBNEIGE = 20000
 const Neige0_Scene = preload("res://neige_00.tscn")
@@ -47,6 +49,8 @@ func _ready():
 	createobjlist(SapinScenes,NBSAPINS)
 	createobjlist(HerbeScenes,NBHERBES)
 
+	createobjs(HacheScene,50)
+	
 	$Player.collected.connect(update_overlay.bind())
 	$Player.increaseFire.connect(increaseFire.bind())
 	
