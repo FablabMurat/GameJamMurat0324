@@ -17,6 +17,9 @@ func _ready():
 	pass # Replace with function body.
 
 func cutwood():
+	if not $TheStreamPlayer.is_playing():   # pour éviter l'accumulation des sons
+		$TheStreamPlayer.play()
+		
 	nbcoupsrecus += 1
 	if nbcoupsrecus >= COUPSAVANTCUT:
 		nbcoupsrecus = 0
@@ -41,6 +44,8 @@ func unebuche():
 	var angle = randf()*2*PI
 	buche.global_position.x = self.position.x + cos(angle)*(2+randi_range(2,4))
 	buche.global_position.z = self.position.z + sin(angle)*(2+randi_range(2,4))
+	
+	
 
 
 func _input(event : InputEvent):
