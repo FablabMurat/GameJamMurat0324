@@ -32,7 +32,6 @@ const Herbe4_Scene = preload("res://herbe_04.tscn")
 const HerbeScenes = [Herbe0_Scene, Herbe1_Scene, Herbe2_Scene, Herbe3_Scene, Herbe4_Scene]
 
 
-
 var inventory = {
 	"buche": 0,
 	"hache": 0
