@@ -21,6 +21,7 @@ scale = Vector2(0.983045, 0.988408)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "0/0"
+metadata/_edit_use_anchors_ = true
 
 [node name="hacheCountDisplay" type="Label" parent="."]
 offset_left = 981.0
@@ -31,6 +32,7 @@ scale = Vector2(0.983045, 0.988408)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "0/0"
+metadata/_edit_use_anchors_ = true
 
 [node name="PauseMenu" type="Node2D" parent="."]
 visible = false
@@ -57,10 +59,40 @@ offset_bottom = 330.0
 theme_override_font_sizes/font_size = 30
 text = "Reprendre"
 
+[node name="Itch" type="LinkButton" parent="PauseMenu"]
+offset_left = 6.0
+offset_top = 599.0
+offset_right = 102.0
+offset_bottom = 652.0
+theme_override_font_sizes/font_size = 30
+text = "Itch.io"
+underline = 1
+uri = "https://itch.io/jam/game-jam-dans-l-cantal"
+
+[node name="Credits" type="LinkButton" parent="PauseMenu"]
+offset_left = 1030.0
+offset_top = 599.0
+offset_right = 1126.0
+offset_bottom = 652.0
+theme_override_font_sizes/font_size = 30
+text = "Credits"
+underline = 1
+uri = "https://www.youtube.com/watch?v=o-YBDTqX_ZU"
+
+[node name="Github" type="LinkButton" parent="PauseMenu"]
+offset_left = 1030.0
+offset_top = 556.0
+offset_right = 1126.0
+offset_bottom = 609.0
+theme_override_font_sizes/font_size = 30
+text = "Github"
+underline = 1
+uri = "https://github.com/FablabMurat/GameJamMurat0324"
+
 [node name="QuitButton" type="Button" parent="PauseMenu"]
 offset_left = 524.0
-offset_top = 358.0
+offset_top = 344.0
 offset_right = 685.0
-offset_bottom = 411.0
+offset_bottom = 397.0
 theme_override_font_sizes/font_size = 30
 text = "Quitter"
