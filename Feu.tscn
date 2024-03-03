@@ -1,7 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfejuj5j6sweu"]
+[gd_scene load_steps=23 format=3 uid="uid://cfejuj5j6sweu"]
 
 [ext_resource type="Script" path="res://Feu.gd" id="1_lc4fw"]
+[ext_resource type="Texture2D" uid="uid://c47o0krddkdnl" path="res://Ressources/Environnement/Feu/FEU1.png" id="2_36bgo"]
 [ext_resource type="PackedScene" uid="uid://bmsr2fyq0yg3n" path="res://FeuDeCamp.tscn" id="2_xme64"]
+[ext_resource type="Texture2D" uid="uid://dahntmnud0eiy" path="res://Ressources/Environnement/Feu/FEU2.png" id="3_d3qvp"]
+[ext_resource type="Texture2D" uid="uid://dcs04sikcga1p" path="res://Ressources/Environnement/Feu/FEU11.png" id="4_tdpxj"]
+[ext_resource type="Texture2D" uid="uid://c6a5115h00brd" path="res://Ressources/Environnement/Feu/FEU3.png" id="5_om535"]
+[ext_resource type="Texture2D" uid="uid://bnfo7mkhe5jd8" path="res://Ressources/Environnement/Feu/FEU4.png" id="6_wemsa"]
+[ext_resource type="Texture2D" uid="uid://bf2u2s6xtvb42" path="res://Ressources/Environnement/Feu/FEU5.png" id="7_njet0"]
+[ext_resource type="Texture2D" uid="uid://b0j2jfm72fduw" path="res://Ressources/Environnement/Feu/FEU6.png" id="8_u3ddg"]
+[ext_resource type="Texture2D" uid="uid://q6cswb1fy01w" path="res://Ressources/Environnement/Feu/FEU7.png" id="9_u0x2d"]
+[ext_resource type="Texture2D" uid="uid://dpno1tma57oi2" path="res://Ressources/Environnement/Feu/FEU8.png" id="10_iulyj"]
+[ext_resource type="Texture2D" uid="uid://cqrcs6kyfu61n" path="res://Ressources/Environnement/Feu/FEU9.png" id="11_65shh"]
+[ext_resource type="Texture2D" uid="uid://cmo4lgyx8rms6" path="res://Ressources/Environnement/Feu/FEU10.png" id="12_c7bt0"]
+[ext_resource type="Script" path="res://GPUParticles3D.gd" id="13_u4rho"]
 
 [sub_resource type="Gradient" id="Gradient_47lb2"]
 colors = PackedColorArray(0.831373, 0.419608, 0.113725, 1, 0.89, 0.86686, 0.1958, 1)
@@ -24,18 +36,43 @@ scale_min = 0.0
 scale_max = 0.1
 color_ramp = SubResource("GradientTexture1D_rokhq")
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kd3xc"]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_52aot"]
+frames = 11
+speed_scale = 9.2
+frame_0/texture = ExtResource("2_36bgo")
+frame_1/texture = ExtResource("3_d3qvp")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_om535")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("6_wemsa")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("7_njet0")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("8_u3ddg")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("9_u0x2d")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("10_iulyj")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("11_65shh")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("12_c7bt0")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("4_tdpxj")
+frame_10/duration = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ei0bw"]
-next_pass = SubResource("CanvasItemMaterial_kd3xc")
+blend_mode = 1
 vertex_color_use_as_albedo = true
+albedo_texture = SubResource("AnimatedTexture_52aot")
+metallic_specular = 0.0
 billboard_mode = 1
 billboard_keep_scale = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3qfkx"]
 lightmap_size_hint = Vector2i(12, 12)
 material = SubResource("StandardMaterial3D_ei0bw")
-flip_faces = true
+size = Vector2(2.885, 2.85)
 orientation = 2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ih53h"]
@@ -71,7 +108,10 @@ shadow_enabled = true
 amount = 763
 lifetime = 12.29
 process_material = SubResource("ParticleProcessMaterial_3rfnk")
+draw_passes = 2
 draw_pass_1 = SubResource("PlaneMesh_3qfkx")
+draw_pass_2 = null
+script = ExtResource("13_u4rho")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
 emitting = false
