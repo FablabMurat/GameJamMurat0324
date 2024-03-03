@@ -6,7 +6,6 @@ const NBROCHERS = 80
 
 
 # SCENES SAPINS
-const NBSAPINS = 100
 const Sapin0_Scene = preload("res://paper_sapin_00.tscn")
 const Sapin1_Scene = preload("res://paper_sapin_01.tscn")
 const Sapin2_Scene = preload("res://paper_sapin_02.tscn")
