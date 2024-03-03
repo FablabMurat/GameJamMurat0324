@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://nabnyuuxgolm"]
+[gd_scene load_steps=30 format=3 uid="uid://nabnyuuxgolm"]
 
 [ext_resource type="Texture2D" uid="uid://d4nodvq41hpb2" path="res://Ressources/Joueur/garcon-derriere0001.png" id="1_dfh5f"]
 [ext_resource type="Texture2D" uid="uid://dam3kaiqeie48" path="res://Ressources/Joueur/garcon-derriere0002.png" id="2_l6r4v"]
@@ -24,7 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://duqiu5tcuseat" path="res://Ressources/Joueur/garcon-droite0006.png" id="22_c47i5"]
 [ext_resource type="Texture2D" uid="uid://dfssh3uaphxio" path="res://Ressources/Joueur/garcon-droite0007.png" id="23_bdbna"]
 [ext_resource type="Texture2D" uid="uid://5ymk7x4tpm81" path="res://Ressources/Joueur/garcon-droite0008.png" id="24_xfn8y"]
-[ext_resource type="PackedScene" uid="uid://dw6ke3xyblv7j" path="res://neige_particules.tscn" id="25_r15d7"]
+[ext_resource type="PackedScene" uid="uid://dvbc8cnjq7ee7" path="res://neige_particules.tscn" id="25_r15d7"]
+[ext_resource type="AudioStream" uid="uid://cmtdvujgrglhb" path="res://Ressources/Sons/pas_2.ogg" id="26_8nggx"]
 
 [sub_resource type="GDScript" id="GDScript_wemyt"]
 script/source = "extends CharacterBody3D
@@ -123,6 +124,7 @@ func has_hache():
 func _on_step_timer_timeout():
 	if(velocity != Vector3.ZERO):
 		stepSpawn.emit()
+		$StepStreamPlayer.play()
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hlw7m"]
@@ -244,5 +246,8 @@ shape = SubResource("CapsuleShape3D_rycr6")
 autostart = true
 
 [node name="Neige" parent="." instance=ExtResource("25_r15d7")]
+
+[node name="StepStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_8nggx")
 
 [connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]
