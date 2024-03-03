@@ -32,7 +32,7 @@ lifetime_randomness = 0.55
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.2
-emission_ring_radius = 0.415
+emission_ring_radius = 0.99
 emission_ring_inner_radius = 0.0
 direction = Vector3(0, 45.145, 0)
 spread = 3.75
@@ -219,9 +219,10 @@ omni_range = 22.685
 omni_attenuation = 0.901252
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.13, 0, 0, 0, 1.13, 0, 0, 0, 1.13, 0, 0, 0)
 shape = SubResource("CylinderShape3D_fcadd")
 
 [node name="Buche" parent="." instance=ExtResource("2_xme64")]
-transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, 0, 0, 0)
+transform = Transform3D(0.755, 0, 0, 0, 0.755, 0, 0, 0, 0.755, 0, 0, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
