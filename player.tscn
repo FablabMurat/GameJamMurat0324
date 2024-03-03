@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://duqiu5tcuseat" path="res://Ressources/Joueur/garcon-droite0006.png" id="22_c47i5"]
 [ext_resource type="Texture2D" uid="uid://dfssh3uaphxio" path="res://Ressources/Joueur/garcon-droite0007.png" id="23_bdbna"]
 [ext_resource type="Texture2D" uid="uid://5ymk7x4tpm81" path="res://Ressources/Joueur/garcon-droite0008.png" id="24_xfn8y"]
-[ext_resource type="PackedScene" uid="uid://dvbc8cnjq7ee7" path="res://neige_particules .tscn" id="25_r15d7"]
+[ext_resource type="PackedScene" path="res://neige_particules.tscn" id="25_r15d7"]
 
 [sub_resource type="GDScript" id="GDScript_wemyt"]
 script/source = "extends CharacterBody3D
