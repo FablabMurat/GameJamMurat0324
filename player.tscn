@@ -40,6 +40,8 @@ var nbbuche = 0
 
 signal collected
 signal increaseFire
+signal stepSpawn
+
 func _ready():
 	$PlayerCenter/Camera3D.set_current(true)
 
@@ -107,10 +109,10 @@ func animate():
 			print(\"animate impossible %d/%d\" % [realdirection.x,realdirection.z])
 	else:
 		$PlayerCenter/PlayerSprite3D.stop()
-	
 
-		
-		
+
+func _on_step_timer_timeout():
+	stepSpawn.emit()
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hlw7m"]
@@ -227,3 +229,9 @@ current = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96303, 0)
 shape = SubResource("CapsuleShape3D_rycr6")
+
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]

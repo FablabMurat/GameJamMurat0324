@@ -38,6 +38,7 @@ const Herbe3_Scene = preload("res://herbe_03.tscn")
 const Herbe4_Scene = preload("res://herbe_04.tscn")
 const HerbeScenes = [Herbe0_Scene, Herbe1_Scene, Herbe2_Scene, Herbe3_Scene, Herbe4_Scene]
 
+const Step_Scene = preload("res://step.tscn")
 
 var inventory = {
 	"buche": 0,
@@ -59,6 +60,7 @@ func _ready():
 	
 	$Player.collected.connect(update_overlay.bind())
 	$Player.increaseFire.connect(increaseFire.bind())
+	$Player.stepSpawn.connect(stepSpawn.bind())
 	
 	$Feu.firedeath.connect($Overlay.gameover)
 	
@@ -83,6 +85,7 @@ func createobj(scene,x,z):
 	obs.position.x = x
 	obs.position.z = z
 	add_child(obs)
+	return obs
 	
 func createobjlist(scenelist, nbmax):
 	
@@ -119,3 +122,6 @@ func increaseFire(nb):
 	update_overlay("buche",-1)
 	$Feu.fireGestion(10*nb)
 	
+func stepSpawn():
+	var step = createobj(Step_Scene, $Player.position.x, $Player.position.z)
+	print("Spawn step")
