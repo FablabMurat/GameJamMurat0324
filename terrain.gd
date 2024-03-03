@@ -2,7 +2,7 @@ extends Node3D
 
 const NBSAPINS = 100
 const NBBUCHES = 50
-const NBROCHERS = 80
+
 
 
 # SCENES SAPINS
@@ -11,9 +11,14 @@ const Sapin1_Scene = preload("res://paper_sapin_01.tscn")
 const Sapin2_Scene = preload("res://paper_sapin_02.tscn")
 const SapinScenes = [Sapin0_Scene, Sapin1_Scene, Sapin2_Scene]
 
-const BucheScene = preload("res://paper_buche.tscn")
-const RocherScene = preload("res://paper_rocher.tscn")
+# SCENES ROCHERS
+const NBROCHERS = 80
+const Rocher0_Scene = preload("res://paper_rocher_00.tscn")
+const Rocher1_Scene = preload("res://paper_rocher_01.tscn")
+const Rocher2_Scene = preload("res://paper_rocher_02.tscn")
+const RocherScenes = [Rocher0_Scene, Rocher1_Scene, Rocher2_Scene]
 
+const BucheScene = preload("res://paper_buche.tscn")
 const HacheScene = preload("res://hache.tscn")
 
 # SCENES NEIGE
@@ -43,8 +48,9 @@ var inventory = {
 func _ready():
 	#createobjs(SapinScene,NBSAPINS)
 	createobjs(BucheScene,NBBUCHES)
-	createobjs(RocherScene,NBROCHERS)
+	#createobjs(RocherScene,NBROCHERS)
 	
+	createobjlist(RocherScenes,NBROCHERS)
 	createobjlist(NeigeScenes,NBNEIGE)
 	createobjlist(SapinScenes,NBSAPINS)
 	createobjlist(HerbeScenes,NBHERBES)

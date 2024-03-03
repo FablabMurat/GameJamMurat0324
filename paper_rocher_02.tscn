@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://oifk44u6aw8"]
+[gd_scene load_steps=3 format=3 uid="uid://cayv6eccvw4ex"]
 
-[ext_resource type="Texture2D" uid="uid://bifslkpixfon7" path="res://Ressources/Environnement/Rochers_3.png" id="1_xgygh"]
+[ext_resource type="Texture2D" uid="uid://bifslkpixfon7" path="res://Ressources/Environnement/Rochers_3.png" id="1_xo25s"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_oxm1d"]
 radius = 1.2
 
-[node name="Paper_rocher" type="StaticBody3D"]
+[node name="Paper_rocher_02" type="StaticBody3D"]
 collision_layer = 7
 collision_mask = 7
 
@@ -16,4 +16,4 @@ shape = SubResource("CylinderShape3D_oxm1d")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21629, 0)
 billboard = 1
-texture = ExtResource("1_xgygh")
+texture = ExtResource("1_xo25s")
