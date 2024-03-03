@@ -74,6 +74,7 @@ func _process(delta):
 	#	camrot += tmprot * 0.05
 	#	$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
 	#	print(\"Camera3D Rotation: \", camrot)
+	$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
 	
 	animate()
 
@@ -81,7 +82,6 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		if event.button_mask & (MOUSE_BUTTON_MASK_MIDDLE + MOUSE_BUTTON_MASK_RIGHT):
 			camrot += event.relative.x * 0.005
-			$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
 			print(\"Camera3D Rotation: \", camrot)
 
 func animate():
