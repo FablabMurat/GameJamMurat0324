@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djwt8emt16ogx"
-path.s3tc="res://.godot/imported/pas_petit_00.png-f2c0223241eaadc7a3074a20675310e1.s3tc.ctex"
+uid="uid://dkf6gwi1fd1sp"
+path.s3tc="res://.godot/imported/FEU6.png-b8ecd30e22e154de4d358f6f419b20bb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Ressources/Environnement/pas_petit_00.png"
-dest_files=["res://.godot/imported/pas_petit_00.png-f2c0223241eaadc7a3074a20675310e1.s3tc.ctex"]
+source_file="res://Ressources/Environnement/Feu/FEU6.png"
+dest_files=["res://.godot/imported/FEU6.png-b8ecd30e22e154de4d358f6f419b20bb.s3tc.ctex"]
 
 [params]
 
