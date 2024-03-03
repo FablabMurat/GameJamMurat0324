@@ -69,6 +69,12 @@ func _physics_process(delta):
 			
 
 func _process(delta):
+	#var tmprot = Input.get_action_strength(\"look_right\") - Input.get_action_strength(\"look_left\")
+	#if abs(tmprot) > 0.1:
+	#	camrot += tmprot * 0.05
+	#	$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
+	#	print(\"Camera3D Rotation: \", camrot)
+	
 	animate()
 
 func _unhandled_input(event):
@@ -77,11 +83,6 @@ func _unhandled_input(event):
 			camrot += event.relative.x * 0.005
 			$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
 			print(\"Camera3D Rotation: \", camrot)
-	var tmprot = Input.get_action_strength(\"look_right\") - Input.get_action_strength(\"look_left\")
-	if tmprot != 0:
-		camrot += tmprot * 0.05
-		$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
-		print(\"Camera3D Rotation: \", camrot)
 
 func animate():
 	if(velocity != Vector3.ZERO):
