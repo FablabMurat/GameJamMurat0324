@@ -19,6 +19,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("addLog"):
 		fireGestion(2.0)
 		#print($Timer.time_left)
+		print($GPUParticles3D.draw_pass_1.material.albedo_texture.pause)
+		
 		
 	$WindDirection.rotate_y(0.002)
 	
@@ -37,3 +39,5 @@ func getwindDirection():
 
 func _on_timer_timeout():
 	firedeath.emit()
+
+
