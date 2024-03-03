@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1djwadohliep"]
 
 [ext_resource type="Script" path="res://buche.gd" id="1_t57x3"]
-[ext_resource type="Texture2D" uid="uid://c5vyx5s3h7oxq" path="res://Ressources/Environnement/Buche_1.png" id="2_qu0ra"]
+[ext_resource type="Texture2D" uid="uid://bqjjc334d4hj1" path="res://Ressources/Environnement/Buche_1.png" id="2_qu0ra"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ph3dj"]
 radius = 1.52802
@@ -15,7 +15,6 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.638163, 0)
 shape = SubResource("CylinderShape3D_ph3dj")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225, 0)
-offset = Vector2(0, 560)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.688114, 0)
 billboard = 1
 texture = ExtResource("2_qu0ra")
