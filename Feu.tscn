@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cfejuj5j6sweu"]
+[gd_scene load_steps=31 format=3 uid="uid://cfejuj5j6sweu"]
 
 [ext_resource type="Script" path="res://Feu.gd" id="1_lc4fw"]
 [ext_resource type="Texture2D" uid="uid://c47o0krddkdnl" path="res://Ressources/Environnement/Feu/FEU1.png" id="2_36bgo"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://dpno1tma57oi2" path="res://Ressources/Environnement/Feu/FEU8.png" id="10_iulyj"]
 [ext_resource type="Texture2D" uid="uid://hf4bpmqnn1ue" path="res://Ressources/Environnement/Feu/FEU9.png" id="11_65shh"]
 [ext_resource type="Texture2D" uid="uid://cmo4lgyx8rms6" path="res://Ressources/Environnement/Feu/FEU10.png" id="12_c7bt0"]
-[ext_resource type="Script" path="res://GPUParticles3D.gd" id="13_u4rho"]
 
 [sub_resource type="Gradient" id="Gradient_47lb2"]
 colors = PackedColorArray(1, 0, 0.0156863, 1, 0.89, 0.86686, 0.1958, 1)
@@ -173,31 +172,28 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 visible = false
 shadow_enabled = true
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="Feu1" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 0)
 amount = 925
 lifetime = 2.87
 process_material = SubResource("ParticleProcessMaterial_3rfnk")
 draw_pass_1 = SubResource("PlaneMesh_efh1w")
-script = ExtResource("13_u4rho")
 
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="."]
+[node name="Feu2" type="GPUParticles3D" parent="."]
 visible = false
 amount = 100
 lifetime = 12.29
 process_material = SubResource("ParticleProcessMaterial_3rfnk")
 draw_pass_1 = SubResource("PlaneMesh_a7o72")
-script = ExtResource("13_u4rho")
 
-[node name="GPUParticles3D4" type="GPUParticles3D" parent="."]
+[node name="Feu3" type="GPUParticles3D" parent="."]
 visible = false
 amount = 100
 lifetime = 12.29
 process_material = SubResource("ParticleProcessMaterial_3rfnk")
 draw_pass_1 = SubResource("PlaneMesh_lxgj1")
-script = ExtResource("13_u4rho")
 
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+[node name="Feu4" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 763
 lifetime = 0.92
@@ -226,7 +222,4 @@ shape = SubResource("CylinderShape3D_fcadd")
 [node name="Buche" parent="." instance=ExtResource("2_xme64")]
 transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, 0, 0, 0)
 
-[connection signal="ready" from="GPUParticles3D" to="GPUParticles3D" method="_on_ready"]
-[connection signal="ready" from="GPUParticles3D3" to="GPUParticles3D3" method="_on_ready"]
-[connection signal="ready" from="GPUParticles3D4" to="GPUParticles3D4" method="_on_ready"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
