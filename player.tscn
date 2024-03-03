@@ -117,7 +117,8 @@ func animate():
 			print(\"animate impossible %d/%d\" % [realdirection.x,realdirection.z])
 	else:
 		$PlayerCenter/PlayerSprite3D.stop()
-
+func has_hache():
+	return nbhache > 0
 
 func _on_step_timer_timeout():
 	if(velocity != Vector3.ZERO):

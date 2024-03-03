@@ -8,7 +8,8 @@ height = 3.2244
 radius = 1.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rql7i"]
-radius = 2.19155
+height = 16.0
+radius = 2.2
 
 [node name="Paper_sapin_00" type="StaticBody3D" groups=["arbre"]]
 collision_layer = 7
@@ -29,7 +30,7 @@ collision_layer = 7
 collision_mask = 8
 
 [node name="ZoneDeCoupe" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.986986, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
 shape = SubResource("CylinderShape3D_rql7i")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
