@@ -48,8 +48,10 @@ offset_top = 136.0
 offset_right = 773.0
 offset_bottom = 208.0
 theme_override_colors/font_color = Color(0.827451, 0.427451, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Nom du jeu :)"
+horizontal_alignment = 1
 
 [node name="PauseButton" type="Button" parent="PauseMenu"]
 offset_left = 524.0
@@ -58,6 +60,14 @@ offset_right = 653.0
 offset_bottom = 330.0
 theme_override_font_sizes/font_size = 30
 text = "Reprendre"
+
+[node name="RestartButton" type="Button" parent="PauseMenu"]
+offset_left = 502.0
+offset_top = 277.0
+offset_right = 718.0
+offset_bottom = 330.0
+theme_override_font_sizes/font_size = 30
+text = "Recommencer"
 
 [node name="Itch" type="LinkButton" parent="PauseMenu"]
 offset_left = 6.0
@@ -96,3 +106,15 @@ offset_right = 685.0
 offset_bottom = 397.0
 theme_override_font_sizes/font_size = 30
 text = "Quitter"
+
+[node name="GameOver" type="Label" parent="PauseMenu"]
+offset_left = 463.0
+offset_top = 207.0
+offset_right = 749.0
+offset_bottom = 279.0
+theme_override_colors/font_color = Color(0.498039, 0.160784, 0.101961, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Game Over"
+horizontal_alignment = 1
+uppercase = true
