@@ -38,6 +38,7 @@ const NBMAX = {
 	\"hache\": 1
 }
 var nbbuche = 0
+var nbhache = 0
 
 signal collected
 signal increaseFire
@@ -64,6 +65,12 @@ func _physics_process(delta):
 			# mettre à jour l'UI
 			#collected.emit(\"buche\",1)
 			collected.emit(\"buche\",1)
+		
+		if body.is_in_group(\"hache\"):
+			nbhache += 1
+			body.queue_free()
+			collected.emit(\"hache\",1)
+			#print(\"zone de coupe\")
 		
 		if body.is_in_group(\"feu\"):
 			print(\"mettre buche\")

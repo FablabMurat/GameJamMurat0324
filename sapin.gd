@@ -13,6 +13,7 @@ func _ready():
 	pass # Replace with function body.
 
 func cut():
+	unebuche()
 	nbcoupsrecus += 1
 	if nbcoupsrecus >= COUPSAVANTCUT:
 		nbcoupsrecus = 0

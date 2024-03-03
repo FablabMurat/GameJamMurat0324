@@ -57,6 +57,7 @@ func _ready():
 	createobjlist(HerbeScenes,NBHERBES)
 
 	createobjs(HacheScene,50)
+	createobj(HacheScene,3,3)
 	
 	$Player.collected.connect(update_overlay.bind())
 	$Player.increaseFire.connect(increaseFire.bind())
