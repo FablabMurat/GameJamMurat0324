@@ -87,12 +87,12 @@ func createobjlist(scenelist, nbmax):
 			return
 		createobj(scenelist[sceneindex],x,z)
 
-func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		if event.button_mask & (MOUSE_BUTTON_MASK_MIDDLE + MOUSE_BUTTON_MASK_RIGHT):
-			camrot += event.relative.x * 0.005
-			get_node("Center").set_rotation(Vector3(0, camrot, 0))
-			#print("Camera3D Rotation: ", camrot)
+#func _unhandled_input(event):
+#	if event is InputEventMouseMotion:
+#		if event.button_mask & (MOUSE_BUTTON_MASK_MIDDLE + MOUSE_BUTTON_MASK_RIGHT):
+#			camrot += event.relative.x * 0.005
+#			get_node("Center").set_rotation(Vector3(0, camrot, 0))
+#			#print("Camera3D Rotation: ", camrot)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
