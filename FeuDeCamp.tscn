@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmsr2fyq0yg3n"]
+
+[ext_resource type="Script" path="res://buche.gd" id="1_vkkht"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hxl1t"]
+size = Vector3(2.19698, 2, 2.06554)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5kls"]
+albedo_color = Color(0.239216, 0.14902, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_68iyf"]
+material = SubResource("StandardMaterial3D_p5kls")
+top_radius = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_253uo"]
+albedo_color = Color(0.67451, 0.301961, 0.160784, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3qsoy"]
+material = SubResource("StandardMaterial3D_253uo")
+top_radius = 0.4
+
+[node name="FeuDeCamp" type="StaticBody3D" groups=["buche"]]
+collision_layer = 7
+script = ExtResource("1_vkkht")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.602524, 0)
+shape = SubResource("BoxShape3D_hxl1t")
+
+[node name="Buche1" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.100807, -0.935343, -0.339072, 0.994758, 0.100624, 0.0181677, 0.017126, -0.339127, 0.940585, -0.975282, 0, 1.64268)
+mesh = SubResource("CylinderMesh_68iyf")
+
+[node name="Buche3" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.0434348, -0.86009, 0.50829, 0.998727, 0.050436, 0, -0.0256361, 0.507643, 0.861186, -1.3979, 0, -1.33193)
+mesh = SubResource("CylinderMesh_68iyf")
+
+[node name="Buche2" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(-0.0104019, 0.946918, -0.321307, -0.999946, -0.00985031, 0.00334239, 0, 0.321324, 0.946969, 0.739675, -0.169795, -1.7281)
+mesh = SubResource("CylinderMesh_3qsoy")
+
+[node name="Buche6" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(-0.00362787, 0.0291072, -0.999569, -0.999946, -0.00985031, 0.00334239, -0.00974879, 0.999527, 0.0291414, 1.95878, -0.169795, -0.248926)
+mesh = SubResource("CylinderMesh_3qsoy")
+
+[node name="Buche4" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.00575423, -0.791504, -0.611136, -0.999946, -0.00985031, 0.00334239, -0.0086654, 0.611083, -0.791518, 1.05067, -0.265758, 1.60182)
+mesh = SubResource("CylinderMesh_3qsoy")
+
+[node name="Buche5" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(-0.00512516, 0.186944, -0.982357, -0.999946, -0.00985031, 0.00334239, -0.00905169, 0.982321, 0.186985, -2.23278, -0.265758, 0.398974)
+mesh = SubResource("CylinderMesh_3qsoy")
