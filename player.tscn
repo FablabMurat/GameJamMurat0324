@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://nabnyuuxgolm"]
+[gd_scene load_steps=31 format=3 uid="uid://nabnyuuxgolm"]
 
 [ext_resource type="Texture2D" uid="uid://d4nodvq41hpb2" path="res://Ressources/Joueur/garcon-derriere0001.png" id="1_dfh5f"]
 [ext_resource type="Texture2D" uid="uid://dam3kaiqeie48" path="res://Ressources/Joueur/garcon-derriere0002.png" id="2_l6r4v"]
@@ -34,12 +34,15 @@ script/source = "extends CharacterBody3D
 var camrot = 0.0
 
 var direction = Vector3.ZERO
+const COS45 = sqrt(2)/2
 const NBMAX = {
 	\"buche\": 3,
 	\"hache\": 1
 }
 var nbbuche = 0
 var nbhache = 0
+
+var sapinsProches = {}
 
 signal collected
 signal increaseFire
@@ -104,15 +107,15 @@ func animate():
 	if(velocity != Vector3.ZERO):
 		$PlayerCenter/PlayerSprite3D.play()
 		var realdirection = velocity.rotated(Vector3.UP,-$PlayerCenter.rotation.y)
-		if(realdirection.x > 0.4):
+		if(realdirection.x > COS45):
 			$PlayerCenter/PlayerSprite3D.animation = \"side\"
 			$PlayerCenter/PlayerSprite3D.flip_h = false
-		elif(realdirection.x < -0.4):
+		elif(realdirection.x < -COS45):
 			$PlayerCenter/PlayerSprite3D.animation = \"side\"
 			$PlayerCenter/PlayerSprite3D.flip_h = true
-		elif(realdirection.z < -0.4):
+		elif(realdirection.z <= -COS45):
 			$PlayerCenter/PlayerSprite3D.animation = \"front\"
-		elif(realdirection.z > 0.4):
+		elif(realdirection.z >= COS45):
 			$PlayerCenter/PlayerSprite3D.animation = \"back\"
 		else:
 			print(\"animate impossible %d/%d\" % [realdirection.x,realdirection.z])
@@ -125,6 +128,28 @@ func _on_step_timer_timeout():
 	if(velocity != Vector3.ZERO):
 		stepSpawn.emit()
 		$StepStreamPlayer.play()
+
+
+func _on_area_3d_body_entered(body):
+	if body.is_in_group(\"arbre\"):
+		#print (\"près d'un arbre \")
+		sapinsProches[body.get_rid()] = body
+
+func _on_area_3d_body_exited(body):
+	if body.is_in_group(\"arbre\"):
+		#print(\"loin d'un' sapin\")
+		sapinsProches.erase(body.get_rid())
+
+func _input(event):
+	if event.is_action_pressed(\"ui_hache\"):
+		if has_hache():
+			# coupe d'un arbre
+			if not sapinsProches.is_empty():
+				sapinsProches.values()[0].cutwood()
+			else:
+				print(\"pas de sapin...\")
+		else:
+			print(\"manque une hache...\")
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hlw7m"]
@@ -219,6 +244,9 @@ animations = [{
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rycr6"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bni8i"]
+radius = 1.0
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 9
 collision_mask = 6
@@ -251,4 +279,12 @@ autostart = true
 [node name="StepStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_8nggx")
 
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_bni8i")
+
 [connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

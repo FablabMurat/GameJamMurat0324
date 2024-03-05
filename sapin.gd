@@ -5,8 +5,6 @@ const COUPSAVANTCUT = 5
 var size : float = 10.0
 var resteacouper = 10
 var nbcoupsrecus = 0
-var isplayerhere = false
-var theplayer : Node
 var initialScaleX
 
 
@@ -34,7 +32,7 @@ func cutwood():
 			queue_free()
 			return
 		else:
-			print (size/MAXSIZE)
+			#print (size/MAXSIZE)
 			$Sprite3D.set_scale(Vector3(size/MAXSIZE*initialScaleX, \
 								size/MAXSIZE*initialScaleX,size/MAXSIZE*initialScaleX))
 
@@ -47,38 +45,3 @@ func unebuche():
 	var angle = randf()*2*PI
 	buche.global_position.x = self.position.x + cos(angle)*(2+randi_range(2,4))
 	buche.global_position.z = self.position.z + sin(angle)*(2+randi_range(2,4))
-	
-	
-
-
-func _input(event : InputEvent):
-	if isplayerhere:
-#		print("input with player")
-#		print(event)
-		if event.is_action_pressed("ui_hache") and event.echo == false :
-			if theplayer.has_hache():
-				# coupe d'un arbre
-				print ("cut sapin")
-				cutwood()
-			else:
-				print("manque une hache")
-
-func _on_area_3d_body_entered(body):
-	print("enter body sapin")
-	if body.is_in_group("player"):
-		isplayerhere = true
-		theplayer = body
-	pass # Replace with function body.
-
-func _on_area_3d_body_exited(body):
-	print("out body sapin")
-	if body.is_in_group("player"):
-		isplayerhere = false
-		theplayer = null
-		
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
