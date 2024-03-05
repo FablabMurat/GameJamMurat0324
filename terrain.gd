@@ -2,8 +2,6 @@ extends Node3D
 
 const NBBUCHES = 50
 
-
-
 # Sapins générique
 const NBSAPINS = 100
 const Sapin_Scene = preload("res://paper_sapin.tscn")
@@ -52,9 +50,8 @@ func _ready():
 	$WindStreamPlayer.play()
 	
 	createdecorsfromList(Sapin_Scene, resSapins, NBSAPINS)
+	createdecorsfromList(BucheScene, null, NBBUCHES)
 	
-	#createobjs(SapinScene,NBSAPINS)
-	createobjs(BucheScene,NBBUCHES)
 	#createobjs(RocherScene,NBROCHERS)
 	
 	createobjlist(RocherScenes,NBROCHERS)
@@ -104,9 +101,9 @@ func createobjlist(scenelist, nbmax : int):
 			return
 		createobj(scenelist[sceneindex],x,z)
 
-func createdecorsfromList(scene : PackedScene, spriteList : Array, nbmax : int):
+func createdecorsfromList(scene : PackedScene, spriteList, nbmax : int):
 	for i in range(nbmax):
-		if spriteList != null and spriteList.size() > 0:
+		if spriteList != null and spriteList is Array and spriteList.size() > 0:
 			var index = randi_range(0, spriteList.size()-1)
 			createundecor(Sapin_Scene,spriteList[index])
 		else:
