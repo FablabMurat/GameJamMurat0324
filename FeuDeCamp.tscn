@@ -17,7 +17,7 @@ albedo_color = Color(0.67451, 0.301961, 0.160784, 1)
 material = SubResource("StandardMaterial3D_253uo")
 top_radius = 0.4
 
-[node name="FeuDeCamp" type="StaticBody3D" groups=["buche"]]
+[node name="FeuDeCamp" type="StaticBody3D"]
 collision_layer = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
