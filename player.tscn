@@ -243,6 +243,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96303, 0)
 shape = SubResource("CapsuleShape3D_rycr6")
 
 [node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="Neige" parent="." instance=ExtResource("25_r15d7")]

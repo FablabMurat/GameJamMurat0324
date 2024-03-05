@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbgw6xr4rdfen"]
+[gd_scene load_steps=3 format=3 uid="uid://cxkj167s7qbpt"]
 
 [ext_resource type="Texture2D" uid="uid://djwt8emt16ogx" path="res://Ressources/Environnement/pas_petit_00.png" id="1_8radl"]
 [ext_resource type="Script" path="res://step.gd" id="2_fhyi4"]
