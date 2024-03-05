@@ -50,15 +50,16 @@ func _ready():
 	$AudioStreamPlayer.play()
 	$WindStreamPlayer.play()
 	
-	createdecorsfromList(Sapin_Scene, resSapins, NBSAPINS)
-	createdecorsfromList(BucheScene, null, NBBUCHES)
-	createdecorsfromList(RocherScene, resRochers, NBBUCHES)
+	createdecorswithSpriteList(Sapin_Scene, resSapins, NBSAPINS)
+	createdecorswithSpriteList(BucheScene, null, NBBUCHES)
+	createdecorswithSpriteList(RocherScene, resRochers, NBBUCHES)
 	
-	createobjlist(NeigeScenes,NBNEIGE)
-	createobjlist(HerbeScenes,NBHERBES)
-
-	createobjs(HacheScene,50)
-	createobj(HacheScene,3,3)
+	# On ne passe pas par un SpriteList car les Sprites3D n'ont pas tous la même position
+	createdecorswithSceneList(NeigeScenes,NBNEIGE)
+	createdecorswithSceneList(HerbeScenes,NBHERBES)
+	
+	# La première hache, facile à trouver
+	createdecor(HacheScene,3,3,null)
 	
 	$Player.collected.connect(update_overlay.bind())
 	$Player.increaseFire.connect(increaseFire.bind())
@@ -72,47 +73,32 @@ func init_overlays():
 	for item in inventory:
 		update_overlay(item, 0)
 
-func createobjs(scene, nbmax):
-	var x: float
-	var z: float
-	for i in range(nbmax):
-		x = randf()*198.0-99.0
-		z = randf()*198.0-99.0
-		if abs(x) < 8 and abs(z) < 8:
-			return
-		createobj(scene,x,z)
-
-func createobj(scene,x,z):
-	var obs = scene.instantiate()
-	obs.position.x = x
-	obs.position.z = z
-	add_child(obs)
-	return obs
 	
-func createobjlist(scenelist, nbmax : int):
+func createdecorswithSceneList(scenelist, nbmax : int):
 	var x: float
 	var z: float
 	for i in range(nbmax):
 		var sceneindex = randi_range(0, scenelist.size()-1)
-		x = randf()*198.0-99.0
-		z = randf()*198.0-99.0
-		if abs(x) < 3 and abs(z) < 3:
-			return
-		createobj(scenelist[sceneindex],x,z)
+		createrandomdecor(scenelist[sceneindex])
 
-func createdecorsfromList(scene : PackedScene, spriteList, nbmax : int):
+func createdecorswithSpriteList(scene : PackedScene, spriteList, nbmax : int):
 	for i in range(nbmax):
 		if spriteList != null and spriteList is Array and spriteList.size() > 0:
 			var index = randi_range(0, spriteList.size()-1)
-			createundecor(scene,spriteList[index])
+			createrandomdecor(scene,spriteList[index])
 		else:
-			createundecor(scene)
+			createrandomdecor(scene)
 
-func createundecor(scenemodel, resTexture = null):
-	var x = randf()*198.0-99.0
-	var z = randf()*198.0-99.0
+func createrandomdecor(scenemodel, resTexture = null):
+	var x
+	var z
+	x = randf()*198.0-99.0
+	z = randf()*198.0-99.0
 	if abs(x) < 5 and abs(z) < 5:
 		return
+	return createdecor(scenemodel,x,z,resTexture)
+
+func createdecor(scenemodel, x, z, resTexture = null):
 	var decor = scenemodel.instantiate()
 	if resTexture != null :
 		decor.set_sprite3D(resTexture)
@@ -120,7 +106,7 @@ func createundecor(scenemodel, resTexture = null):
 	decor.position.z = z
 	add_child(decor)
 	return decor
-	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(Input.is_action_pressed("debug")):
@@ -145,5 +131,5 @@ func increaseFire(nb):
 	$Feu.fireGestion(10*nb)
 	
 func stepSpawn():
-	createobj(Step_Scene, $Player.position.x, $Player.position.z)
+	createdecor(Step_Scene, $Player.position.x,$Player.position.z)
 	print("Spawn step")
