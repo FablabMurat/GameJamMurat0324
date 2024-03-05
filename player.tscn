@@ -118,7 +118,9 @@ func animate():
 		elif(realdirection.z >= COS45):
 			$PlayerCenter/PlayerSprite3D.animation = \"back\"
 		else:
-			print(\"animate impossible %d/%d\" % [realdirection.x,realdirection.z])
+			pass
+			# On est inanimé car bloqué
+			#print(\"animate impossible %d/%d\" % [realdirection.x,realdirection.z])
 	else:
 		$PlayerCenter/PlayerSprite3D.stop()
 func has_hache():
