@@ -49,7 +49,6 @@ lifetime = 15.0
 speed_scale = 0.5
 randomness = 1.0
 interpolate = false
-trail_lifetime = 0.01
 process_material = SubResource("ParticleProcessMaterial_u8k2m")
 draw_pass_1 = SubResource("SphereMesh_nxo0b")
 script = ExtResource("1_ft1ls")

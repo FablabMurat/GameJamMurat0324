@@ -82,7 +82,7 @@ func _physics_process(delta):
 			pass
 			#print(\"zone de coupe\")
 			
-
+		
 
 func _process(delta):
 	#var tmprot = Input.get_action_strength(\"look_right\") - Input.get_action_strength(\"look_left\")
