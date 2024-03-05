@@ -1,17 +1,18 @@
 extends Node3D
 
-const NBSAPINS = 100
 const NBBUCHES = 50
 
 
 
-# SCENES SAPINS
-const Sapin0_Scene = preload("res://paper_sapin_00.tscn")
-const Sapin1_Scene = preload("res://paper_sapin_01.tscn")
-const Sapin2_Scene = preload("res://paper_sapin_02.tscn")
-const SapinScenes = [Sapin0_Scene, Sapin1_Scene, Sapin2_Scene]
+# Sapins générique
+const NBSAPINS = 100
+const Sapin_Scene = preload("res://paper_sapin.tscn")
+var resSapin1 = load("res://Ressources/Environnement/Arbre_4.png")
+var resSapin2 = load("res://Ressources/Environnement/Arbre_2.png")
+var resSapin3 = load("res://Ressources/Environnement/Arbre_3.png")
+var resSapins = [resSapin1, resSapin2,resSapin3]
 
-# SCENES ROCHERS
+# rochers génériques
 const NBROCHERS = 80
 const Rocher0_Scene = preload("res://paper_rocher_00.tscn")
 const Rocher1_Scene = preload("res://paper_rocher_01.tscn")
@@ -49,13 +50,15 @@ var inventory = {
 func _ready():
 	$AudioStreamPlayer.play()
 	$WindStreamPlayer.play()
+	
+	createdecorsfromList(Sapin_Scene, resSapins, NBSAPINS)
+	
 	#createobjs(SapinScene,NBSAPINS)
 	createobjs(BucheScene,NBBUCHES)
 	#createobjs(RocherScene,NBROCHERS)
 	
 	createobjlist(RocherScenes,NBROCHERS)
 	createobjlist(NeigeScenes,NBNEIGE)
-	createobjlist(SapinScenes,NBSAPINS)
 	createobjlist(HerbeScenes,NBHERBES)
 
 	createobjs(HacheScene,50)
@@ -90,8 +93,7 @@ func createobj(scene,x,z):
 	add_child(obs)
 	return obs
 	
-func createobjlist(scenelist, nbmax):
-	
+func createobjlist(scenelist, nbmax : int):
 	var x: float
 	var z: float
 	for i in range(nbmax):
@@ -102,6 +104,27 @@ func createobjlist(scenelist, nbmax):
 			return
 		createobj(scenelist[sceneindex],x,z)
 
+func createdecorsfromList(scene : PackedScene, spriteList : Array, nbmax : int):
+	for i in range(nbmax):
+		if spriteList != null and spriteList.size() > 0:
+			var index = randi_range(0, spriteList.size()-1)
+			createundecor(Sapin_Scene,spriteList[index])
+		else:
+			createundecor(Sapin_Scene)
+
+func createundecor(scenemodel, resTexture = null):
+	var x = randf()*198.0-99.0
+	var z = randf()*198.0-99.0
+	if abs(x) < 5 and abs(z) < 5:
+		return
+	var decor = scenemodel.instantiate()
+	if resTexture != null :
+		decor.set_sprite3D(resTexture)
+	decor.position.x = x
+	decor.position.z = z
+	add_child(decor)
+	return decor
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(Input.is_action_pressed("debug")):
@@ -126,5 +149,5 @@ func increaseFire(nb):
 	$Feu.fireGestion(10*nb)
 	
 func stepSpawn():
-	var step = createobj(Step_Scene, $Player.position.x, $Player.position.z)
+	createobj(Step_Scene, $Player.position.x, $Player.position.z)
 	print("Spawn step")

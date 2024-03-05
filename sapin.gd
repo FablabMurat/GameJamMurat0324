@@ -16,6 +16,9 @@ func _ready():
 	initialScaleX = $Sprite3D.scale.x
 	pass # Replace with function body.
 
+func set_sprite3D(image : Texture):
+	$Sprite3D.texture = image
+	
 func cutwood():
 	#if not $TheStreamPlayer.is_playing():   # pour éviter l'accumulation des sons
 	$TheStreamPlayer.play()
