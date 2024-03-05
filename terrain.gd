@@ -12,10 +12,11 @@ var resSapins = [resSapin1, resSapin2,resSapin3]
 
 # rochers génériques
 const NBROCHERS = 80
-const Rocher0_Scene = preload("res://paper_rocher_00.tscn")
-const Rocher1_Scene = preload("res://paper_rocher_01.tscn")
-const Rocher2_Scene = preload("res://paper_rocher_02.tscn")
-const RocherScenes = [Rocher0_Scene, Rocher1_Scene, Rocher2_Scene]
+const RocherScene = preload("res://paper_rocher.tscn")
+var resRocher1 = preload("res://Ressources/Environnement/Rochers_1.png")
+var resRocher2 = preload("res://Ressources/Environnement/Rochers_2.png")
+var resRocher3 = preload("res://Ressources/Environnement/Rochers_3.png")
+var resRochers = [resRocher1, resRocher2, resRocher3]
 
 const BucheScene = preload("res://paper_buche.tscn")
 const HacheScene = preload("res://hache.tscn")
@@ -51,10 +52,8 @@ func _ready():
 	
 	createdecorsfromList(Sapin_Scene, resSapins, NBSAPINS)
 	createdecorsfromList(BucheScene, null, NBBUCHES)
+	createdecorsfromList(RocherScene, resRochers, NBBUCHES)
 	
-	#createobjs(RocherScene,NBROCHERS)
-	
-	createobjlist(RocherScenes,NBROCHERS)
 	createobjlist(NeigeScenes,NBNEIGE)
 	createobjlist(HerbeScenes,NBHERBES)
 
@@ -105,9 +104,9 @@ func createdecorsfromList(scene : PackedScene, spriteList, nbmax : int):
 	for i in range(nbmax):
 		if spriteList != null and spriteList is Array and spriteList.size() > 0:
 			var index = randi_range(0, spriteList.size()-1)
-			createundecor(Sapin_Scene,spriteList[index])
+			createundecor(scene,spriteList[index])
 		else:
-			createundecor(Sapin_Scene)
+			createundecor(scene)
 
 func createundecor(scenemodel, resTexture = null):
 	var x = randf()*198.0-99.0
