@@ -132,4 +132,3 @@ func increaseFire(nb):
 	
 func stepSpawn():
 	createdecor(Step_Scene, $Player.position.x,$Player.position.z)
-	print("Spawn step")

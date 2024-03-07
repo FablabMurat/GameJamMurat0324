@@ -63,28 +63,25 @@ func _physics_process(delta):
 		var collision = get_slide_collision(index)
 		var body = collision.get_collider()
 		if body.is_in_group(\"buche\")  and  nbbuche < NBMAX[\"buche\"]:
-			print(\"collect buche\")
+			print(\"player collect buche\")
 			nbbuche += 1
 			body.queue_free()
 			# mettre à jour l'UI
-			#collected.emit(\"buche\",1)
 			collected.emit(\"buche\",1)
 		
-		if body.is_in_group(\"hache\"):
+		elif body.is_in_group(\"hache\"):
+			print(\"player collect hache\")
 			nbhache += 1
 			body.queue_free()
 			collected.emit(\"hache\",1)
-			#print(\"zone de coupe\")
 		
-		if body.is_in_group(\"feu\"):
-			print(\"mettre buche\")
+		elif body.is_in_group(\"feu\"):
+			print(\"mettre une buche dans le feu\")
 			increaseFire.emit(nbbuche)
 			nbbuche = 0
-		
-		if body.is_in_group(\"arbre\"):
-			pass
-			#print(\"zone de coupe\")
-			
+		else:
+			# contact avec un élément du décor avec mask=2 (sinon on passe à travers)
+			pass #prints(\"autre collision avec (arbre, sol ou rocher ?) \",body)
 		
 
 func _process(delta):
@@ -136,7 +133,11 @@ func _on_area_3d_body_entered(body):
 	if body.is_in_group(\"arbre\"):
 		#print (\"près d'un arbre \")
 		sapinsProches[body.get_rid()] = body
-
+	elif body.is_in_group(\"feu\"):
+		print (\"près du feu \")
+	else:
+		prints (\"autre body :\", body)
+		
 func _on_area_3d_body_exited(body):
 	if body.is_in_group(\"arbre\"):
 		#print(\"loin d'un' sapin\")
@@ -250,7 +251,7 @@ animations = [{
 radius = 1.0
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-collision_layer = 9
+collision_layer = 3
 collision_mask = 6
 script = SubResource("GDScript_wemyt")
 
@@ -282,6 +283,8 @@ autostart = true
 stream = ExtResource("26_8nggx")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

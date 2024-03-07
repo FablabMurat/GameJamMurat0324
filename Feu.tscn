@@ -167,7 +167,7 @@ height = 5.509
 radius = 1.771
 
 [node name="Feu" type="StaticBody3D"]
-collision_layer = 7
+collision_layer = 3
 script = ExtResource("1_lc4fw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
