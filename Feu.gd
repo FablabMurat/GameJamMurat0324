@@ -17,11 +17,12 @@ func _ready():
 func _process(delta):
 	timeLeft = $Timer.time_left
 	$Feu1.lifetime = timeLeft/4
-	if Input.is_action_just_pressed("addLog"):
-		fireGestion(2.0)
-		#print($Timer.time_left)
-		print($Feu1.draw_pass_1.material.albedo_texture.pause)
-		
+#	if Input.is_action_just_pressed("addLog"):
+#		fireGestion(2.0)
+#		#print($Timer.time_left)
+#		print($Feu1.draw_pass_1.material.albedo_texture.pause)
+	if Input.is_action_just_pressed("abandon"):
+		firedeath.emit()
 		
 	$WindDirection.rotate_y(0.002)
 	
@@ -34,9 +35,8 @@ func fireGestion(amount):
 		$Feu1.process_material.emission_ring_radius = timeLeft*0.004
 	else:
 		$Feu1.process_material.emission_ring_radius = 0.4
-	print("fire ammount: %d" % timeLeft)
-	print("fire added: %d" % amount)
-	
+#	print("fire ammount: %d" % timeLeft)
+#	print("fire added: %d" % amount)
 
 func getwindDirection():
 	var windRotation = $WindDirection.rotation
