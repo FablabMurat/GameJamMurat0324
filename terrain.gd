@@ -64,6 +64,7 @@ func _ready():
 	$Player.collected.connect(update_overlay.bind())
 	$Player.increaseFire.connect(increaseFire.bind())
 	$Player.stepSpawn.connect(stepSpawn.bind())
+	$Player.score.connect(addScore.bind())
 	
 	$Feu.firedeath.connect($Overlay.gameover)
 	
@@ -122,6 +123,8 @@ func update_overlay(type, nb):
 	
 	$Overlay.updateCounter(type,inventory[type], $Player.NBMAX[type])
 	
+func addScore(nbpts):
+	$Overlay.updateScore(nbpts)
 	
 func increaseFire(nb):
 	#print("test increasefire %d" % nb)

@@ -1,7 +1,7 @@
 extends Node2D
 
 var displays = {}
-
+var score = 0
 
 func _ready():
 	init_displays()
@@ -45,6 +45,10 @@ func start_game():
 	
 func updateCounter(type, nb, nbmax):
 	self.displays[type].text = "%d / %d" % [nb, nbmax]
+
+func updateScore(nbpts : int):
+	score += nbpts
+	%Score.text = "%03d" % score
 
 func toggle_pause():
 	get_tree().paused = not get_tree().paused
