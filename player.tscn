@@ -43,6 +43,7 @@ var nbbuche = 0
 var nbhache = 0
 
 var sapinsProches = {}
+var flagPresDuFeu = false
 
 signal collected
 signal increaseFire
@@ -134,7 +135,10 @@ func _on_area_3d_body_entered(body):
 		#print (\"près d'un arbre \")
 		sapinsProches[body.get_rid()] = body
 	elif body.is_in_group(\"feu\"):
+		# on est suffisamment proche du feu
+		flagPresDuFeu = true
 		print (\"près du feu \")
+		$FoyerStreamPlayer.start()
 	else:
 		prints (\"autre body :\", body)
 		
@@ -142,6 +146,8 @@ func _on_area_3d_body_exited(body):
 	if body.is_in_group(\"arbre\"):
 		#print(\"loin d'un' sapin\")
 		sapinsProches.erase(body.get_rid())
+	elif body.is_in_group(\"feu\"):
+		$FoyerStreamPlayer.stop()
 
 func _input(event):
 	if event.is_action_pressed(\"ui_hache\"):
@@ -153,6 +159,10 @@ func _input(event):
 				print(\"pas de sapin...\")
 		else:
 			print(\"manque une hache...\")
+
+func _on_foyer_stream_player_finished():
+	$FoyerStreamPlayer.start()
+	pass # Replace with function body.
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hlw7m"]
@@ -290,6 +300,9 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_bni8i")
 
+[node name="FoyerStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="finished" from="FoyerStreamPlayer" to="." method="_on_foyer_stream_player_finished"]
