@@ -30,7 +30,12 @@ func _process(delta):
 	getWindDirection.emit(getwindDirection())
 
 func fireGestion(amount):
+	# Effet visuel de l'alimentation du feu
+	$Feu4.emitting = true
+	
+	# Rajout de temps de brulage
 	$Timer.start(timeLeft + amount)
+	# Adaptation de l'effet visuel du feu
 	if $Feu1.process_material.emission_ring_radius <100:
 		$Feu1.process_material.emission_ring_radius = timeLeft*0.004
 	else:

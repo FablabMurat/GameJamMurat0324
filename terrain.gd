@@ -124,10 +124,8 @@ func update_overlay(type, nb):
 	
 	
 func increaseFire(nb):
-	print("test increasefire %d" % nb)
-	if inventory["buche"] != 0:
-		$Feu/Feu4.emitting = true
-	update_overlay("buche",-1)
+	#print("test increasefire %d" % nb)
+	update_overlay("buche",-nb)
 	$Feu.fireGestion(10*nb)
 	
 func stepSpawn():

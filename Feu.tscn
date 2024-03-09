@@ -199,8 +199,8 @@ draw_pass_1 = SubResource("PlaneMesh_lxgj1")
 [node name="Feu4" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 763
-lifetime = 0.92
 one_shot = true
+explosiveness = 0.2
 process_material = SubResource("ParticleProcessMaterial_ih53h")
 draw_pass_1 = SubResource("PlaneMesh_3qfkx")
 

@@ -76,7 +76,7 @@ func _physics_process(delta):
 			body.queue_free()
 			collected.emit(\"hache\",1)
 		
-		elif body.is_in_group(\"feu\"):
+		elif body.is_in_group(\"feu\") and nbbuche > 0 :
 			print(\"mettre une buche dans le feu\")
 			increaseFire.emit(nbbuche)
 			nbbuche = 0
