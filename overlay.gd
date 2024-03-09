@@ -4,20 +4,35 @@ var displays = {}
 
 
 func _ready():
-	$PauseMenu/PauseButton.pressed.connect(toggle_pause)
-	$PauseMenu/QuitButton.pressed.connect(quit_game)
-	$PauseMenu/RestartButton.pressed.connect(restart_game)
-	$PauseMenu/StartButton.pressed.connect(start_game)
+	init_displays()
 	
-	$PauseMenu/RestartButton.visible = false
-	$PauseMenu/PauseButton.visible = false
-	$PauseMenu/GameOver.visible = false
-	$PauseMenu/StartButton.visible = true
+	%PauseButton.pressed.connect(toggle_pause)
+	%QuitButton.pressed.connect(quit_game)
+	%RestartButton.pressed.connect(restart_game)
+	%StartButton.pressed.connect(start_game)
+	
+	%RestartButton.visible = false
+	%PauseButton.visible = false
+	%GameOver.visible = false
+	%StartButton.visible = true
 	get_tree().paused = true
 	
-	init_displays()
+	set_margins()
+	
+	get_viewport().size_changed.connect(resized.bind())
+	resized()
 
+func resized():
+	var vp : Viewport = get_viewport()
+	$PanelContainer.size = vp.size
+	$PauseMenu/PanelContainer.size = vp.size
+	#$PauseMenu/PanelContainer/TransparencyOverlay.size = vp.size
 
+func set_margins():
+	const MARGIN_VALUE = 5
+	for dir in ["top","left","bottom","right"]:
+		$PanelContainer/MarginContainer.add_theme_constant_override("margin_%s" % dir, MARGIN_VALUE)
+	
 func _process(delta):
 	if Input.is_action_just_pressed("pause_toggle"):
 		toggle_pause()
@@ -25,36 +40,36 @@ func _process(delta):
 func start_game():
 	get_tree().paused = false
 	$PauseMenu.visible = false
-	$PauseMenu/PauseButton.visible = true
-	$PauseMenu/StartButton.visible = false
+	%PauseButton.visible = true
+	%StartButton.visible = false
 	
-	
-	
+func updateCounter(type, nb, nbmax):
+	self.displays[type].text = "%d / %d" % [nb, nbmax]
 
 func toggle_pause():
 	get_tree().paused = not get_tree().paused
 	$PauseMenu.visible = get_tree().paused
-	$PauseMenu/PauseButton.visible = get_tree().paused
+	%PauseButton.visible = get_tree().paused
 
 func gameover():
 	$GameOverStreamPlayer.play()
 	get_tree().paused = true
 	$PauseMenu.visible = true
-	$PauseMenu/RestartButton.visible = true
-	$PauseMenu/GameOver.visible = true
-	$PauseMenu/PauseButton.visible = false
+	%RestartButton.visible = true
+	%GameOver.visible = true
+	%PauseButton.visible = false
 
 func restart_game():
 	get_tree().reload_current_scene()
 	get_tree().paused = false
 	$PauseMenu.visible = false
-	$PauseMenu/RestartButton.visible = false
-	$PauseMenu/GameOver.visible = false
-	$PauseMenu/PauseButton.visible = true
+	%RestartButton.visible = false
+	%GameOver.visible = false
+	%PauseButton.visible = true
 
 func quit_game():
 	get_tree().quit()
 
 func init_displays():
-	displays["buche"] = $buchesCountDisplay
-	displays["hache"] = $hacheCountDisplay
+	displays["buche"] = %buchesCountDisplay
+	displays["hache"] = %hacheCountDisplay

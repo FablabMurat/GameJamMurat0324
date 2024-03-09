@@ -120,7 +120,7 @@ func update_overlay(type, nb):
 	elif inventory[type] > $Player.NBMAX[type]:
 		inventory[type] = $Player.NBMAX[type]
 	
-	$Overlay.displays[type].text = "%d / %d" % [inventory[type], $Player.NBMAX[type]]
+	$Overlay.updateCounter(type,inventory[type], $Player.NBMAX[type])
 	
 	
 func increaseFire(nb):

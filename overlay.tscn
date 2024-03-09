@@ -1,131 +1,161 @@
-[gd_scene load_steps=4 format=3 uid="uid://dui40bsirnsln"]
+[gd_scene load_steps=5 format=3 uid="uid://dui40bsirnsln"]
 
 [ext_resource type="Script" path="res://overlay.gd" id="1_ermqy"]
 [ext_resource type="Texture2D" uid="uid://bqjjc334d4hj1" path="res://Ressources/Environnement/Buche_1.png" id="2_3sbw4"]
+[ext_resource type="StyleBox" uid="uid://b2rrnxat33k4i" path="res://overlay_flat.tres" id="3_2n0gg"]
 [ext_resource type="AudioStream" uid="uid://cuygme0a30yij" path="res://Ressources/Sons/gameover.ogg" id="3_7h66k"]
 
 [node name="Overlay" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_ermqy")
 
-[node name="buches" type="Sprite2D" parent="."]
-position = Vector2(1075, 46)
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 1155.0
+offset_bottom = 647.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="BuchesZone" type="MarginContainer" parent="PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+
+[node name="buches" type="Sprite2D" parent="PanelContainer/MarginContainer/GridContainer/BuchesZone"]
 scale = Vector2(0.430209, 0.430209)
 texture = ExtResource("2_3sbw4")
+centered = false
 
-[node name="buchesCountDisplay" type="Label" parent="."]
-offset_left = 981.0
-offset_top = 39.0
-offset_right = 1021.0
-offset_bottom = 70.0
-scale = Vector2(0.983045, 0.988408)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+[node name="buchesCountDisplay" type="Label" parent="PanelContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.313726, 0.313726, 1)
+theme_override_font_sizes/font_size = 30
 text = "0/0"
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="hacheCountDisplay" type="Label" parent="."]
-offset_left = 981.0
-offset_top = 87.0
-offset_right = 1021.0
-offset_bottom = 118.0
-scale = Vector2(0.983045, 0.988408)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+[node name="HacheZone" type="MarginContainer" parent="PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+
+[node name="hache" type="Sprite2D" parent="PanelContainer/MarginContainer/GridContainer/HacheZone"]
+scale = Vector2(0.430209, 0.430209)
+texture = ExtResource("2_3sbw4")
+centered = false
+
+[node name="hacheCountDisplay" type="Label" parent="PanelContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.0784314, 0.313726, 0.313726, 1)
+theme_override_font_sizes/font_size = 30
 text = "0/0"
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="PauseMenu" type="Node2D" parent="."]
 
-[node name="TransparencyOverlay" type="ColorRect" parent="PauseMenu"]
-offset_right = 1154.0
-offset_bottom = 650.0
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenu"]
+offset_top = -2.0
+offset_right = 1153.0
+offset_bottom = 652.0
+
+[node name="TransparencyOverlay" type="ColorRect" parent="PauseMenu/PanelContainer"]
+layout_mode = 2
 color = Color(0.270588, 0.270588, 0.270588, 0.333333)
 
-[node name="GameName" type="Label" parent="PauseMenu"]
-offset_left = 448.0
-offset_top = 136.0
-offset_right = 773.0
-offset_bottom = 208.0
+[node name="Center" type="CenterContainer" parent="PauseMenu/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxCenter" type="VBoxContainer" parent="PauseMenu/PanelContainer/Center"]
+layout_mode = 2
+
+[node name="GameName" type="Label" parent="PauseMenu/PanelContainer/Center/VBoxCenter"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.827451, 0.427451, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Nom du jeu :)"
 horizontal_alignment = 1
 
-[node name="PauseButton" type="Button" parent="PauseMenu"]
-offset_left = 524.0
-offset_top = 277.0
-offset_right = 653.0
-offset_bottom = 330.0
-theme_override_font_sizes/font_size = 30
-text = "Reprendre"
-
-[node name="StartButton" type="Button" parent="PauseMenu"]
-offset_left = 530.0
-offset_top = 277.0
-offset_right = 679.0
-offset_bottom = 330.0
-theme_override_font_sizes/font_size = 30
-text = "Démarrer"
-
-[node name="RestartButton" type="Button" parent="PauseMenu"]
-offset_left = 502.0
-offset_top = 277.0
-offset_right = 718.0
-offset_bottom = 330.0
-theme_override_font_sizes/font_size = 30
-text = "Recommencer"
-
-[node name="Itch" type="LinkButton" parent="PauseMenu"]
-offset_left = 6.0
-offset_top = 599.0
-offset_right = 102.0
-offset_bottom = 652.0
-theme_override_font_sizes/font_size = 30
-text = "Itch.io"
-underline = 1
-uri = "https://itch.io/jam/game-jam-dans-l-cantal"
-
-[node name="Credits" type="LinkButton" parent="PauseMenu"]
-offset_left = 1030.0
-offset_top = 599.0
-offset_right = 1126.0
-offset_bottom = 652.0
-theme_override_font_sizes/font_size = 30
-text = "Credits"
-underline = 1
-uri = "https://www.youtube.com/watch?v=o-YBDTqX_ZU"
-
-[node name="Github" type="LinkButton" parent="PauseMenu"]
-offset_left = 1030.0
-offset_top = 556.0
-offset_right = 1126.0
-offset_bottom = 609.0
-theme_override_font_sizes/font_size = 30
-text = "Github"
-underline = 1
-uri = "https://github.com/FablabMurat/GameJamMurat0324"
-
-[node name="QuitButton" type="Button" parent="PauseMenu"]
-offset_left = 524.0
-offset_top = 344.0
-offset_right = 685.0
-offset_bottom = 397.0
-theme_override_font_sizes/font_size = 30
-text = "Quitter"
-
-[node name="GameOver" type="Label" parent="PauseMenu"]
-offset_left = 463.0
-offset_top = 207.0
-offset_right = 749.0
-offset_bottom = 279.0
+[node name="GameOver" type="Label" parent="PauseMenu/PanelContainer/Center/VBoxCenter"]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_colors/font_color = Color(0.498039, 0.160784, 0.101961, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Game Over"
 horizontal_alignment = 1
 uppercase = true
+
+[node name="StartButton" type="Button" parent="PauseMenu/PanelContainer/Center/VBoxCenter"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = ExtResource("3_2n0gg")
+text = "Démarrer"
+
+[node name="PauseButton" type="Button" parent="PauseMenu/PanelContainer/Center/VBoxCenter"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = ExtResource("3_2n0gg")
+text = "Reprendre"
+
+[node name="RestartButton" type="Button" parent="PauseMenu/PanelContainer/Center/VBoxCenter"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = ExtResource("3_2n0gg")
+text = "Recommencer"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/PanelContainer/Center/VBoxCenter"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = ExtResource("3_2n0gg")
+text = "Quitter"
+
+[node name="Itch" type="LinkButton" parent="PauseMenu/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 30
+text = "Itch.io"
+underline = 1
+uri = "https://itch.io/jam/game-jam-dans-lcantal-2"
+
+[node name="VBoxBottomRight" type="VBoxContainer" parent="PauseMenu/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+alignment = 2
+
+[node name="Github" type="LinkButton" parent="PauseMenu/PanelContainer/VBoxBottomRight"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 30
+text = "Github"
+underline = 1
+uri = "https://github.com/FablabMurat/GameJamMurat0324"
+
+[node name="Credits" type="LinkButton" parent="PauseMenu/PanelContainer/VBoxBottomRight"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 30
+text = "Credits"
+underline = 1
+uri = "https://www.youtube.com/watch?v=rCh70TsaHJ8"
 
 [node name="GameOverStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_7h66k")
