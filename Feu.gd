@@ -3,6 +3,7 @@ extends Node3D
 var fireSize = 0.5
 var timeLeft
 var windDirection
+var windForce = 0.02
 
 var rotation_speed = 1
 
@@ -45,11 +46,9 @@ func fireGestion(amount):
 
 func getwindDirection():
 	var windRotation = $WindDirection.rotation
-	var windForce = 0.1
 	return Vector3(sin(windRotation[1])*windForce,0,cos(windRotation[1])*windForce)
 	
 	
-
 func _on_timer_timeout():
 	firedeath.emit()
 
