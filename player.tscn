@@ -40,7 +40,11 @@ const NBMAX = {
 	\"hache\": 1
 }
 var nbbuche = 0
+
+const PTS_MAX_HACHE = 20
+
 var nbhache = 0
+var listPtsHaches = []
 
 var sapinsProches = {}
 var flagPresDuFeu = false
@@ -77,6 +81,7 @@ func _physics_process(delta):
 			print(\"player collect hache\")
 			nbhache += 1
 			body.queue_free()
+			listPtsHaches.append(PTS_MAX_HACHE)
 			collected.emit(\"hache\",1)
 		
 		elif body.is_in_group(\"feu\") and nbbuche > 0 :
@@ -124,6 +129,7 @@ func animate():
 			#print(\"animate impossible %d/%d\" % [realdirection.x,realdirection.z])
 	else:
 		$PlayerCenter/PlayerSprite3D.stop()
+
 func has_hache():
 	return nbhache > 0
 
@@ -158,10 +164,22 @@ func _input(event):
 			# coupe d'un arbre
 			if not sapinsProches.is_empty():
 				sapinsProches.values()[0].cutwood()
+				useHache()
 			else:
 				print(\"pas de sapin...\")
 		else:
 			print(\"manque une hache...\")
+
+func useHache():
+	if listPtsHaches.size() > 0:
+		# Utilise la hache et
+		listPtsHaches[0] -= 1
+		if listPtsHaches[0] == 0 :
+			listPtsHaches.remove_at(0)
+			nbhache -= 1
+			collected.emit(\"hache\",-1)
+			# TODO : averti de la  perte de la hache
+			# TODO : en rebalancer une ailleurs ?
 
 func _on_foyer_stream_player_finished():
 	$FoyerStreamPlayer.start()
