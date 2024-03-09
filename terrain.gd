@@ -11,7 +11,7 @@ var resSapin3 = load("res://Ressources/Environnement/Arbre_3.png")
 var resSapins = [resSapin1, resSapin2,resSapin3]
 
 # rochers génériques
-const NBROCHERS = 80
+const NBROCHERS = 160
 const RocherScene = preload("res://paper_rocher.tscn")
 var resRocher1 = preload("res://Ressources/Environnement/Rochers_1.png")
 var resRocher2 = preload("res://Ressources/Environnement/Rochers_2.png")
@@ -19,6 +19,8 @@ var resRocher3 = preload("res://Ressources/Environnement/Rochers_3.png")
 var resRochers = [resRocher1, resRocher2, resRocher3]
 
 const BucheScene = preload("res://paper_buche.tscn")
+
+const NBHACHES = 10
 const HacheScene = preload("res://hache.tscn")
 
 # SCENES NEIGE
@@ -60,6 +62,7 @@ func _ready():
 	
 	# La première hache, facile à trouver
 	createdecor(HacheScene,3,3,null)
+	createdecorswithSceneList([HacheScene],NBHACHES)
 	
 	$Player.collected.connect(update_overlay.bind())
 	$Player.increaseFire.connect(increaseFire.bind())
@@ -108,6 +111,9 @@ func createdecor(scenemodel, x, z, resTexture = null):
 	add_child(decor)
 	return decor
 
+func recreatehache():
+	createrandomdecor(HacheScene)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(Input.is_action_pressed("debug")):
