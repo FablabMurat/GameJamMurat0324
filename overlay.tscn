@@ -85,6 +85,7 @@ offset_right = 1153.0
 offset_bottom = 652.0
 
 [node name="TransparencyOverlay" type="ColorRect" parent="Menu/PanelContainer"]
+visible = false
 layout_mode = 2
 color = Color(0.270588, 0.270588, 0.270588, 0.333333)
 
@@ -117,6 +118,8 @@ uppercase = true
 [node name="LabelHiScore" type="Label" parent="Menu/PanelContainer/Center/VBoxCenter"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.733333, 0, 1)
+theme_override_font_sizes/font_size = 30
 text = "Hi score ?"
 horizontal_alignment = 1
 
@@ -127,12 +130,15 @@ alignment = 1
 
 [node name="PlayerName" type="LineEdit" parent="Menu/PanelContainer/Center/VBoxCenter/HBoxName"]
 layout_mode = 2
+theme_override_constants/minimum_character_width = 16
+theme_override_font_sizes/font_size = 30
 placeholder_text = "votre nom"
 max_length = 20
 expand_to_text_length = true
 
 [node name="NameButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter/HBoxName"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "OK"
 
 [node name="StartButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]

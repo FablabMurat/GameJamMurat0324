@@ -34,7 +34,6 @@ func resized():
 	var vp : Viewport = get_viewport()
 	$PanelContainer.size = vp.size
 	$Menu/PanelContainer.size = vp.size
-	#$Menu/PanelContainer/TransparencyOverlay.size = vp.size
 
 func set_margins():
 	const MARGIN_VALUE = 5
