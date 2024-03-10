@@ -175,6 +175,17 @@ text = "Credits"
 underline = 1
 uri = "https://www.youtube.com/watch?v=rCh70TsaHJ8"
 
+[node name="CenterScoring" type="CenterContainer" parent="PauseMenu/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxScore" type="VBoxContainer" parent="PauseMenu/PanelContainer/CenterScoring"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/PanelContainer/CenterScoring/VBoxScore"]
+layout_mode = 2
+
 [node name="GameOverStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_7h66k")
 volume_db = 5.0
