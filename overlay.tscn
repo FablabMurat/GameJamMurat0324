@@ -148,6 +148,13 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = ExtResource("3_2n0gg")
 text = "Démarrer"
 
+[node name="HiScoresButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = ExtResource("3_2n0gg")
+text = "Top 20 des scores"
+
 [node name="PauseButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -206,5 +213,9 @@ uri = "https://www.youtube.com/watch?v=rCh70TsaHJ8"
 stream = ExtResource("3_7h66k")
 volume_db = 5.0
 
+[node name="HiScores" type="Node2D" parent="."]
+
 [connection signal="text_changed" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/PlayerName" to="." method="activate_namebutton"]
 [connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/NameButton" to="." method="valid_hi_score"]
+[connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/HiScoresButton" to="." method="_on_hi_scores_button_pressed"]
+[connection signal="child_exiting_tree" from="HiScores" to="." method="_on_hi_scores_child_exiting_tree"]

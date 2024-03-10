@@ -21,6 +21,7 @@ func _ready():
 	%PauseButton.visible = false
 	%GameOver.visible = false
 	%StartButton.visible = true
+	%HiScoresButton.visible = true
 	get_tree().paused = true
 	
 	set_margins()
@@ -166,6 +167,7 @@ func activate_namebutton(newText : String):
 func valid_hi_score():
 	add_hi_score(%HBoxName/PlayerName.text,score)
 	save_hi_scores()
+	show_hi_scores(%HBoxName/PlayerName.text)
 	%HBoxName.visible = false
 	%RestartButton.visible = true
 	%LabelHiScore.visible = false
@@ -185,3 +187,18 @@ func quit_game():
 func init_displays():
 	displays["buche"] = %buchesCountDisplay
 	displays["hache"] = %hacheCountDisplay
+
+func show_hi_scores(player : String = ""):
+	const hiScene = preload("res://hiscores.tscn")
+	$Menu.hide()
+	var hicontrol = hiScene.instantiate()
+	load_hi_scores()
+	hicontrol.display(hi_scores, player)
+	$HiScores.add_child(hicontrol)
+
+func _on_hi_scores_button_pressed():
+	show_hi_scores()
+
+func _on_hi_scores_child_exiting_tree(node):
+	$Menu.show()
+	pass # Replace with function body.
