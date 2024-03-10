@@ -15,6 +15,8 @@ func _ready():
 	%RestartButton.pressed.connect(restart_game)
 	%StartButton.pressed.connect(start_game)
 	
+	%LabelHiScore.visible = false
+	%HBoxName.visible = false
 	%RestartButton.visible = false
 	%PauseButton.visible = false
 	%GameOver.visible = false
@@ -31,8 +33,8 @@ func _ready():
 func resized():
 	var vp : Viewport = get_viewport()
 	$PanelContainer.size = vp.size
-	$PauseMenu/PanelContainer.size = vp.size
-	#$PauseMenu/PanelContainer/TransparencyOverlay.size = vp.size
+	$Menu/PanelContainer.size = vp.size
+	#$Menu/PanelContainer/TransparencyOverlay.size = vp.size
 
 func set_margins():
 	const MARGIN_VALUE = 5
@@ -45,7 +47,7 @@ func _process(delta):
 
 func start_game():
 	get_tree().paused = false
-	$PauseMenu.visible = false
+	$Menu.visible = false
 	%PauseButton.visible = true
 	%StartButton.visible = false
 	
@@ -95,9 +97,9 @@ func load_hi_scores():
 	
 func save_hi_scores():
 	var file = FileAccess.open(HIGH_SCORES_FILE, FileAccess.WRITE)
-	for score in hi_scores:
-		if score.has("pts") :
-			var json_string = JSON.stringify(score)
+	for sc in hi_scores:
+		if sc.has("pts") :
+			var json_string = JSON.stringify(sc)
 			file.store_line(json_string)
 	file.close()
 
@@ -107,9 +109,9 @@ func is_hi_score(pts):
 		# On n'a pas encore de hiscore donc on en est
 		return true
 	# On boucle sur tous les hiscores pour voir si on est meilleur
-	for score in hi_scores:
-		if (not score.has("pts")): continue
-		if pts > score["pts"] :
+	for sc in hi_scores:
+		if (not sc.has("pts")): continue
+		if pts > sc["pts"] :
 			return true
 	return false
 
@@ -129,30 +131,51 @@ func add_hi_score(joueur, pts):
 						"unixtime" : Time.get_unix_time_from_system(),\
 						"date" : dateFormat }
 		hi_scores.append(newscore)
-		hi_scores.sort_custom(func (a,b): return a["pts"] < b["pts"])
+		hi_scores.sort_custom(func (a,b): return a["pts"] > b["pts"] or (a["pts"] == b["pts"] && a["unixtime"] > b["unixtime"]))
 		if hi_scores.size() > MAX_HI_SCORES:
 			hi_scores.resize(MAX_HI_SCORES)
 
 func toggle_pause():
 	get_tree().paused = not get_tree().paused
-	$PauseMenu.visible = get_tree().paused
+	$Menu.visible = get_tree().paused
 	%PauseButton.visible = get_tree().paused
 
 func gameover():
-	load_hi_scores()
-	if add_hi_score("moi",score):
-		save_hi_scores()
 	$GameOverStreamPlayer.play()
 	get_tree().paused = true
-	$PauseMenu.visible = true
-	%RestartButton.visible = true
-	%GameOver.visible = true
+	$Menu.visible = true
 	%PauseButton.visible = false
+	%GameOver.visible = true
+	load_hi_scores()
+	if is_hi_score(score):
+		%LabelHiScore.text = "Vous rentrez dans le Top %d !" % MAX_HI_SCORES
+		%HBoxName.visible = true
+		%HBoxName/NameButton.disabled = true
+		%HBoxName/PlayerName.grab_focus()
+		%HBoxName/NameButton.grab_click_focus()
+	else:
+		%LabelHiScore.text = "%d points, c'est pas si mal !" % score
+		%LabelHiScore.visible = false
+		%RestartButton.visible = true
+	%LabelHiScore.visible = true
 
+func activate_namebutton(newText : String):
+	if newText != "":
+		%HBoxName/NameButton.disabled = (newText == "")
+	pass
+	
+func valid_hi_score():
+	add_hi_score(%HBoxName/PlayerName.text,score)
+	save_hi_scores()
+	%HBoxName.visible = false
+	%RestartButton.visible = true
+	%LabelHiScore.visible = false
+		
+		
 func restart_game():
 	get_tree().reload_current_scene()
 	get_tree().paused = false
-	$PauseMenu.visible = false
+	$Menu.visible = false
 	%RestartButton.visible = false
 	%GameOver.visible = false
 	%PauseButton.visible = true

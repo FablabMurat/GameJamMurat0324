@@ -77,26 +77,26 @@ theme_override_colors/font_color = Color(0.0784314, 0.313726, 0.313726, 1)
 theme_override_font_sizes/font_size = 40
 text = "000"
 
-[node name="PauseMenu" type="Node2D" parent="."]
+[node name="Menu" type="Node2D" parent="."]
 
-[node name="PanelContainer" type="PanelContainer" parent="PauseMenu"]
+[node name="PanelContainer" type="PanelContainer" parent="Menu"]
 offset_top = -2.0
 offset_right = 1153.0
 offset_bottom = 652.0
 
-[node name="TransparencyOverlay" type="ColorRect" parent="PauseMenu/PanelContainer"]
+[node name="TransparencyOverlay" type="ColorRect" parent="Menu/PanelContainer"]
 layout_mode = 2
 color = Color(0.270588, 0.270588, 0.270588, 0.333333)
 
-[node name="Center" type="CenterContainer" parent="PauseMenu/PanelContainer"]
+[node name="Center" type="CenterContainer" parent="Menu/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="VBoxCenter" type="VBoxContainer" parent="PauseMenu/PanelContainer/Center"]
+[node name="VBoxCenter" type="VBoxContainer" parent="Menu/PanelContainer/Center"]
 layout_mode = 2
 
-[node name="GameName" type="Label" parent="PauseMenu/PanelContainer/Center/VBoxCenter"]
+[node name="GameName" type="Label" parent="Menu/PanelContainer/Center/VBoxCenter"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.827451, 0.427451, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -104,7 +104,7 @@ theme_override_font_sizes/font_size = 50
 text = "Nom du jeu :)"
 horizontal_alignment = 1
 
-[node name="GameOver" type="Label" parent="PauseMenu/PanelContainer/Center/VBoxCenter"]
+[node name="GameOver" type="Label" parent="Menu/PanelContainer/Center/VBoxCenter"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.498039, 0.160784, 0.101961, 1)
@@ -114,35 +114,56 @@ text = "Game Over"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="StartButton" type="Button" parent="PauseMenu/PanelContainer/Center/VBoxCenter"]
+[node name="LabelHiScore" type="Label" parent="Menu/PanelContainer/Center/VBoxCenter"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Hi score ?"
+horizontal_alignment = 1
+
+[node name="HBoxName" type="HBoxContainer" parent="Menu/PanelContainer/Center/VBoxCenter"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="PlayerName" type="LineEdit" parent="Menu/PanelContainer/Center/VBoxCenter/HBoxName"]
+layout_mode = 2
+placeholder_text = "votre nom"
+max_length = 20
+expand_to_text_length = true
+
+[node name="NameButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter/HBoxName"]
+layout_mode = 2
+text = "OK"
+
+[node name="StartButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = ExtResource("3_2n0gg")
 text = "Démarrer"
 
-[node name="PauseButton" type="Button" parent="PauseMenu/PanelContainer/Center/VBoxCenter"]
+[node name="PauseButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = ExtResource("3_2n0gg")
 text = "Reprendre"
 
-[node name="RestartButton" type="Button" parent="PauseMenu/PanelContainer/Center/VBoxCenter"]
+[node name="RestartButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = ExtResource("3_2n0gg")
 text = "Recommencer"
 
-[node name="QuitButton" type="Button" parent="PauseMenu/PanelContainer/Center/VBoxCenter"]
+[node name="QuitButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = ExtResource("3_2n0gg")
 text = "Quitter"
 
-[node name="Itch" type="LinkButton" parent="PauseMenu/PanelContainer"]
+[node name="Itch" type="LinkButton" parent="Menu/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 8
@@ -151,13 +172,13 @@ text = "Itch.io"
 underline = 1
 uri = "https://itch.io/jam/game-jam-dans-lcantal-2"
 
-[node name="VBoxBottomRight" type="VBoxContainer" parent="PauseMenu/PanelContainer"]
+[node name="VBoxBottomRight" type="VBoxContainer" parent="Menu/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 alignment = 2
 
-[node name="Github" type="LinkButton" parent="PauseMenu/PanelContainer/VBoxBottomRight"]
+[node name="Github" type="LinkButton" parent="Menu/PanelContainer/VBoxBottomRight"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -166,7 +187,7 @@ text = "Github"
 underline = 1
 uri = "https://github.com/FablabMurat/GameJamMurat0324"
 
-[node name="Credits" type="LinkButton" parent="PauseMenu/PanelContainer/VBoxBottomRight"]
+[node name="Credits" type="LinkButton" parent="Menu/PanelContainer/VBoxBottomRight"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -175,17 +196,9 @@ text = "Credits"
 underline = 1
 uri = "https://www.youtube.com/watch?v=rCh70TsaHJ8"
 
-[node name="CenterScoring" type="CenterContainer" parent="PauseMenu/PanelContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="VBoxScore" type="VBoxContainer" parent="PauseMenu/PanelContainer/CenterScoring"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PauseMenu/PanelContainer/CenterScoring/VBoxScore"]
-layout_mode = 2
-
 [node name="GameOverStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_7h66k")
 volume_db = 5.0
+
+[connection signal="text_changed" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/PlayerName" to="." method="activate_namebutton"]
+[connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/NameButton" to="." method="valid_hi_score"]
