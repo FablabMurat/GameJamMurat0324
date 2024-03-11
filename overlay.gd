@@ -1,6 +1,7 @@
 extends Node2D
 
-var displays = {}
+var displays = {"buche" : %buchesCountDisplay, \
+				"hache" : %hacheCountDisplay}
 var score = 0
 const HIGH_SCORES_FILE = "user://gamejamhiver2024-scores.json"
 const MAX_HI_SCORES = 20
@@ -8,8 +9,6 @@ var hi_scores = null
 const MONTHS = ["","janvier","février","mars","avril","mai","juin","juillet","aout","septembre", "octobre","novembre","decembre"]
 
 func _ready():
-	init_displays()
-	
 	%PauseButton.pressed.connect(toggle_pause)
 	%QuitButton.pressed.connect(quit_game)
 	%RestartButton.pressed.connect(restart_game)
@@ -105,6 +104,7 @@ func save_hi_scores():
 
 ## Vérifie si l'on ferait partie des nouveaux hi-score
 func is_hi_score(pts):
+	if pts <= 0 : return false  # Un score de 0 ne peut pas être un hi-score
 	if hi_scores.size() < MAX_HI_SCORES:
 		# On n'a pas encore de hiscore donc on en est
 		return true
@@ -183,10 +183,6 @@ func restart_game():
 
 func quit_game():
 	get_tree().quit()
-
-func init_displays():
-	displays["buche"] = %buchesCountDisplay
-	displays["hache"] = %hacheCountDisplay
 
 func show_hi_scores(player : String = ""):
 	const hiScene = preload("res://hiscores.tscn")
