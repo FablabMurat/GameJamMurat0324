@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://58fa23m0cjrc"]
+[gd_scene load_steps=3 format=3 uid="uid://58fa23m0cjrc"]
 
 [ext_resource type="Script" path="res://hiscoreslist.gd" id="1_o046x"]
+[ext_resource type="Theme" uid="uid://blg1w03v5jqi1" path="res://a_theme.tres" id="1_pd047"]
 
 [node name="HiScores" type="PanelContainer"]
 offset_right = 1155.0
 offset_bottom = 647.0
+theme = ExtResource("1_pd047")
 script = ExtResource("1_o046x")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -13,44 +15,14 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="ScoreTitle" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Top 20 des scores"
 horizontal_alignment = 1
 
-[node name="TabContainer" type="GridContainer" parent="CenterContainer/VBoxContainer"]
+[node name="HBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 2
-columns = 3
-
-[node name="NameHeader" type="Label" parent="CenterContainer/VBoxContainer/TabContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.117647, 0.313726, 0.313726, 1)
-theme_override_font_sizes/font_size = 20
-text = "Joueur"
-
-[node name="ScoreHeader" type="Label" parent="CenterContainer/VBoxContainer/TabContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.117647, 0.313726, 0.313726, 1)
-theme_override_font_sizes/font_size = 20
-text = "Points"
-horizontal_alignment = 1
-
-[node name="DateHeader" type="Label" parent="CenterContainer/VBoxContainer/TabContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.117647, 0.313726, 0.313726, 1)
-theme_override_font_sizes/font_size = 20
-text = "Date"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/TabContainer"]
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/TabContainer"]
-layout_mode = 2
-
-[node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
 
 [node name="FermerButton" type="Button" parent="CenterContainer/VBoxContainer"]
