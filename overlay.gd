@@ -1,6 +1,6 @@
 extends Node2D
 
-var displays = {"buche" : %buchesCountDisplay, \
+@onready var displays = {"buche" : %buchesCountDisplay, \
 				"hache" : %hacheCountDisplay}
 var score = 0
 const HIGH_SCORES_FILE = "user://gamejamhiver2024-scores.json"
@@ -163,11 +163,16 @@ func activate_namebutton(newText : String):
 	if newText != "":
 		%HBoxName/NameButton.disabled = (newText == "")
 	pass
-	
+
+func submit_hi_score(playername : String):
+	if playername == "" : return
+	valid_hi_score()
+
 func valid_hi_score():
-	add_hi_score(%HBoxName/PlayerName.text,score)
+	var playername = %HBoxName/PlayerName.text
+	add_hi_score(playername,score)
 	save_hi_scores()
-	show_hi_scores(%HBoxName/PlayerName.text)
+	show_hi_scores(playername)
 	%HBoxName.visible = false
 	%RestartButton.visible = true
 	%LabelHiScore.visible = false
