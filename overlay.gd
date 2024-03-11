@@ -39,8 +39,18 @@ func set_margins():
 	const MARGIN_VALUE = 5
 	for dir in ["top","left","bottom","right"]:
 		$PanelContainer/MarginContainer.add_theme_constant_override("margin_%s" % dir, MARGIN_VALUE)
-	
-func _process(delta):
+
+func message(text : String, icone : Texture = null):
+	%VBoxMessage.show()
+	if icone != null :
+		%VBoxMessage/MsgTexture.set_texture(icone)
+	%VBoxMessage/MsgLabelBottom.text = text
+	%VBoxMessage/Timer.start()
+
+func _on_message_timer_timeout():
+	%VBoxMessage.hide()
+
+func _process(_delta):  #FIXME ce n'est peut-être la meilleure fonction
 	if Input.is_action_just_pressed("pause_toggle"):
 		toggle_pause()
 
@@ -200,6 +210,5 @@ func show_hi_scores(player : String = ""):
 func _on_hi_scores_button_pressed():
 	show_hi_scores()
 
-func _on_hi_scores_child_exiting_tree(node):
+func _on_hi_scores_child_exiting_tree(_node):
 	$Menu.show()
-	pass # Replace with function body.

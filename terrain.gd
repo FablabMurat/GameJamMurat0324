@@ -68,6 +68,7 @@ func _ready():
 	$Player.increaseFire.connect(increaseFire.bind())
 	$Player.stepSpawn.connect(stepSpawn.bind())
 	$Player.score.connect(addScore.bind())
+	$Player.message.connect($Overlay.message.bind())
 	
 	$Feu.firedeath.connect($Overlay.gameover)
 	

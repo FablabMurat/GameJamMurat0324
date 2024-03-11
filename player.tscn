@@ -53,6 +53,7 @@ signal collected
 signal increaseFire
 signal stepSpawn
 signal score
+signal message
 
 func _ready():
 	$PlayerCenter/Camera3D.set_current(true)
@@ -176,6 +177,8 @@ func _input(event):
 				print(\"pas de sapin...\")
 		else:
 			print(\"manque une hache...\")
+			var imgpng = ResourceLoader.load(\"res://Ressources/Environnement/Plantes_1.png\")
+			message.emit(\"il faut d'abord une hache !\",imgpng)
 
 func useHache():
 	if listPtsHaches.size() > 0:
