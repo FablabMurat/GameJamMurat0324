@@ -46,6 +46,7 @@ func _physics_process(delta):
 			body.queue_free()
 			# mettre à jour l'UI
 			collected.emit("buche",1)
+			score.emit(1)
 		
 		elif body.is_in_group("hache") and not dejaunehache :
 			# Attention, on peut avoir 2 collisions : une par Body3D...
@@ -55,11 +56,13 @@ func _physics_process(delta):
 			body.queue_free()
 			listPtsHaches.append(PTS_MAX_HACHE)
 			collected.emit("hache",1)
+			score.emit(5)
 		
 		elif body.is_in_group("feu") and nbbuche > 0 :
 			#print("mettre une buche dans le feu")
 			increaseFire.emit(nbbuche)
 			nbbuche = 0
+			score.emit(2)
 		else:
 			# contact avec un élément du décor avec mask=2 (sinon on passe à travers)
 			pass #prints("autre collision avec (arbre, sol ou rocher ?) ",body)
