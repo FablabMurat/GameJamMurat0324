@@ -15,10 +15,13 @@ const MIN_ENERGIE = 20
 const MAX_ENERGIE = 50
 var energie = MAX_ENERGIE
 
-const PTS_MAX_HACHE = 20
+# Une hache permet de couper 3 sapins
+const PTS_MAX_HACHE = 150
 
 var nbhache = 0
 var listPtsHaches = []
+const IMG_HACHE = preload("res://Ressources/Environnement/Hache.png")
+const IMG_SAPIN = preload("res://Ressources/Environnement/Arbre_4.png")
 
 var sapinsProches = {}
 var flagPresDuFeu = false
@@ -162,11 +165,9 @@ func _input(event):
 				# coupe d'un arbre
 				useHache()
 			else:
-				var imgpng = ResourceLoader.load("res://Ressources/Environnement/Hache.png")
-				message.emit("il faut d'abord une hache !",imgpng)
+				message.emit("il faut d'abord une hache !",IMG_HACHE)
 		else:
-			var imgpng = ResourceLoader.load("res://Ressources/Environnement/Arbre_4.png")
-			message.emit("pas de sapin ici !",imgpng)
+			message.emit("pas de sapin ici !",IMG_SAPIN)
 
 func useHache():
 	if listPtsHaches.size() > 0:
@@ -181,8 +182,8 @@ func useHache():
 			listPtsHaches.remove_at(0)
 			nbhache -= 1
 			collected.emit("hache",-1)
-			# TODO : averti de la  perte de la hache
-			pass
+			# on avertit de la perte de la hache
+			message.emit("La hache est cassée !", IMG_HACHE)
 			# En rebalancer une ailleurs
 			get_parent().recreatehache()
 
