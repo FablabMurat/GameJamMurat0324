@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dui40bsirnsln"]
+[gd_scene load_steps=7 format=3 uid="uid://dui40bsirnsln"]
 
 [ext_resource type="Script" path="res://overlay.gd" id="1_ermqy"]
 [ext_resource type="Texture2D" uid="uid://bqjjc334d4hj1" path="res://Ressources/Environnement/Buche_1.png" id="2_3sbw4"]
 [ext_resource type="StyleBox" uid="uid://b2rrnxat33k4i" path="res://overlay_flat.tres" id="3_2n0gg"]
 [ext_resource type="AudioStream" uid="uid://cuygme0a30yij" path="res://Ressources/Sons/gameover.ogg" id="3_7h66k"]
+[ext_resource type="Texture2D" uid="uid://chyf5o6jgg3ov" path="res://Ressources/Environnement/Hache.png" id="3_lirvw"]
 [ext_resource type="PackedScene" uid="uid://bikwbmpr8e60e" path="res://messagebox.tscn" id="3_w4qkx"]
 
 [node name="Overlay" type="Node2D"]
@@ -21,6 +22,7 @@ size_flags_vertical = 0
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 columns = 2
 
 [node name="BuchesZone" type="MarginContainer" parent="PanelContainer/MarginContainer/GridContainer"]
@@ -44,11 +46,13 @@ metadata/_edit_use_anchors_ = true
 [node name="HacheZone" type="MarginContainer" parent="PanelContainer/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="hache" type="Sprite2D" parent="PanelContainer/MarginContainer/GridContainer/HacheZone"]
 scale = Vector2(0.430209, 0.430209)
-texture = ExtResource("2_3sbw4")
+texture = ExtResource("3_lirvw")
 centered = false
+offset = Vector2(30, 0)
 
 [node name="hacheCountDisplay" type="Label" parent="PanelContainer/MarginContainer/GridContainer"]
 unique_name_in_owner = true

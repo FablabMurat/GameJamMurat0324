@@ -47,6 +47,7 @@ horizontal_alignment = 1
 [node name="MsgTexture" type="TextureRect" parent="PanelContainer/VBoxMessage"]
 layout_mode = 2
 texture = SubResource("ImageTexture_5atc3")
+expand_mode = 5
 
 [node name="MsgLabelBottom" type="Label" parent="PanelContainer/VBoxMessage"]
 layout_mode = 2

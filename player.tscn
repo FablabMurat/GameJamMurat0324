@@ -168,17 +168,21 @@ func _on_pres_du_feu_timer_timeout():
 
 func _input(event):
 	if event.is_action_pressed(\"ui_hache\"):
-		if has_hache():
-			# coupe d'un arbre
-			if not sapinsProches.is_empty():
-				sapinsProches.values()[0].cutwood()
+		if not sapinsProches.is_empty():
+			sapinsProches.values()[0].cutwood()
+			if has_hache():
+				# coupe d'un arbre
 				useHache()
 			else:
-				print(\"pas de sapin...\")
+				print(\"manque une hache...\")
+				var imgpng = ResourceLoader.load(\"res://Ressources/Environnement/Hache.png\")
+				message.emit(\"il faut d'abord une hache !\",imgpng)
 		else:
-			print(\"manque une hache...\")
-			var imgpng = ResourceLoader.load(\"res://Ressources/Environnement/Hache.png\")
-			message.emit(\"il faut d'abord une hache !\",imgpng)
+			var imgpng = ResourceLoader.load(\"res://Ressources/Environnement/Arbre_4.png\")
+			message.emit(\"pas de sapin ici !\",imgpng)
+			print(\"pas de sapin...\")
+		
+
 
 func useHache():
 	if listPtsHaches.size() > 0:
