@@ -42,7 +42,7 @@ func _physics_process(delta):
 	direction.z = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backwards")
 	
 	velocity = direction.normalized().rotated(Vector3.UP,$PlayerCenter.rotation.y) * PLAYER_SPEED
-	set_velocity(velocity * delta)
+	set_velocity(velocity * delta * min(1.0,energie/MAX_ENERGIE))
 	move_and_slide()
 	
 	var dejaunehache = false
