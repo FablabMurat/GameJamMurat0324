@@ -28,7 +28,7 @@ func cutwood():
 		
 		size -= 1
 		if size <= 0:
-			print("plus de sapin")
+			#print("plus de sapin")
 			queue_free()
 			return
 		else:

@@ -71,7 +71,7 @@ func _physics_process(delta):
 		var collision = get_slide_collision(index)
 		var body = collision.get_collider()
 		if body.is_in_group(\"buche\")  and  nbbuche < NBMAX[\"buche\"]:
-			print(\"player collect buche\")
+			#print(\"player collect buche\")
 			nbbuche += 1
 			body.queue_free()
 			# mettre à jour l'UI
@@ -79,7 +79,7 @@ func _physics_process(delta):
 		
 		elif body.is_in_group(\"hache\") and not dejaunehache :
 			# Attention, on peut avoir 2 collisions : une par Body3D...
-			print(\"player collect hache\")
+			#print(\"player collect hache\")
 			nbhache += 1
 			dejaunehache = true
 			body.queue_free()
@@ -87,7 +87,7 @@ func _physics_process(delta):
 			collected.emit(\"hache\",1)
 		
 		elif body.is_in_group(\"feu\") and nbbuche > 0 :
-			print(\"mettre une buche dans le feu\")
+			#print(\"mettre une buche dans le feu\")
 			increaseFire.emit(nbbuche)
 			nbbuche = 0
 		else:
@@ -109,7 +109,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		if event.button_mask & (MOUSE_BUTTON_MASK_MIDDLE + MOUSE_BUTTON_MASK_RIGHT):
 			camrot += event.relative.x * 0.005
-			print(\"Camera3D Rotation: \", camrot)
+			#print(\"Camera3D Rotation: \", camrot)
 
 func animate():
 	if(velocity != Vector3.ZERO):
@@ -149,10 +149,11 @@ func _on_area_3d_body_entered(body):
 		# on est suffisamment proche du feu
 		flagPresDuFeu = true
 		$PresDuFeuTimer.start()
-		print (\"près du feu \")
+		#print (\"près du feu \")
 		#$FoyerStreamPlayer.start()
 	else:
-		prints (\"autre body :\", body)
+		pass
+		#prints (\"autre body :\", body)
 		
 func _on_area_3d_body_exited(body):
 	if body.is_in_group(\"arbre\"):
@@ -174,15 +175,11 @@ func _input(event):
 				# coupe d'un arbre
 				useHache()
 			else:
-				print(\"manque une hache...\")
 				var imgpng = ResourceLoader.load(\"res://Ressources/Environnement/Hache.png\")
 				message.emit(\"il faut d'abord une hache !\",imgpng)
 		else:
 			var imgpng = ResourceLoader.load(\"res://Ressources/Environnement/Arbre_4.png\")
 			message.emit(\"pas de sapin ici !\",imgpng)
-			print(\"pas de sapin...\")
-		
-
 
 func useHache():
 	if listPtsHaches.size() > 0:

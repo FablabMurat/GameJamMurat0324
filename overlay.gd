@@ -95,7 +95,7 @@ func load_hi_scores():
 				return
 			else:
 				hi_scores.append(json.get_data())
-		print (hi_scores)
+		#print (hi_scores)
 	
 func save_hi_scores():
 	var file = FileAccess.open(HIGH_SCORES_FILE, FileAccess.WRITE)
