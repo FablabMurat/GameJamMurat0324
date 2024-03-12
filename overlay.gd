@@ -21,6 +21,9 @@ func _ready():
 	%GameOver.visible = false
 	%StartButton.visible = true
 	%HiScoresButton.visible = true
+	
+	%MessageBox.hide()
+	
 	get_tree().paused = true
 	
 	set_margins()
@@ -39,16 +42,6 @@ func set_margins():
 	const MARGIN_VALUE = 5
 	for dir in ["top","left","bottom","right"]:
 		$PanelContainer/MarginContainer.add_theme_constant_override("margin_%s" % dir, MARGIN_VALUE)
-
-func message(text : String, icone : Texture = null):
-	%VBoxMessage.show()
-	if icone != null :
-		%VBoxMessage/MsgTexture.set_texture(icone)
-	%VBoxMessage/MsgLabelBottom.text = text
-	%VBoxMessage/Timer.start()
-
-func _on_message_timer_timeout():
-	%VBoxMessage.hide()
 
 func _process(_delta):  #FIXME ce n'est peut-être la meilleure fonction
 	if Input.is_action_just_pressed("pause_toggle"):
@@ -206,6 +199,9 @@ func show_hi_scores(player : String = ""):
 	load_hi_scores()
 	hicontrol.display(hi_scores, player)
 	$HiScores.add_child(hicontrol)
+
+func message(text : String, icone : Texture = null):
+	%MessageBox.message(text, icone)
 
 func _on_hi_scores_button_pressed():
 	show_hi_scores()

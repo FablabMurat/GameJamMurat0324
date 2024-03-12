@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bqjjc334d4hj1" path="res://Ressources/Environnement/Buche_1.png" id="2_3sbw4"]
 [ext_resource type="StyleBox" uid="uid://b2rrnxat33k4i" path="res://overlay_flat.tres" id="3_2n0gg"]
 [ext_resource type="AudioStream" uid="uid://cuygme0a30yij" path="res://Ressources/Sons/gameover.ogg" id="3_7h66k"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_5atc3"]
+[ext_resource type="PackedScene" uid="uid://bikwbmpr8e60e" path="res://messagebox.tscn" id="3_w4qkx"]
 
 [node name="Overlay" type="Node2D"]
 process_mode = 3
@@ -79,31 +78,9 @@ theme_override_colors/font_color = Color(0.0784314, 0.313726, 0.313726, 1)
 theme_override_font_sizes/font_size = 40
 text = "000"
 
-[node name="VBoxMessage" type="VBoxContainer" parent="PanelContainer"]
+[node name="MessageBox" parent="PanelContainer" instance=ExtResource("3_w4qkx")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1
-
-[node name="MsgLabelTop" type="Label" parent="PanelContainer/VBoxMessage"]
-layout_mode = 2
-text = "ATTENTION !"
-horizontal_alignment = 1
-
-[node name="MsgTexture" type="TextureRect" parent="PanelContainer/VBoxMessage"]
-layout_mode = 2
-texture = SubResource("ImageTexture_5atc3")
-
-[node name="MsgLabelBottom" type="Label" parent="PanelContainer/VBoxMessage"]
-layout_mode = 2
-text = "message"
-horizontal_alignment = 1
-
-[node name="Timer" type="Timer" parent="PanelContainer/VBoxMessage"]
-wait_time = 2.0
-one_shot = true
 
 [node name="Menu" type="Node2D" parent="."]
 
@@ -243,7 +220,6 @@ volume_db = 5.0
 
 [node name="HiScores" type="Node2D" parent="."]
 
-[connection signal="timeout" from="PanelContainer/VBoxMessage/Timer" to="." method="_on_message_timer_timeout"]
 [connection signal="text_changed" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/PlayerName" to="." method="activate_namebutton"]
 [connection signal="text_submitted" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/PlayerName" to="." method="submit_hi_score"]
 [connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/NameButton" to="." method="valid_hi_score"]

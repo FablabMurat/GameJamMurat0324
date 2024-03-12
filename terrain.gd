@@ -129,7 +129,7 @@ func update_overlay(type, nb):
 		inventory[type] = $Player.NBMAX[type]
 	
 	$Overlay.updateCounter(type,inventory[type], $Player.NBMAX[type])
-	
+
 func addScore(nbpts):
 	$Overlay.updateScore(nbpts)
 	
