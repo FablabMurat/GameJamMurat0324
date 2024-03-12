@@ -11,6 +11,10 @@ const NBMAX = {
 }
 var nbbuche = 0
 
+const MIN_ENERGIE = 20
+const MAX_ENERGIE = 50
+var energie = MAX_ENERGIE
+
 const PTS_MAX_HACHE = 20
 
 var nbhache = 0
@@ -24,6 +28,7 @@ signal increaseFire
 signal stepSpawn
 signal score
 signal message
+signal fatigue
 
 func _ready():
 	$PlayerCenter/Camera3D.set_current(true)
@@ -110,6 +115,11 @@ func has_hache():
 
 func _on_step_timer_timeout():
 	if(velocity != Vector3.ZERO):
+		# on brule de l'énergie
+		energie -= 1
+		if energie < MIN_ENERGIE: energie = MIN_ENERGIE
+		fatigue.emit(energie)
+		# on marque un pas
 		stepSpawn.emit()
 		$StepStreamPlayer.play()
 
@@ -138,7 +148,11 @@ func _on_area_3d_body_exited(body):
 
 func _on_pres_du_feu_timer_timeout():
 	if velocity.x == 0  and  velocity.z == 0:
+		# on gagne des points
 		score.emit(10)
+		# on réduit la fatigue
+		energie += 10
+		fatigue.emit(energie)
 
 func _input(event):
 	if event.is_action_pressed("ui_hache"):
@@ -156,8 +170,13 @@ func _input(event):
 
 func useHache():
 	if listPtsHaches.size() > 0:
-		# Utilise la hache et
+		# Utilise la hache qui s'use
 		listPtsHaches[0] -= 1
+		# On perd de l'énergie à chaque coup de hache
+		energie -= 1
+		if energie < MIN_ENERGIE: energie = MIN_ENERGIE
+		fatigue.emit(energie)
+		
 		if listPtsHaches[0] == 0 :
 			listPtsHaches.remove_at(0)
 			nbhache -= 1

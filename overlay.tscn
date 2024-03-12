@@ -87,6 +87,7 @@ theme_override_font_sizes/font_size = 40
 text = "000"
 
 [node name="BarEnergie" type="ProgressBar" parent="PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 

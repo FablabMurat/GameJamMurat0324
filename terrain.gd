@@ -132,7 +132,10 @@ func update_overlay(type, nb):
 
 func addScore(nbpts):
 	$Overlay.updateScore(nbpts)
-	
+
+func refreshFatigue(energie : int):
+	$Overlay.setFatigue(energie)
+
 func increaseFire(nb):
 	#print("test increasefire %d" % nb)
 	update_overlay("buche",-nb)

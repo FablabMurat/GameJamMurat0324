@@ -60,6 +60,9 @@ func updateScore(nbpts : int):
 	score += nbpts
 	%Score.text = "%03d" % score
 
+func setFatigue(energie : int):
+	%BarEnergie.value = energie
+
 func test_hi_scores():
 #	var f = FileAccess.open(HIGH_SCORES_FILE, FileAccess.WRITE)
 #	f.close()
