@@ -7,8 +7,10 @@ var windForce = 0.02
 
 var rotation_speed = 1
 
+signal firetimeleft
 signal firedeath
 signal getWindDirection
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AudioStreamPlayer3D.play()
@@ -17,6 +19,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	timeLeft = $Timer.time_left
+	firetimeleft.emit(timeLeft)
+	
 	$Feu1.lifetime = timeLeft/4
 #	if Input.is_action_just_pressed("addLog"):
 #		fireGestion(2.0)

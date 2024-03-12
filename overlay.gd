@@ -9,6 +9,8 @@ var hi_scores = null
 const MONTHS = ["","janvier","février","mars","avril","mai","juin","juillet","aout","septembre", "octobre","novembre","decembre"]
 
 func _ready():
+	$PanelContainer/HBoxContainer.hide()
+	
 	%PauseButton.pressed.connect(toggle_pause)
 	%QuitButton.pressed.connect(quit_game)
 	%RestartButton.pressed.connect(restart_game)
@@ -53,6 +55,8 @@ func start_game():
 	%PauseButton.visible = true
 	%StartButton.visible = false
 	
+	$PanelContainer/HBoxContainer.show()
+	
 func updateCounter(type, nb, nbmax):
 	self.displays[type].text = "%d / %d" % [nb, nbmax]
 
@@ -60,8 +64,11 @@ func updateScore(nbpts : int):
 	score += nbpts
 	%Score.text = "%03d" % score
 
-func setFatigue(energie : int):
+func setBarFatigue(energie : int):
 	%BarEnergie.value = energie
+
+func setBarFeu(timeleft : float):
+	%BarFeu.value = timeleft
 
 func test_hi_scores():
 #	var f = FileAccess.open(HIGH_SCORES_FILE, FileAccess.WRITE)

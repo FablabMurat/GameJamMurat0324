@@ -11,9 +11,10 @@ const NBMAX = {
 }
 var nbbuche = 0
 
-const MIN_ENERGIE = 20
-const MAX_ENERGIE = 50
-var energie = MAX_ENERGIE
+const MIN_ENERGIE = 20.0
+const MAX_ENERGIE = 50.0
+const FATIGUE_PAR_SECONDE = 0.2
+var energie : float = MAX_ENERGIE
 
 # Une hache permet de couper 3 sapins
 const PTS_MAX_HACHE = 150
@@ -119,7 +120,7 @@ func has_hache():
 func _on_step_timer_timeout():
 	if(velocity != Vector3.ZERO):
 		# on brule de l'énergie
-		energie -= 1
+		energie -= FATIGUE_PAR_SECONDE
 		if energie < MIN_ENERGIE: energie = MIN_ENERGIE
 		fatigue.emit(energie)
 		# on marque un pas

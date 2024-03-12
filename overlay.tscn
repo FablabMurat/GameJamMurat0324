@@ -70,9 +70,22 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 alignment = 1
 
-[node name="BarFeu" type="ProgressBar" parent="PanelContainer/HBoxContainer"]
-visible = false
+[node name="VBoxFeu" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxFeu"]
+layout_mode = 2
+text = "Feu"
+horizontal_alignment = 1
+
+[node name="BarFeu" type="ProgressBar" parent="PanelContainer/HBoxContainer/VBoxFeu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+size_flags_vertical = 4
+step = 1.0
+rounded = true
+allow_greater = true
 
 [node name="LabelScore" type="Label" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
@@ -86,10 +99,23 @@ theme_override_colors/font_color = Color(0.0784314, 0.313726, 0.313726, 1)
 theme_override_font_sizes/font_size = 40
 text = "000"
 
-[node name="BarEnergie" type="ProgressBar" parent="PanelContainer/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
+[node name="VBoxEnergie" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxEnergie"]
+layout_mode = 2
+text = "Energie"
+horizontal_alignment = 1
+
+[node name="BarEnergie" type="ProgressBar" parent="PanelContainer/HBoxContainer/VBoxEnergie"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 50.0
+step = 1.0
+value = 50.0
+allow_greater = true
 
 [node name="MessageBox" parent="PanelContainer" instance=ExtResource("3_w4qkx")]
 unique_name_in_owner = true

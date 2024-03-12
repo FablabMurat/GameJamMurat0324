@@ -69,8 +69,10 @@ func _ready():
 	$Player.stepSpawn.connect(stepSpawn.bind())
 	$Player.score.connect(addScore.bind())
 	$Player.message.connect($Overlay.message.bind())
+	$Player.fatigue.connect($Overlay.setBarFatigue.bind())
 	
-	$Feu.firedeath.connect($Overlay.gameover)
+	$Feu.firedeath.connect($Overlay.gameover.bind())
+	$Feu.firetimeleft.connect($Overlay.setBarFeu.bind())
 	
 	init_overlays()
 	
@@ -134,7 +136,7 @@ func addScore(nbpts):
 	$Overlay.updateScore(nbpts)
 
 func refreshFatigue(energie : int):
-	$Overlay.setFatigue(energie)
+	$Overlay.setBarFatigue(energie)
 
 func increaseFire(nb):
 	#print("test increasefire %d" % nb)
