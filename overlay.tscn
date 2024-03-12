@@ -70,6 +70,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 alignment = 1
 
+[node name="BarFeu" type="ProgressBar" parent="PanelContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+
 [node name="LabelScore" type="Label" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
@@ -81,6 +85,10 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0784314, 0.313726, 0.313726, 1)
 theme_override_font_sizes/font_size = 40
 text = "000"
+
+[node name="BarEnergie" type="ProgressBar" parent="PanelContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
 
 [node name="MessageBox" parent="PanelContainer" instance=ExtResource("3_w4qkx")]
 unique_name_in_owner = true
