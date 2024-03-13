@@ -11,15 +11,28 @@ signal firetimeleft
 signal firedeath
 signal getWindDirection
 
+const ENERGY_PER_TIMELEFT = 16.0 / 60
+const ENERGY_MIN = 160.0 / 60
+const RANGE_PER_TIMELEFT = 25.0 / 60
+const RANGE_MIN = 250.0 / 60
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AudioStreamPlayer3D.play()
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	timeLeft = $Timer.time_left
 	firetimeleft.emit(timeLeft)
+	
+	var range = max (RANGE_PER_TIMELEFT * timeLeft, \
+								RANGE_MIN)
+	if timeLeft > 60 : range *= timeLeft*timeLeft / 3600
+	$OmniLight3D.omni_range = range
+	var energy = max (ENERGY_PER_TIMELEFT * timeLeft, \
+								ENERGY_MIN)
+	if timeLeft > 60 : energy *= timeLeft*timeLeft / 3600
+	$OmniLight3D.light_energy = energy
 	
 	$Feu1.lifetime = timeLeft/4
 #	if Input.is_action_just_pressed("addLog"):
