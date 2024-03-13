@@ -149,7 +149,7 @@ func _on_pres_du_feu_timer_timeout():
 		# on gagne des points
 		score.emit(10)
 		# on réduit la fatigue
-		energie += 10
+		energie += 5
 		fatigue.emit(energie)
 
 func _input(event):
