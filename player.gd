@@ -87,12 +87,6 @@ func _process(delta):
 	
 	animate()
 
-func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		if event.button_mask & (MOUSE_BUTTON_MASK_MIDDLE + MOUSE_BUTTON_MASK_RIGHT):
-			camrot += event.relative.x * 0.005
-			#print("Camera3D Rotation: ", camrot)
-
 func animate():
 	if(velocity != Vector3.ZERO):
 		$PlayerCenter/PlayerSprite3D.play()
@@ -159,6 +153,11 @@ func _on_pres_du_feu_timer_timeout():
 		fatigue.emit(energie)
 
 func _input(event):
+	if event is InputEventMouseMotion:
+		if event.button_mask & (MOUSE_BUTTON_MASK_MIDDLE + MOUSE_BUTTON_MASK_RIGHT):
+			camrot += event.relative.x * 0.005
+			print("Camera3D Rotation: ", camrot)
+
 	if event.is_action_pressed("ui_hache"):
 		if not sapinsProches.is_empty():
 			sapinsProches.values()[0].cutwood()
