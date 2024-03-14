@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://4k8kyv1wpb6n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxs5s"]
+bg_color = Color(0.372549, 0.682353, 0.4, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lhyu"]
+bg_color = Color(0.698039, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j1427"]
+bg_color = Color(0.803922, 0.529412, 0.247059, 1)
+
+[resource]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_fxs5s")
+ProgressBarAlert/base_type = &"ProgressBar"
+ProgressBarAlert/styles/fill = SubResource("StyleBoxFlat_1lhyu")
+ProgressBarWarning/base_type = &"ProgressBar"
+ProgressBarWarning/styles/fill = SubResource("StyleBoxFlat_j1427")

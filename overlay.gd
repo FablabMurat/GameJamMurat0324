@@ -68,9 +68,21 @@ func updateScore(nbpts : int):
 
 func setBarFatigue(energie : int):
 	%BarEnergie.value = energie
+	if energie <= 10:
+		%BarEnergie.set_theme_type_variation("ProgressBarAlert")
+	elif energie <= 30:
+		%BarEnergie.set_theme_type_variation("ProgressBarWarning")
+	else:
+		%BarEnergie.set_theme_type_variation("")
 
 func setBarFeu(timeleft : float):
 	%BarFeu.value = timeleft
+	if timeleft <= 10:
+		%BarFeu.set_theme_type_variation("ProgressBarAlert")
+	elif timeleft <= 25:
+		%BarFeu.set_theme_type_variation("ProgressBarWarning")
+	else:
+		%BarFeu.set_theme_type_variation("")
 
 func test_hi_scores():
 #	var f = FileAccess.open(HIGH_SCORES_FILE, FileAccess.WRITE)
