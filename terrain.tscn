@@ -55,7 +55,6 @@ visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_478pm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0254318, -7)
-PLAYER_SPEED = 500
 
 [node name="Feu" parent="." groups=["feu"] instance=ExtResource("3_kpjjy")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

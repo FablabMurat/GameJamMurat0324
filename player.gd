@@ -160,9 +160,9 @@ func _input(event):
 
 	if event.is_action_pressed("ui_hache"):
 		if not sapinsProches.is_empty():
-			sapinsProches.values()[0].cutwood()
 			if has_hache():
 				# coupe d'un arbre
+				sapinsProches.values()[0].cutwood()
 				useHache()
 			else:
 				message.emit("il faut d'abord une hache !",IMG_HACHE)
