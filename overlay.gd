@@ -15,6 +15,8 @@ func _ready():
 	%QuitButton.pressed.connect(quit_game)
 	%RestartButton.pressed.connect(restart_game)
 	%StartButton.pressed.connect(start_game)
+	%StartButton.grab_focus()
+	get_viewport().warp_mouse(%StartButton.global_position)
 	
 	%LabelHiScore.visible = false
 	%HBoxName.visible = false
