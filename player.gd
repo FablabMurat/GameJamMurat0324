@@ -127,14 +127,12 @@ func _on_area_3d_body_entered(body):
 		#print ("près d'un arbre ")
 		sapinsProches[body.get_rid()] = body
 	elif body.is_in_group("feu"):
-		# on est suffisamment proche du feu
+		# on est suffisamment proche du feu, on jouera la musique après le timer
 		flagPresDuFeu = true
 		$PresDuFeuTimer.start()
 		#print ("près du feu ")
-		#$FoyerStreamPlayer.start()
 	else:
 		pass
-		#prints ("autre body :", body)
 		
 func _on_area_3d_body_exited(body):
 	if body.is_in_group("arbre"):
@@ -142,15 +140,31 @@ func _on_area_3d_body_exited(body):
 		sapinsProches.erase(body.get_rid())
 	elif body.is_in_group("feu"):
 		$PresDuFeuTimer.stop()
-		#$FoyerStreamPlayer.stop()
+		stopFoyerMusic()
+
+func playFoyerMusic():
+	if not $FoyerStreamPlayer.playing: 
+		$FoyerStreamPlayer.play()
+	get_parent().get_node("AudioStreamPlayer").volume_db = -20
+
+func stopFoyerMusic():
+	$FoyerStreamPlayer.stop()
+	get_parent().get_node("AudioStreamPlayer").volume_db =0
+
+func _on_foyer_stream_player_finished():
+	$FoyerStreamPlayer.start()
 
 func _on_pres_du_feu_timer_timeout():
 	if velocity.x == 0  and  velocity.z == 0:
+		# on démarre la musique douce :
+		playFoyerMusic()
 		# on gagne des points
 		score.emit(10)
 		# on réduit la fatigue
 		energie += 5
 		fatigue.emit(energie)
+	else:
+		stopFoyerMusic()
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -186,8 +200,3 @@ func useHache():
 			message.emit("La hache est cassée !", IMG_HACHE)
 			# En rebalancer une ailleurs
 			get_parent().recreatehache()
-
-func _on_foyer_stream_player_finished():
-	$FoyerStreamPlayer.start()
-	pass # Replace with function body.
-
