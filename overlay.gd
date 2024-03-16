@@ -26,6 +26,7 @@ func _ready():
 	%HiScoresButton.visible = true
 	
 	%MessageBox.hide()
+	%MessageInfo.hide()
 	
 	get_tree().paused = true
 	
@@ -224,7 +225,13 @@ func show_hi_scores(player : String = ""):
 	$HiScores.add_child(hicontrol)
 
 func message(text : String, icone : Texture = null):
-	%MessageBox.message(text, icone)
+	if false :
+		%MessageBox.message(text, icone)
+	else:
+		%MessageInfo.text = text
+		%MessageInfo.show()
+		%MessageInfo/Timer.timeout.connect(func (): %MessageInfo.hide() )
+		%MessageInfo/Timer.start()
 
 func _on_hi_scores_button_pressed():
 	show_hi_scores()
