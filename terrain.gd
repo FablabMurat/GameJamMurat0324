@@ -144,4 +144,7 @@ func increaseFire(nb):
 	$Feu.fireGestion(10*nb)
 	
 func stepSpawn():
-	createdecor(Step_Scene, $Player.position.x,$Player.position.z)
+	var step : Sprite3D = createdecor(Step_Scene, $Player.position.x,$Player.position.z)
+	# TODO : revérifier que la velocity n'est pas nulle
+	if $Player.velocity != Vector3.ZERO:
+		step.look_at($Player.position + $Player.velocity)

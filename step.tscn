@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://step.gd" id="2_fhyi4"]
 
 [node name="Step" type="Sprite3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0907146, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.0907146, 0)
 axis = 1
 texture = ExtResource("1_8radl")
 script = ExtResource("2_fhyi4")
