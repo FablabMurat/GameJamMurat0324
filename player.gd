@@ -15,6 +15,7 @@ const MIN_ENERGIE = 20.0
 const MAX_ENERGIE = 50.0
 const FATIGUE_PAR_SECONDE = 0.2
 var energie : float = MAX_ENERGIE
+var lastDistance : float = 0.0
 
 # Une hache permet de couper 3 sapins
 const PTS_MAX_HACHE = 150
@@ -41,9 +42,23 @@ func _physics_process(delta):
 	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	direction.z = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backwards")
 	
-	velocity = direction.normalized().rotated(Vector3.UP,$PlayerCenter.rotation.y) * PLAYER_SPEED
-	set_velocity(velocity * delta * min(1.0,energie/MAX_ENERGIE))
+	var newvelocity : Vector3 = direction.normalized().rotated(Vector3.UP,$PlayerCenter.rotation.y) * PLAYER_SPEED
+	newvelocity *= delta * max(0.2,min(1.0,energie/MAX_ENERGIE))
+	set_velocity(newvelocity)
 	move_and_slide()
+	
+	# consommation d'energie si on bouge
+	if newvelocity != Vector3.ZERO:
+		energie -= FATIGUE_PAR_SECONDE * delta
+		if energie < MIN_ENERGIE: energie = MIN_ENERGIE
+		fatigue.emit(energie)
+		
+		lastDistance += newvelocity.length()
+		#print (lastDistance)
+		if lastDistance > 200.0:  # valeur arbitraire à régler
+			lastDistance = 0
+			$StepStreamPlayer.play()
+			stepSpawn.emit()
 	
 	var dejaunehache = false
 	for index in get_slide_collision_count():
@@ -110,17 +125,6 @@ func animate():
 
 func has_hache():
 	return nbhache > 0
-
-func _on_step_timer_timeout():
-	if(velocity != Vector3.ZERO):
-		# on brule de l'énergie
-		energie -= FATIGUE_PAR_SECONDE
-		if energie < MIN_ENERGIE: energie = MIN_ENERGIE
-		fatigue.emit(energie)
-		# on marque un pas
-		stepSpawn.emit()
-		$StepStreamPlayer.play()
-
 
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("arbre"):
