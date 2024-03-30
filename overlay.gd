@@ -8,6 +8,8 @@ const MAX_HI_SCORES = 20
 var hi_scores = null
 const MONTHS = ["","janvier","février","mars","avril","mai","juin","juillet","aout","septembre", "octobre","novembre","decembre"]
 
+const RESTART_FILE = "user://restart.flag"
+
 func _ready():
 	$PanelContainer/HBoxContainer.hide()
 	
@@ -35,6 +37,11 @@ func _ready():
 	get_viewport().size_changed.connect(resized.bind())
 	resized()
 	
+	if FileAccess.file_exists(RESTART_FILE):
+		var dir = DirAccess.open("user://")
+		dir.remove(RESTART_FILE)
+		start_game()
+		
 	#test_hi_scores()
 
 func resized():
@@ -206,6 +213,8 @@ func valid_hi_score():
 		
 		
 func restart_game():
+	var f = FileAccess.open(RESTART_FILE, FileAccess.WRITE)
+	f.close()
 	get_tree().reload_current_scene()
 	get_tree().paused = false
 	$Menu.visible = false
