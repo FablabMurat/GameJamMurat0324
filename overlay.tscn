@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dui40bsirnsln"]
+[gd_scene load_steps=9 format=3 uid="uid://dui40bsirnsln"]
 
 [ext_resource type="Script" path="res://overlay.gd" id="1_ermqy"]
 [ext_resource type="Texture2D" uid="uid://bqjjc334d4hj1" path="res://Ressources/Environnement/Buche_1.png" id="2_3sbw4"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bikwbmpr8e60e" path="res://messagebox.tscn" id="3_w4qkx"]
 [ext_resource type="Theme" uid="uid://4k8kyv1wpb6n" path="res://colorprogressbar.tres" id="4_vh802"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_njrpe"]
+
 [node name="Overlay" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_ermqy")
@@ -15,6 +17,7 @@ script = ExtResource("1_ermqy")
 [node name="PanelContainer" type="PanelContainer" parent="."]
 offset_right = 1155.0
 offset_bottom = 647.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_njrpe")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
