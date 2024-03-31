@@ -18,7 +18,7 @@ shape = SubResource("CylinderShape3D_y1ftp")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.515, 0, 0, 0, 0.515, 0, 0, 0, 0.515, 0, -0.15, 0)
-offset = Vector2(0, 560)
+offset = Vector2(0, 600)
 billboard = 1
 texture = ExtResource("2_4i5ct")
 
