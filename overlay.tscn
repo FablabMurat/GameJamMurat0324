@@ -166,7 +166,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.827451, 0.427451, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "Hiver Tranquille"
+text = "Hiver Tranquille (ou pas ...)"
 horizontal_alignment = 1
 
 [node name="GameOver" type="Label" parent="Menu/PanelContainer/Center/VBoxCenter"]
@@ -187,12 +187,16 @@ theme_override_font_sizes/font_size = 30
 text = "Hi score ?"
 horizontal_alignment = 1
 
-[node name="HBoxName" type="HBoxContainer" parent="Menu/PanelContainer/Center/VBoxCenter"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/PanelContainer/Center/VBoxCenter"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="HBoxName" type="HBoxContainer" parent="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="PlayerName" type="LineEdit" parent="Menu/PanelContainer/Center/VBoxCenter/HBoxName"]
+[node name="PlayerName" type="LineEdit" parent="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer/HBoxName"]
 layout_mode = 2
 theme_override_constants/minimum_character_width = 16
 theme_override_font_sizes/font_size = 30
@@ -200,46 +204,46 @@ placeholder_text = "votre nom"
 max_length = 20
 expand_to_text_length = true
 
-[node name="NameButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter/HBoxName"]
+[node name="NameButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer/HBoxName"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "OK"
 
-[node name="StartButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
+[node name="StartButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = ExtResource("3_2n0gg")
 text = "Démarrer"
 
-[node name="RestartButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
+[node name="AideButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Aide / Règles"
+
+[node name="RestartButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = ExtResource("3_2n0gg")
 text = "Recommencer"
 
-[node name="AideButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Aide / Règles"
-
-[node name="HiScoresButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
+[node name="HiScoresButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/hover = ExtResource("3_2n0gg")
 text = "Top 20 des scores"
 
-[node name="PauseButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
+[node name="PauseButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = ExtResource("3_2n0gg")
 text = "Reprendre"
 
-[node name="QuitButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
+[node name="QuitButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
@@ -286,9 +290,9 @@ volume_db = 5.0
 [node name="PopUp" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[connection signal="text_changed" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/PlayerName" to="." method="activate_namebutton"]
-[connection signal="text_submitted" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/PlayerName" to="." method="submit_hi_score"]
-[connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/NameButton" to="." method="valid_hi_score"]
-[connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/AideButton" to="." method="show_aide"]
-[connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/HiScoresButton" to="." method="_on_hi_scores_button_pressed"]
+[connection signal="text_changed" from="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer/HBoxName/PlayerName" to="." method="activate_namebutton"]
+[connection signal="text_submitted" from="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer/HBoxName/PlayerName" to="." method="submit_hi_score"]
+[connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer/HBoxName/NameButton" to="." method="valid_hi_score"]
+[connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer/AideButton" to="." method="show_aide"]
+[connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer/HiScoresButton" to="." method="_on_hi_scores_button_pressed"]
 [connection signal="child_exiting_tree" from="PopUp" to="." method="_on_hi_scores_child_exiting_tree"]
