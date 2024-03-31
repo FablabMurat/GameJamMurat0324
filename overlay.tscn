@@ -166,7 +166,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.827451, 0.427451, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "Nom du jeu :)"
+text = "Hiver Tranquille"
 horizontal_alignment = 1
 
 [node name="GameOver" type="Label" parent="Menu/PanelContainer/Center/VBoxCenter"]
