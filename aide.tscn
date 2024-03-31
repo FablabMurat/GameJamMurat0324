@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://3i1he7oi4k73"]
+
+[ext_resource type="Theme" uid="uid://blg1w03v5jqi1" path="res://a_theme.tres" id="1_u8qen"]
+[ext_resource type="Script" path="res://aide.gd" id="2_birqf"]
+
+[node name="Aide" type="PanelContainer"]
+offset_right = 1155.0
+offset_bottom = 647.0
+theme = ExtResource("1_u8qen")
+script = ExtResource("2_birqf")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.313726, 0.313726, 1)
+theme_override_font_sizes/font_size = 30
+text = "Les règles du jeu"
+horizontal_alignment = 1
+
+[node name="RichText" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Objectif[/b] : Rester tranquillement près du feu
+
+Plus tu restes longtemps près du feu, plus tu gagnes des points.
+Mais attention le bois se consomme et le feu diminue. Pour alimenter le feu, il faut aller chercher du bois dans la forêt.
+
+Si tu ne trouves pas assez de bois, il faut en couper avec une hache en abattant des sapins. Il faut plus d'un coup de hache pour avoir une buche.
+Attention, il n'y a pas beaucoup de haches et elles s'usent.
+
+En coupant du bois et en marchant, tu te fatigues et tu marches de moins en moins vite. Tu peux regagner rapidement de l'énergie en restant près du feu. Attention de ne pas se perdre en route ; suis tes traces.
+
+[u]Commandes :[/u]
+- se déplacer : les flèches du clavier, le bloc QSZD sur le clavier Azerty, les flèches de la manette
+- couper du bois : touche Espace ou 0 du pavé numérique, bouton A de la manette Xbox
+- pivoter la vue : clic droit de la souris,  ??? de la manette
+- pause : Echap
+
+[center][b]Bonne chance ![/b][/center]
+"
+fit_content = true
+scroll_active = false
+
+[node name="HBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FermerButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Fermer"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/FermerButton" to="." method="_on_fermer_pressed"]
