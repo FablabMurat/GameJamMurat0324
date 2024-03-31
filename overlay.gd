@@ -57,6 +57,10 @@ func set_margins():
 func _process(_delta):  #FIXME ce n'est peut-être la meilleure fonction
 	if Input.is_action_just_pressed("pause_toggle") and not %StartButton.visible:
 		toggle_pause()
+	elif Input.is_action_just_pressed("help") and $PopUp.get_child_count() == 0:
+		if not get_tree().paused :
+			toggle_pause()
+		show_aide()
 
 func start_game():
 	get_tree().paused = false
