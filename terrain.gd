@@ -24,7 +24,7 @@ const NBHACHES = 10
 const HacheScene = preload("res://hache.tscn")
 
 # SCENES NEIGE
-const NBNEIGE = 20000
+const NBNEIGE = 8000
 const Neige0_Scene = preload("res://neige_00.tscn")
 const Neige1_Scene = preload("res://neige_01.tscn")
 const Neige2_Scene = preload("res://neige_02.tscn")
