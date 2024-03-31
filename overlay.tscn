@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dui40bsirnsln"]
+[gd_scene load_steps=10 format=3 uid="uid://dui40bsirnsln"]
 
 [ext_resource type="Script" path="res://overlay.gd" id="1_ermqy"]
 [ext_resource type="Texture2D" uid="uid://bqjjc334d4hj1" path="res://Ressources/Environnement/Buche_1.png" id="2_3sbw4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://chyf5o6jgg3ov" path="res://Ressources/Environnement/Hache.png" id="3_lirvw"]
 [ext_resource type="PackedScene" uid="uid://bikwbmpr8e60e" path="res://messagebox.tscn" id="3_w4qkx"]
 [ext_resource type="Theme" uid="uid://4k8kyv1wpb6n" path="res://colorprogressbar.tres" id="4_vh802"]
+[ext_resource type="Theme" uid="uid://blg1w03v5jqi1" path="res://a_theme.tres" id="6_qlbgr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_njrpe"]
 
@@ -145,6 +146,7 @@ one_shot = true
 offset_top = -2.0
 offset_right = 1153.0
 offset_bottom = 652.0
+theme = ExtResource("6_qlbgr")
 
 [node name="TransparencyOverlay" type="ColorRect" parent="Menu/PanelContainer"]
 visible = false

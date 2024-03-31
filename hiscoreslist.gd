@@ -7,6 +7,8 @@ func _ready():
 	# Détection du passage en plein écran
 	get_viewport().size_changed.connect(resized.bind())
 	resized()
+	%FermerButton.grab_focus()
+	%FermerButton.grab_click_focus()
 
 # Repositionnement du Control en cas de redimensionnement de la fenêtre
 func resized():

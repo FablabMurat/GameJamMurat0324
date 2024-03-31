@@ -4,4 +4,5 @@
 
 [resource]
 Button/fonts/font = null
+Button/styles/focus = ExtResource("1_o0860")
 Button/styles/hover = ExtResource("1_o0860")

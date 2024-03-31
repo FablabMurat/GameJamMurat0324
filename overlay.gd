@@ -55,7 +55,7 @@ func set_margins():
 		$PanelContainer/MarginContainer.add_theme_constant_override("margin_%s" % dir, MARGIN_VALUE)
 
 func _process(_delta):  #FIXME ce n'est peut-être la meilleure fonction
-	if Input.is_action_just_pressed("pause_toggle"):
+	if Input.is_action_just_pressed("pause_toggle") and not %StartButton.visible:
 		toggle_pause()
 
 func start_game():
@@ -63,6 +63,7 @@ func start_game():
 	$Menu.visible = false
 	%PauseButton.visible = true
 	%StartButton.visible = false
+	%HiScoresButton.visible = false
 	
 	$PanelContainer/HBoxContainer.show()
 	
@@ -170,9 +171,12 @@ func add_hi_score(joueur, pts):
 			hi_scores.resize(MAX_HI_SCORES)
 
 func toggle_pause():
-	get_tree().paused = not get_tree().paused
-	$Menu.visible = get_tree().paused
-	%PauseButton.visible = get_tree().paused
+	var onpause = not get_tree().paused
+	get_tree().paused = onpause
+	$Menu.visible = onpause
+	%RestartButton.visible = onpause
+	%PauseButton.visible = onpause
+	if onpause: %PauseButton.grab_focus()
 
 func gameover():
 	$GameOverStreamPlayer.play()
@@ -185,12 +189,15 @@ func gameover():
 		%LabelHiScore.text = "Vous rentrez dans le Top %d !" % MAX_HI_SCORES
 		%HBoxName.visible = true
 		%HBoxName/NameButton.disabled = true
+		%RestartButton.visible = true
 		%HBoxName/PlayerName.grab_focus()
 		%HBoxName/NameButton.grab_click_focus()
 	else:
 		%LabelHiScore.text = "%d points, c'est pas si mal !" % score
-		%LabelHiScore.visible = false
+		%LabelHiScore.visible = true
 		%RestartButton.visible = true
+		%RestartButton.grab_focus()
+		%RestartButton.grab_click_focus()
 	%LabelHiScore.visible = true
 
 func activate_namebutton(newText : String):
@@ -247,3 +254,4 @@ func _on_hi_scores_button_pressed():
 
 func _on_hi_scores_child_exiting_tree(_node):
 	$Menu.show()
+	%StartButton.grab_focus()
