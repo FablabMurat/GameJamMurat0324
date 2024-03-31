@@ -193,7 +193,10 @@ func gameover():
 		%HBoxName/PlayerName.grab_focus()
 		%HBoxName/NameButton.grab_click_focus()
 	else:
-		%LabelHiScore.text = "%d points, c'est pas si mal !" % score
+		if score == 0 :
+			%LabelHiScore.text = "0 point, ça doit pouvoir s'améliorer"
+		else :
+			%LabelHiScore.text = "%d point%s, c'est pas si mal !" % [score, "s" if score > 1 else ""]
 		%LabelHiScore.visible = true
 		%RestartButton.visible = true
 		%RestartButton.grab_focus()
