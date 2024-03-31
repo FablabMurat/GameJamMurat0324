@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bnlllkppwq7gn"]
+
+[resource]
+vertex_color_use_as_albedo = true
+billboard_mode = 1
+billboard_keep_scale = true
