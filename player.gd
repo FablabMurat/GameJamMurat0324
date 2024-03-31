@@ -166,6 +166,7 @@ func _on_pres_du_feu_timer_timeout():
 		score.emit(10)
 		# on réduit la fatigue
 		energie += 5
+		if (energie > 150): energie = 150
 		fatigue.emit(energie)
 	else:
 		stopFoyerMusic()
