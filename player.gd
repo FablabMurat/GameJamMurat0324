@@ -72,7 +72,7 @@ func _physics_process(delta):
 			collected.emit("buche",1)
 			score.emit(1)
 		
-		elif body.is_in_group("hache") and not dejaunehache :
+		elif body.is_in_group("hache") and nbhache < NBMAX["hache"] and not dejaunehache :
 			# Attention, on peut avoir 2 collisions : une par Body3D...
 			#print("player collect hache")
 			nbhache += 1
