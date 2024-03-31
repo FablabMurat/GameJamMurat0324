@@ -55,15 +55,12 @@ func fireGestion(amount):
 	timeLeft = timeLeft + amount
 	$Timer.start(timeLeft)
 	# Adaptation de l'effet visuel du feu
-	print("fire radius avant: %f" % $Feu1.process_material.emission_ring_radius)
+#	print("fire radius avant: %f" % $Feu1.process_material.emission_ring_radius)
 	var new_radius = timeLeft*(0.75/50.0)
-	if new_radius <1.0:
-		$Feu1.process_material.emission_ring_radius = max(0.34,new_radius)
-	else:
-		$Feu1.process_material.emission_ring_radius = 1.0
+	$Feu1.process_material.emission_ring_radius = max(0.34,min(1.0,new_radius))
 	#print("fire added: %d" % amount)
-	print("fire timeleft: %f" % timeLeft)
-	print("fire radius après: %f" % $Feu1.process_material.emission_ring_radius)
+#	print("fire timeleft: %f" % timeLeft)
+#	print("fire radius après: %f" % $Feu1.process_material.emission_ring_radius)
 
 
 func getwindDirection():
