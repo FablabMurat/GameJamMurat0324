@@ -219,10 +219,16 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = ExtResource("3_2n0gg")
 text = "Recommencer"
 
+[node name="AideButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Aide / Règles"
+
 [node name="HiScoresButton" type="Button" parent="Menu/PanelContainer/Center/VBoxCenter"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 24
 theme_override_styles/hover = ExtResource("3_2n0gg")
 text = "Top 20 des scores"
 
@@ -282,5 +288,6 @@ volume_db = 5.0
 [connection signal="text_changed" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/PlayerName" to="." method="activate_namebutton"]
 [connection signal="text_submitted" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/PlayerName" to="." method="submit_hi_score"]
 [connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/NameButton" to="." method="valid_hi_score"]
+[connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/AideButton" to="." method="show_aide"]
 [connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/HiScoresButton" to="." method="_on_hi_scores_button_pressed"]
 [connection signal="child_exiting_tree" from="HiScores" to="." method="_on_hi_scores_child_exiting_tree"]

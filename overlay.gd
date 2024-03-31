@@ -258,3 +258,10 @@ func _on_hi_scores_button_pressed():
 func _on_hi_scores_child_exiting_tree(_node):
 	$Menu.show()
 	%StartButton.grab_focus()
+
+func show_aide():
+	const aideScene = preload("res://aide.tscn")
+	$Menu.hide()
+	var aideControl = aideScene.instantiate()
+	$HiScores.add_child(aideControl)
+	pass # Replace with function body.
