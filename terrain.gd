@@ -61,7 +61,7 @@ func _ready():
 	createdecorswithSceneList(HerbeScenes,NBHERBES)
 	
 	# La première hache, facile à trouver
-	createdecor(HacheScene,3,3,null)
+	createdecor(HacheScene,4,4,null, true)
 	createdecorswithSceneList([HacheScene],NBHACHES)
 	
 	$Player.collected.connect(update_overlay.bind())
@@ -81,12 +81,10 @@ func init_overlays():
 		update_overlay(item, 0)
 
 	
-func createdecorswithSceneList(scenelist, nbmax : int):
-	var x: float
-	var z: float
+func createdecorswithSceneList(scenelist, nbmax : int, randomRotate : bool = false):
 	for i in range(nbmax):
 		var sceneindex = randi_range(0, scenelist.size()-1)
-		createrandomdecor(scenelist[sceneindex])
+		createrandomdecor(scenelist[sceneindex],null,randomRotate)
 
 func createdecorswithSpriteList(scene : PackedScene, spriteList, nbmax : int):
 	for i in range(nbmax):
@@ -96,21 +94,22 @@ func createdecorswithSpriteList(scene : PackedScene, spriteList, nbmax : int):
 		else:
 			createrandomdecor(scene)
 
-func createrandomdecor(scenemodel, resTexture = null):
+func createrandomdecor(scenemodel, resTexture = null, randomRotate : bool = false):
 	var x
 	var z
 	x = randf()*198.0-99.0
 	z = randf()*198.0-99.0
 	if abs(x) < 5 and abs(z) < 5:
 		return
-	return createdecor(scenemodel,x,z,resTexture)
+	return createdecor(scenemodel,x,z,resTexture, randomRotate)
 
-func createdecor(scenemodel, x, z, resTexture = null):
+func createdecor(scenemodel, x, z, resTexture = null, randomRotate : bool = false):
 	var decor = scenemodel.instantiate()
 	if resTexture != null :
 		decor.set_sprite3D(resTexture)
 	decor.position.x = x
 	decor.position.z = z
+	if randomRotate: decor.rotation.y = randf() * PI
 	add_child(decor)
 	return decor
 
@@ -118,7 +117,7 @@ func recreatehache():
 	createrandomdecor(HacheScene)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(Input.is_action_pressed("debug")):
 		$Overlay.gameover()
 	pass
