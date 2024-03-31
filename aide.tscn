@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://3i1he7oi4k73"]
+[gd_scene load_steps=8 format=3 uid="uid://3i1he7oi4k73"]
 
 [ext_resource type="Theme" uid="uid://blg1w03v5jqi1" path="res://a_theme.tres" id="1_u8qen"]
 [ext_resource type="Script" path="res://aide.gd" id="2_birqf"]
+[ext_resource type="Texture2D" uid="uid://dgvrrto0holeh" path="res://Ressources/Joueur/garcon-devant0003.png" id="3_rm2e6"]
+[ext_resource type="Texture2D" uid="uid://bf2u2s6xtvb42" path="res://Ressources/Environnement/Feu/FEU5.png" id="3_wkptw"]
+[ext_resource type="Texture2D" uid="uid://c54jnmbaqen2o" path="res://Ressources/Environnement/Buche_2.png" id="4_b5lfg"]
+[ext_resource type="Texture2D" uid="uid://d262vw8ioi47e" path="res://Ressources/Environnement/Hache_00.png" id="5_6t4ii"]
+[ext_resource type="Texture2D" uid="uid://csw3ppvqsv1n5" path="res://Ressources/Environnement/Arbre_4.png" id="7_bekiu"]
 
 [node name="Aide" type="PanelContainer"]
 offset_right = 1155.0
@@ -24,7 +29,11 @@ theme_override_font_sizes/font_size = 30
 text = "Les règles du jeu"
 horizontal_alignment = 1
 
-[node name="RichText" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+[node name="HBox1" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RichText" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBox1"]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -40,20 +49,52 @@ Attention, il n'y a pas beaucoup de haches et elles s'usent.
 
 En coupant du bois et en marchant, tu te fatigues et tu marches de moins en moins vite. Tu peux regagner rapidement de l'énergie en restant près du feu. Attention de ne pas se perdre en route ; suis tes traces.
 
-[u]Commandes :[/u]
-- se déplacer : les flèches du clavier, le bloc QSZD sur le clavier Azerty, les flèches de la manette
-- couper du bois : touche Espace ou 0 du pavé numérique, bouton A de la manette Xbox
-- pivoter la vue : clic droit de la souris,  ??? de la manette
-- pause : Echap
+[u][b]Commandes :[/b][/u]
+- [b]se déplacer[/b] : les flèches du clavier, le bloc QSZD sur le clavier Azerty, les flèches de la manette
+- [b]couper du bois[/b] : touche Espace ou 0 du pavé numérique, bouton A de la manette Xbox
+- [b]pivoter la vue[/b] : clic droit de la souris,  ??? de la manette
+- [b]pause/menu[/b] : Echap
 
-[center][b]Bonne chance ![/b][/center]
+[center][b][color=#d36d00][font_size=24]Bonne chance ![/font_size][/color][/b][/center]
 "
 fit_content = true
 scroll_active = false
 
-[node name="HBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBox1"]
 layout_mode = 2
+
+[node name="TextureJoueur" type="TextureRect" parent="CenterContainer/VBoxContainer/HBox1/VBox"]
+layout_mode = 2
+texture = ExtResource("3_rm2e6")
+stretch_mode = 5
+
+[node name="TextureFeu" type="TextureRect" parent="CenterContainer/VBoxContainer/HBox1/VBox"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+texture = ExtResource("3_wkptw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureBuche" type="TextureRect" parent="CenterContainer/VBoxContainer/HBox1/VBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("4_b5lfg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureHache" type="TextureRect" parent="CenterContainer/VBoxContainer/HBox1/VBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("5_6t4ii")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureSapin" type="TextureRect" parent="CenterContainer/VBoxContainer/HBox1/VBox"]
+custom_minimum_size = Vector2(60, 100)
+layout_mode = 2
+texture = ExtResource("7_bekiu")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="FermerButton" type="Button" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true

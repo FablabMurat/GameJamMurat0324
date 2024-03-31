@@ -4,6 +4,7 @@ extends PanelContainer
 func _ready():
 	get_viewport().size_changed.connect(resized.bind())
 	resized()
+	%FermerButton.grab_focus()
 
 # Repositionnement du Control en cas de redimensionnement de la fenêtre
 func resized():
