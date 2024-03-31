@@ -241,7 +241,7 @@ func show_hi_scores(player : String = ""):
 	var hicontrol = hiScene.instantiate()
 	load_hi_scores()
 	hicontrol.display(hi_scores, player)
-	$HiScores.add_child(hicontrol)
+	$PopUp.add_child(hicontrol)
 
 func message(text : String, icone : Texture = null):
 	if false :
@@ -263,5 +263,5 @@ func show_aide():
 	const aideScene = preload("res://aide.tscn")
 	$Menu.hide()
 	var aideControl = aideScene.instantiate()
-	$HiScores.add_child(aideControl)
+	$PopUp.add_child(aideControl)
 	pass # Replace with function body.

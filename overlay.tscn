@@ -283,11 +283,12 @@ uri = "https://www.youtube.com/watch?v=rCh70TsaHJ8"
 stream = ExtResource("3_7h66k")
 volume_db = 5.0
 
-[node name="HiScores" type="Node2D" parent="."]
+[node name="PopUp" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [connection signal="text_changed" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/PlayerName" to="." method="activate_namebutton"]
 [connection signal="text_submitted" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/PlayerName" to="." method="submit_hi_score"]
 [connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/HBoxName/NameButton" to="." method="valid_hi_score"]
 [connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/AideButton" to="." method="show_aide"]
 [connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/HiScoresButton" to="." method="_on_hi_scores_button_pressed"]
-[connection signal="child_exiting_tree" from="HiScores" to="." method="_on_hi_scores_child_exiting_tree"]
+[connection signal="child_exiting_tree" from="PopUp" to="." method="_on_hi_scores_child_exiting_tree"]
