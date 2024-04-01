@@ -54,7 +54,7 @@ func _ready():
 	
 	createdecorswithSpriteList(Sapin_Scene, resSapins, NBSAPINS)
 	createdecorswithSpriteList(BucheScene, null, NBBUCHES)
-	createdecorswithSpriteList(RocherScene, resRochers, NBBUCHES)
+	createdecorswithSpriteList(RocherScene, resRochers, NBROCHERS)
 	
 	# On ne passe pas par un SpriteList car les Sprites3D n'ont pas tous la même position
 	createdecorswithSceneList(NeigeScenes,NBNEIGE)
