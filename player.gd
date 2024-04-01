@@ -90,7 +90,8 @@ func _physics_process(delta):
 		else:
 			# contact avec un élément du décor avec mask=2 (sinon on passe à travers)
 			pass #prints("autre collision avec (arbre, sol ou rocher ?) ",body)
-		
+	global_position.x = min(99.5,max(-99.5,global_position.x))
+	global_position.z = min(99.5,max(-99.5,global_position.z))
 
 func _process(delta):
 	#var tmprot = Input.get_action_strength("look_right") - Input.get_action_strength("look_left")
