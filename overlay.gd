@@ -6,6 +6,8 @@ var score = 0
 const HIGH_SCORES_FILE = "user://gamejamhiver2024-scores.json"
 const MAX_HI_SCORES = 20
 var hi_scores = null
+var isgameover = false
+
 const MONTHS = ["","janvier","février","mars","avril","mai","juin","juillet","aout","septembre", "octobre","novembre","decembre"]
 
 const RESTART_FILE = "user://restart.flag"
@@ -175,6 +177,7 @@ func add_hi_score(joueur, pts):
 			hi_scores.resize(MAX_HI_SCORES)
 
 func toggle_pause():
+	if isgameover: return
 	var onpause = not get_tree().paused
 	get_tree().paused = onpause
 	$Menu.visible = onpause
@@ -183,6 +186,7 @@ func toggle_pause():
 	if onpause: %PauseButton.grab_focus()
 
 func gameover():
+	isgameover = true
 	$GameOverStreamPlayer.play()
 	get_tree().paused = true
 	$Menu.visible = true
