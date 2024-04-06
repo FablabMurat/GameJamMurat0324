@@ -12,10 +12,6 @@ func resized():
 	self.size = vp.size
 	self.size = vp.size
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _on_fermer_pressed():
 	self.queue_free()
 	pass # Replace with function body.

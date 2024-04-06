@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://cg8qcfhmiqg81"]
+
+[ext_resource type="Theme" uid="uid://blg1w03v5jqi1" path="res://a_theme.tres" id="1_gfp4i"]
+[ext_resource type="Script" path="res://aide.gd" id="2_1ikq6"]
+[ext_resource type="Texture2D" uid="uid://dgvrrto0holeh" path="res://Ressources/Joueur/garcon-devant0003.png" id="3_ci48d"]
+[ext_resource type="Texture2D" uid="uid://bf2u2s6xtvb42" path="res://Ressources/Environnement/Feu/FEU5.png" id="4_sdsvf"]
+[ext_resource type="Texture2D" uid="uid://c54jnmbaqen2o" path="res://Ressources/Environnement/Buche_2.png" id="5_pqcqq"]
+[ext_resource type="Texture2D" uid="uid://d262vw8ioi47e" path="res://Ressources/Environnement/Hache_00.png" id="6_p8i4h"]
+[ext_resource type="Texture2D" uid="uid://csw3ppvqsv1n5" path="res://Ressources/Environnement/Arbre_4.png" id="7_vf86n"]
+
+[node name="Credits" type="PanelContainer"]
+offset_right = 1155.0
+offset_bottom = 647.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_gfp4i")
+script = ExtResource("2_1ikq6")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.313726, 0.313726, 1)
+theme_override_font_sizes/font_size = 30
+text = "Crédits"
+horizontal_alignment = 1
+
+[node name="HBox1" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RichText" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBox1"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "
+Ce jeu a été réalisé dans le cadre de la \"Game Jam dans le Cantal #2\" organisé par le [b]Fablab de Hautes Terres Communauté[/b] et qui s'est déroulé du 1 au 3 mars 2024. Après le Game Jam, le jeu a été ensuite complété et amélioré pour fournir ce résultat.
+
+Y ont contribué, pour la conception, le design des décors et du personnage, les animations, la musique, la logique de fonctionnement :
+[ul] Alexandre[/ul]
+[ul] Antoine[/ul]
+[ul] Luna[/ul]
+[ul] xx[/ul]
+[ul] Sacha[/ul]
+[ul] Thierry[/ul]
+
+Une des musiques (\"Funny Country\", près du feu) provient de AudioCoffee: https://www.audiocoffee.net/ 
+
+Une vidéo de démonstration de l'état en fin de Game Jam est disponible sur [url=\"https://www.youtube.com/watch?v=rCh70TsaHJ8\"]YouTube[/url].
+"
+fit_content = true
+scroll_active = false
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBox1"]
+visible = false
+layout_mode = 2
+
+[node name="TextureJoueur" type="TextureRect" parent="CenterContainer/VBoxContainer/HBox1/VBox"]
+layout_mode = 2
+texture = ExtResource("3_ci48d")
+stretch_mode = 5
+
+[node name="TextureFeu" type="TextureRect" parent="CenterContainer/VBoxContainer/HBox1/VBox"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+texture = ExtResource("4_sdsvf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureBuche" type="TextureRect" parent="CenterContainer/VBoxContainer/HBox1/VBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("5_pqcqq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureHache" type="TextureRect" parent="CenterContainer/VBoxContainer/HBox1/VBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("6_p8i4h")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureSapin" type="TextureRect" parent="CenterContainer/VBoxContainer/HBox1/VBox"]
+custom_minimum_size = Vector2(60, 100)
+layout_mode = 2
+texture = ExtResource("7_vf86n")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FermerButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Fermer"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/FermerButton" to="." method="_on_fermer_pressed"]

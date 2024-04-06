@@ -270,6 +270,9 @@ func _on_hi_scores_child_exiting_tree(_node):
 func show_aide():
 	const aideScene = preload("res://aide.tscn")
 	$Menu.hide()
-	var aideControl = aideScene.instantiate()
-	$PopUp.add_child(aideControl)
-	pass # Replace with function body.
+	$PopUp.add_child(aideScene.instantiate())
+
+func show_credits():
+	const creditsScene = preload("res://credits.tscn")
+	$Menu.hide()
+	$PopUp.add_child(creditsScene.instantiate())

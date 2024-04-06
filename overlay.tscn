@@ -280,7 +280,8 @@ text = "Github"
 underline = 1
 uri = "https://github.com/FablabMurat/GameJamMurat0324"
 
-[node name="Credits" type="LinkButton" parent="Menu/PanelContainer/VBoxBottomRight"]
+[node name="CreditsLink" type="LinkButton" parent="Menu/PanelContainer/VBoxBottomRight"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -288,6 +289,14 @@ theme_override_font_sizes/font_size = 30
 text = "Credits"
 underline = 1
 uri = "https://www.youtube.com/watch?v=rCh70TsaHJ8"
+
+[node name="Credits" type="LinkButton" parent="Menu/PanelContainer/VBoxBottomRight"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 30
+text = "Credits"
+underline = 1
 
 [node name="GameOverStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_7h66k")
@@ -301,4 +310,5 @@ unique_name_in_owner = true
 [connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer/HBoxName/NameButton" to="." method="valid_hi_score"]
 [connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer/AideButton" to="." method="show_aide"]
 [connection signal="pressed" from="Menu/PanelContainer/Center/VBoxCenter/VBoxContainer/HiScoresButton" to="." method="_on_hi_scores_button_pressed"]
+[connection signal="pressed" from="Menu/PanelContainer/VBoxBottomRight/Credits" to="." method="show_credits"]
 [connection signal="child_exiting_tree" from="PopUp" to="." method="_on_hi_scores_child_exiting_tree"]
