@@ -99,7 +99,8 @@ func createrandomdecor(scenemodel, resTexture = null, randomRotate : bool = fals
 	var z
 	x = randf()*198.0-99.0
 	z = randf()*198.0-99.0
-	if abs(x) < 5 and abs(z) < 5:
+	# On ne met rien dans un rayon de 7 m
+	if x*x + z*z < 49.0:
 		return
 	return createdecor(scenemodel,x,z,resTexture, randomRotate)
 
