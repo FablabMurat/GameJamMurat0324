@@ -121,8 +121,9 @@ func animate():
 			pass
 			# On est inanimé car bloqué
 			#print("animate impossible %d/%d" % [realdirection.x,realdirection.z])
-	else:
+	elif $PlayerCenter/PlayerSprite3D.animation != "dance":
 		$PlayerCenter/PlayerSprite3D.stop()
+	#else on laisse jouer l'animation près du feu
 
 func has_hache():
 	return nbhache > 0
@@ -144,13 +145,14 @@ func _on_area_3d_body_exited(body):
 		#print("loin d'un' sapin")
 		sapinsProches.erase(body.get_rid())
 	elif body.is_in_group("feu"):
+		flagPresDuFeu = false
 		$PresDuFeuTimer.stop()
 		stopFoyerMusic()
 
 func playFoyerMusic():
 	if not $FoyerStreamPlayer.playing: 
 		$FoyerStreamPlayer.play()
-	get_parent().get_node("AudioStreamPlayer").volume_db = -20
+	get_parent().get_node("AudioStreamPlayer").volume_db = -10
 
 func stopFoyerMusic():
 	$FoyerStreamPlayer.stop()
@@ -163,6 +165,10 @@ func _on_pres_du_feu_timer_timeout():
 	if velocity.x == 0  and  velocity.z == 0:
 		# on démarre la musique douce :
 		playFoyerMusic()
+		# Animation pas au point, donc ignorée pour l'instant
+#		$PlayerCenter/PlayerSprite3D.animation = "dance"
+#		$PlayerCenter/PlayerSprite3D.flip_h = not $PlayerCenter/PlayerSprite3D.flip_h
+#		$PlayerCenter/PlayerSprite3D.play()
 		# on gagne des points
 		score.emit(10)
 		# on réduit la fatigue
