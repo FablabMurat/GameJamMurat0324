@@ -263,7 +263,7 @@ size_flags_vertical = 8
 theme_override_font_sizes/font_size = 30
 text = "Itch.io"
 underline = 1
-uri = "https://itch.io/jam/game-jam-dans-lcantal-2"
+uri = "https://itch.io/jam/game-jam-dans-lcantal-2/rate/2570093"
 
 [node name="VBoxBottomRight" type="VBoxContainer" parent="Menu/PanelContainer"]
 layout_mode = 2
@@ -271,14 +271,13 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 alignment = 2
 
-[node name="Github" type="LinkButton" parent="Menu/PanelContainer/VBoxBottomRight"]
+[node name="Credits" type="LinkButton" parent="Menu/PanelContainer/VBoxBottomRight"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 30
-text = "Github"
+text = "Credits"
 underline = 1
-uri = "https://github.com/FablabMurat/GameJamMurat0324"
 
 [node name="CreditsLink" type="LinkButton" parent="Menu/PanelContainer/VBoxBottomRight"]
 visible = false
@@ -290,13 +289,14 @@ text = "Credits"
 underline = 1
 uri = "https://www.youtube.com/watch?v=rCh70TsaHJ8"
 
-[node name="Credits" type="LinkButton" parent="Menu/PanelContainer/VBoxBottomRight"]
+[node name="Github" type="LinkButton" parent="Menu/PanelContainer/VBoxBottomRight"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 30
-text = "Credits"
+text = "Github"
 underline = 1
+uri = "https://github.com/FablabMurat/GameJamMurat0324"
 
 [node name="GameOverStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_7h66k")
