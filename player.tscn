@@ -58,7 +58,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"back",
-"speed": 3.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -99,7 +99,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"dance",
-"speed": 3.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -178,8 +178,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0613341, 0)
 offset = Vector2(0, 40)
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_hlw7m")
-animation = &"dance"
-frame_progress = 0.426712
+animation = &"side"
 
 [node name="Camera3D" type="Camera3D" parent="PlayerCenter"]
 transform = Transform3D(0.499997, -0.000421824, 0.00164857, -0.000923824, 0.33951, 0.367059, 0.00142908, 0.36706, -0.339507, 0, 4.4165, -4.23686)

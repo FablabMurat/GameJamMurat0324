@@ -12,9 +12,10 @@ const NBMAX = {
 var nbbuche = 0
 
 const MIN_ENERGIE = 20.0
-const MAX_ENERGIE = 50.0
-const FATIGUE_PAR_SECONDE = 0.2
-var energie : float = MAX_ENERGIE
+const START_ENERGIE = 50.0
+const MAX_ENERGIE = 55.0
+const FATIGUE_PAR_SECONDE = 0.25
+var energie : float = START_ENERGIE
 var lastDistance : float = 0.0
 
 # Une hache permet de couper 3 sapins
@@ -43,7 +44,7 @@ func _physics_process(delta):
 	direction.z = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backwards")
 	
 	var newvelocity : Vector3 = direction.normalized().rotated(Vector3.UP,$PlayerCenter.rotation.y) * PLAYER_SPEED
-	newvelocity *= delta * max(0.2,min(1.0,energie/MAX_ENERGIE))
+	newvelocity *= delta * max(0.2,min(1.0,energie/START_ENERGIE))
 	set_velocity(newvelocity)
 	move_and_slide()
 	
@@ -173,7 +174,7 @@ func _on_pres_du_feu_timer_timeout():
 		score.emit(10)
 		# on réduit la fatigue
 		energie += 5
-		if (energie > 120): energie = 120
+		if (energie > MAX_ENERGIE): energie = MAX_ENERGIE
 		fatigue.emit(energie)
 	else:
 		stopFoyerMusic()

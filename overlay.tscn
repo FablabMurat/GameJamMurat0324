@@ -121,8 +121,8 @@ layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("4_vh802")
 max_value = 50.0
-step = 1.0
 value = 50.0
+rounded = true
 allow_greater = true
 
 [node name="MessageBox" parent="PanelContainer" instance=ExtResource("3_w4qkx")]
