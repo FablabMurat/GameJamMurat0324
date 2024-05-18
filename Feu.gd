@@ -53,6 +53,10 @@ func fireGestion(amount):
 	
 	# Rajout de temps de brulage
 	timeLeft = timeLeft + amount
+	print(timeLeft)
+	# Limitation de la durée max de feu à 2 mn
+	if timeLeft > 120: timeLeft = 120
+	print(timeLeft)
 	$Timer.start(timeLeft)
 	# Adaptation de l'effet visuel du feu
 #	print("fire radius avant: %f" % $Feu1.process_material.emission_ring_radius)

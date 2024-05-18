@@ -95,7 +95,9 @@ func _physics_process(delta):
 	global_position.z = min(99.5,max(-99.5,global_position.z))
 
 func _process(delta):
-	#var tmprot = Input.get_action_strength("look_right") - Input.get_action_strength("look_left")
+	var joyrot = Input.get_action_strength("look_right") - Input.get_action_strength("look_left")
+	if joyrot != 0:
+		camrot += joyrot * 0.04 * delta*60
 	#if abs(tmprot) > 0.1:
 	#	camrot += tmprot * 0.05
 	#	$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
@@ -184,7 +186,14 @@ func _input(event):
 		if event.button_mask & (MOUSE_BUTTON_MASK_MIDDLE + MOUSE_BUTTON_MASK_RIGHT):
 			camrot += event.relative.x * 0.005
 			print("Camera3D Rotation: ", camrot)
-
+#	if Input.is_action_pressed("look_right"):
+#		camrot += 0.05
+#	#var tmprot = Input.get_action_strength("look_right") - Input.get_action_strength("look_left")
+	#if abs(tmprot) > 0.1:
+	#	camrot += tmprot * 0.05
+	#	$PlayerCenter.set_rotation(Vector3(0, camrot, 0))
+	#	print("Camera3D Rotation: ", camrot)
+	
 	if event.is_action_pressed("ui_hache"):
 		if not sapinsProches.is_empty():
 			if has_hache():

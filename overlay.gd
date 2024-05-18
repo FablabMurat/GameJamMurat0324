@@ -69,7 +69,7 @@ func start_game():
 	$Menu.visible = false
 	%PauseButton.visible = true
 	%StartButton.visible = false
-	%HiScoresButton.visible = false
+	%HiScoresButton.visible = true
 	
 	$PanelContainer/HBoxContainer.show()
 	

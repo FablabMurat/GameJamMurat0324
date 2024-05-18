@@ -1,6 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bo236qdt0iu0w"]
-
-[ext_resource type="Script" path="res://VentSurNeige.gd" id="1_ft1ls"]
+[gd_scene load_steps=6 format=3 uid="uid://bo236qdt0iu0w"]
 
 [sub_resource type="Curve" id="Curve_vdmvj"]
 min_value = -360.0
@@ -51,7 +49,6 @@ randomness = 1.0
 interpolate = false
 process_material = SubResource("ParticleProcessMaterial_u8k2m")
 draw_pass_1 = SubResource("SphereMesh_nxo0b")
-script = ExtResource("1_ft1ls")
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.03083, 0)
